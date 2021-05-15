@@ -9,6 +9,11 @@
   min-height: 100vh;
 }
 
+.main-content__page_dark {
+  background-color: #073042;
+  color: white;
+}
+
 .main-content__title {
   margin: 0;
   border-bottom: 1px solid black;

@@ -6,3 +6,8 @@
 .header__link {
   margin: 20px;
 }
+
+.header__link_dark {
+  margin: 20px;
+  color: white;
+}
