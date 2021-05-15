@@ -2,10 +2,14 @@ import './Register.css';
 
 import React from 'react';
 
+import SitePage from '../SitePage/SitePage';
+
 export default function Register(props) {
   return (
-    <div className="register">
-      <h2>Register placeholder</h2>
-    </div>
+    <SitePage>
+      <div className="register">
+        <h2>Register placeholder</h2>
+      </div>
+    </SitePage>
   )
 }

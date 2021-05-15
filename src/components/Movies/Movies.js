@@ -2,10 +2,14 @@ import './Movies.css';
 
 import React from 'react';
 
+import SitePage from '../SitePage/SitePage';
+
 export default function Movies(props) {
   return (
-    <div className="movies">
-      <h2>Movies placeholder</h2>
-    </div>
+    <SitePage>
+      <div className="movies">
+        <h2>Movies placeholder</h2>
+      </div>
+    </SitePage>
   )
 }
