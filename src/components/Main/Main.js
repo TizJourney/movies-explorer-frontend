@@ -17,27 +17,37 @@ function MainPage(props) {
   )
 }
 
+function MainTitle(props) {
+  return (
+    <h2 className="main-content__title">{props.title}</h2>
+  )
+}
+
+
 export default function Main(props) {
   return (
     <div className="main-content">
       <MainPage>
-        <Header/>
-        <Hero/>
+        <Header />
+        <Hero />
       </MainPage>
 
       <MainPage>
-        <About/>
+        <MainTitle title='О проекте' />
+        <About />
       </MainPage>
 
       <MainPage>
-        <Tech/>
+        <MainTitle title='Технологии' />
+        <Tech />
       </MainPage>
 
       <MainPage>
+        <MainTitle title='Студент' />
         <Student />
       </MainPage>
 
-      <Footer/>
+      <Footer />
     </div>
   )
 }

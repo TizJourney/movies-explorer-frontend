@@ -9,3 +9,8 @@
   min-height: 100vh;
 }
 
+.main-content__title {
+  margin: 0;
+  border-bottom: 1px solid black;
+  padding-bottom: 23px;
+}
