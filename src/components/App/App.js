@@ -3,6 +3,11 @@ import { BrowserRouter, Route, Switch, } from 'react-router-dom';
 
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import Profile from '../Profile/Profile';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
+import Main from '../Main/Main';
+import NotFound from '../NotFound/NotFound';
 
 
 function AppInternal() {
@@ -26,7 +31,7 @@ function AppInternal() {
         <Route exact path='/'>
           <Main/>
         </Route>
-        <Route>
+        <Route path='*'>
           <NotFound/>
         </Route>
       </Switch>
