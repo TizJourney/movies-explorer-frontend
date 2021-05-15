@@ -23,7 +23,6 @@ function MainTitle(props) {
   )
 }
 
-
 export default function Main(props) {
   return (
     <div className="main-content">
