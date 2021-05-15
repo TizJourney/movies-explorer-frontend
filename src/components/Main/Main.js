@@ -10,7 +10,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 function MainPage(props) {
-  const mainPageClassName = `main-content__page ${props.darkTheme && 'main-content__page_dark'}`;
+  const mainPageClassName = `main-content__page ${props.darkTheme && 'main-content__page_dark'} ${props.promoPage && 'main-content__page_promo'}`;
 
   return (
     <div className={mainPageClassName}>
@@ -28,7 +28,7 @@ function MainTitle(props) {
 export default function Main(props) {
   return (
     <div className="main-content">
-      <MainPage darkTheme={true} >
+      <MainPage darkTheme={true} promoPage={true} >
         <Header darkTheme={true} />
         <Promo />
       </MainPage>
