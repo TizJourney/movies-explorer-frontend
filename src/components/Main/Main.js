@@ -2,7 +2,7 @@ import './Main.css';
 
 import React from 'react';
 
-import Hero from '../Hero/Hero';
+import Promo from '../Promo/Promo';
 import About from '../About/About';
 import Tech from '../Tech/Tech';
 import Student from '../Student/Student';
@@ -28,7 +28,7 @@ export default function Main(props) {
     <div className="main-content">
       <MainPage>
         <Header />
-        <Hero />
+        <Promo />
       </MainPage>
 
       <MainPage>
