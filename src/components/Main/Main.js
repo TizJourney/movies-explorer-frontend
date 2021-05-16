@@ -12,7 +12,7 @@ import Footer from '../Footer/Footer';
 
 
 function MainPage(props) {
-  const mainPageClassName = `main-content__page${props.darkTheme ? ' main-content__page_dark' : ''}${props.promoPage ? ' main-content__page_promo' : ''}`;
+  const mainPageClassName = `main-content__page ${props.theme || ''}${props.promoPage ? ' main-content__page_promo' : ''}`;
 
   return (
     <div className={mainPageClassName}>
@@ -30,7 +30,7 @@ function MainTitle(props) {
 export default function Main(props) {
   return (
     <div className="main-content">
-      <MainPage darkTheme={true} promoPage={true} >
+      <MainPage theme='main-content__page_dark' promoPage={true} >
         <Header darkTheme={true} />
         <Promo />
         <NavTab />
@@ -41,7 +41,7 @@ export default function Main(props) {
         <About />
       </MainPage>
 
-      <MainPage>
+      <MainPage theme='main-content__page_grey'>
         <MainTitle title='Технологии' />
         <Tech />
       </MainPage>
