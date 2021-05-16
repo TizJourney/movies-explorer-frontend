@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 export default function SitePage(props) {
   return (
     <div className="page">
-      <div className="content">
+      <div className="page__content content">
         <Header/>
         {props.children}
         <Footer />
