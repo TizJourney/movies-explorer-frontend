@@ -1,3 +1,30 @@
 .about {
   background-color:honeydew;
+  margin: 0 70px 0 70px;
+}
+
+.about-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 70px;
+  row-gap: 26px;
+  column-gap: 40px;
+}
+
+.about-info__item {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.43;
+  font-size: 20px;
+}
+
+.about-info__item_title {
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
 }
