@@ -12,7 +12,7 @@ import Footer from '../Footer/Footer';
 
 
 function MainPage(props) {
-  const mainPageClassName = `main-content__page ${props.darkTheme && 'main-content__page_dark'} ${props.promoPage && 'main-content__page_promo'}`;
+  const mainPageClassName = `main-content__page${props.darkTheme ? ' main-content__page_dark' : ''}${props.promoPage ? ' main-content__page_promo' : ''}`;
 
   return (
     <div className={mainPageClassName}>
