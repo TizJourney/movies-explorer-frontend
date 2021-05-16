@@ -1,0 +1,11 @@
+.nav-tab {
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.nav-tab__link {
+  color: white;
+  margin: 24px 20px 24px 20px;
+}

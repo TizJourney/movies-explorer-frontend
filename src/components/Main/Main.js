@@ -3,11 +3,13 @@ import './Main.css';
 import React from 'react';
 
 import Promo from '../Promo/Promo';
+import NavTab from '../NavTab/NavTab';
 import About from '../About/About';
 import Tech from '../Tech/Tech';
 import Student from '../Student/Student';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+
 
 function MainPage(props) {
   const mainPageClassName = `main-content__page ${props.darkTheme && 'main-content__page_dark'} ${props.promoPage && 'main-content__page_promo'}`;
@@ -31,6 +33,7 @@ export default function Main(props) {
       <MainPage darkTheme={true} promoPage={true} >
         <Header darkTheme={true} />
         <Promo />
+        <NavTab />
       </MainPage>
 
       <MainPage>
