@@ -2,11 +2,19 @@
   margin: 0 70px 0 70px;
 }
 
+.about__info {
+  margin-top: 70px;
+}
+
+.about__timeline {
+  margin: 110px 0 110px 0;
+}
+
+
 .about-info {
   list-style-type: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 70px;
   row-gap: 26px;
   column-gap: 40px;
 }
@@ -30,7 +38,6 @@
 
 .about-timeline {
   list-style-type: none;
-  margin: 110px 0 110px 0;
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 4fr;
