@@ -1,9 +1,9 @@
 .about {
-  background-color:honeydew;
   margin: 0 70px 0 70px;
 }
 
 .about-info {
+  list-style-type: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-top: 70px;
@@ -12,7 +12,6 @@
 }
 
 .about-info__item {
-  list-style-type: none;
   padding: 0;
   margin: 0;
   font-family: Inter;
@@ -27,4 +26,38 @@
   font-size: 20px;
   line-height: 1.2;
   letter-spacing: -0.04em;
+}
+
+.about-timeline {
+  list-style-type: none;
+  margin: 110px 0 110px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.about-timeline__item {
+  background-color: #F2F2F2;
+  padding: 9px 0 9px 0;
+  text-align: center;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.21;
+}
+
+.about-timeline__item_highlight {
+  background-color: #2BE080;
+}
+
+.about-timeline__title {
+  padding: 14px 0 14px 0;
+  text-align: center;
+  color: #A0A0A0;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
 }
