@@ -14,6 +14,10 @@
   color: white;
 }
 
+.main-content__page_grey {
+  background-color: #F5F5F5;
+}
+
 .main-content__page_promo {
   display: grid;
   grid-template-rows: min-content 1fr min-content;
