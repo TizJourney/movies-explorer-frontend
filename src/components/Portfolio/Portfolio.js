@@ -6,7 +6,7 @@ import classnames from 'classnames';
 
 function PortofolioLink(props) {
   return (
-    <a href={props.link} className='portfolio__link-block portfolio-link'>
+    <a href={props.link} className='portfolio__link-block portfolio-link' target='_blank' rel='noreferrer'>
       <p className='portfolio-link__link-text'>{props.children}</p>
       <p className='portfolio-link__link-text'>↗</p>
     </a>
