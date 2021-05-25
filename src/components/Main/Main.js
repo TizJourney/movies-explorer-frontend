@@ -56,7 +56,7 @@ export default function Main(props) {
         <Portfolio className='main-content__portfolio'/>
       </MainPage>
 
-      <Footer />
+      <Footer className='main-content__page'/>
     </div>
   )
 }
