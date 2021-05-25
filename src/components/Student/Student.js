@@ -3,9 +3,11 @@ import promo_logo from '../../images/student-photo.jpg';
 
 import React from 'react';
 
+import classnames from 'classnames';
+
 export default function Student(props) {
   return (
-    <div className='student'>
+    <div className={classnames('student', props.className)}>
       <div className='student__text-blocks'>
         <h3 className='student__title'>Константин</h3>
         <p className='student__subtitle'>Фронтенд-разработчик, 36 лет</p>

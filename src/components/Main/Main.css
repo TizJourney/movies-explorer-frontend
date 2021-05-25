@@ -25,6 +25,10 @@
   grid-template-rows: min-content 1fr min-content;
 }
 
+.main-content__student-content {
+  margin-top: 66px;
+}
+
 .main-content__title {
   margin: 0;
   border-bottom: 1px solid black;

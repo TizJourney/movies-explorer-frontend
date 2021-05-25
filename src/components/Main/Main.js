@@ -18,7 +18,7 @@ import Footer from '../Footer/Footer';
 
 function MainPage(props) {
   return (
-    <div className={classnames('main-content__page', props.styleName, props.theme)}>
+    <div className={classnames('main-content__page', props.className, props.theme)}>
       {props.children}
     </div>
   )
@@ -33,7 +33,7 @@ function MainTitle(props) {
 export default function Main(props) {
   return (
     <div className="main-content">
-      <MainPage theme='main-content__page_dark' styleName='main-content__page_promo'>
+      <MainPage theme='main-content__page_dark' className='main-content__page_promo'>
         <Header darkTheme={true} />
         <Promo />
         <NavTab />
@@ -51,7 +51,7 @@ export default function Main(props) {
 
       <MainPage>
         <MainTitle title='Студент' />
-        <Student />
+        <Student className='main-content__student-content'/>
       </MainPage>
 
       <Footer />
