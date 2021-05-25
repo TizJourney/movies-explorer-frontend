@@ -42,12 +42,12 @@ export default function Main(props) {
 
       <MainPage>
         <MainTitle title='О проекте' />
-        <AboutProject />
+        <AboutProject className='main-content__about-project' />
       </MainPage>
 
       <MainPage theme='main-content__page_grey'>
         <MainTitle title='Технологии' />
-        <Tech />
+        <Tech className='main-content__tech' />
       </MainPage>
 
       <MainPage>

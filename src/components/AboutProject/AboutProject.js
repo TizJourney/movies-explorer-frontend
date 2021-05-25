@@ -1,10 +1,12 @@
+import classnames from 'classnames';
+
 import './AboutProject.css';
 
 import React from 'react';
 
 export default function About(props) {
   return (
-    <div className="about">
+    <div className={classnames('about', props.className)}>
       <ul className="about__info about-info">
         <li className="about-info__item about-info__item_title">Дипломный проект включал 5 этапов</li>
         <li className="about-info__item about-info__item_title">На выполнение диплома ушло 5 недель</li>
