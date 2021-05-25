@@ -9,9 +9,9 @@ import React from 'react';
 
 import Promo from '../Promo/Promo';
 import NavTab from '../NavTab/NavTab';
-import About from '../About/About';
+import AboutProject from '../AboutProject/AboutProject';
 import Tech from '../Tech/Tech';
-import Student from '../Student/Student';
+import AboutMe from '../AboutMe/AboutMe';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
@@ -41,7 +41,7 @@ export default function Main(props) {
 
       <MainPage>
         <MainTitle title='О проекте' />
-        <About />
+        <AboutProject />
       </MainPage>
 
       <MainPage theme='main-content__page_grey'>
@@ -51,7 +51,7 @@ export default function Main(props) {
 
       <MainPage>
         <MainTitle title='Студент' />
-        <Student className='main-content__student-content'/>
+        <AboutMe className='main-content__student-content'/>
       </MainPage>
 
       <Footer />

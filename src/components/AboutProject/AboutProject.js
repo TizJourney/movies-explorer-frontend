@@ -1,4 +1,4 @@
-import './About.css';
+import './AboutProject.css';
 
 import React from 'react';
 

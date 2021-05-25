@@ -1,4 +1,4 @@
-import './Student.css';
+import './AboutMe.css';
 import promo_logo from '../../images/student-photo.jpg';
 
 import React from 'react';
