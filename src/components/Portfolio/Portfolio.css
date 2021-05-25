@@ -14,3 +14,26 @@
 .portfolio__links-blocks {
   margin-top: 50px;
 }
+
+.portfolio-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 0 19px 0;
+  margin: 0;
+  border-bottom: solid 1px#E5E5E5;
+  vertical-align: middle;
+}
+
+.portfolio-link__link-text {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 30px;
+  line-height: 1.67;
+  letter-spacing: -0.04em;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
