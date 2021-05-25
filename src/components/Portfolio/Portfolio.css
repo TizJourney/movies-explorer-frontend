@@ -1,0 +1,16 @@
+.portfolio__title {
+  margin: 0;
+  padding: 0;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.11;
+
+  color: #A0A0A0;
+}
+
+.portfolio__links-blocks {
+  margin-top: 50px;
+}
