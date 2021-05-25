@@ -1,6 +1,11 @@
+
+import classnames from 'classnames';
+
 import './Main.css';
 
 import React from 'react';
+
+
 
 import Promo from '../Promo/Promo';
 import NavTab from '../NavTab/NavTab';
@@ -12,10 +17,8 @@ import Footer from '../Footer/Footer';
 
 
 function MainPage(props) {
-  const mainPageClassName = `main-content__page ${props.theme || ''}${props.promoPage ? ' main-content__page_promo' : ''}`;
-
   return (
-    <div className={mainPageClassName}>
+    <div className={classnames('main-content__page', props.styleName, props.theme)}>
       {props.children}
     </div>
   )
@@ -30,7 +33,7 @@ function MainTitle(props) {
 export default function Main(props) {
   return (
     <div className="main-content">
-      <MainPage theme='main-content__page_dark' promoPage={true} >
+      <MainPage theme='main-content__page_dark' styleName='main-content__page_promo'>
         <Header darkTheme={true} />
         <Promo />
         <NavTab />

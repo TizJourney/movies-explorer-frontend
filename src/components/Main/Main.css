@@ -7,10 +7,12 @@
 .main-content__page {
   width: min(1280px, 100%);
   min-height: 100vh;
+  padding: 0 70px 0 70px;
 }
 
 .main-content__page_dark {
   background-color: #073042;
+  padding: 0;
   color: white;
 }
 
@@ -27,5 +29,5 @@
   margin: 0;
   border-bottom: 1px solid black;
   padding-bottom: 23px;
-  margin: 110px 70px 0 70px;
+  margin: 110px 0 0 0;
 }
