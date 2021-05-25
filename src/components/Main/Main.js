@@ -12,6 +12,7 @@ import NavTab from '../NavTab/NavTab';
 import AboutProject from '../AboutProject/AboutProject';
 import Tech from '../Tech/Tech';
 import AboutMe from '../AboutMe/AboutMe';
+import Portfolio from '../Portfolio/Portfolio';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
@@ -52,6 +53,7 @@ export default function Main(props) {
       <MainPage>
         <MainTitle title='Студент' />
         <AboutMe className='main-content__student-content'/>
+        <Portfolio className='main-content__portfolio'/>
       </MainPage>
 
       <Footer />
