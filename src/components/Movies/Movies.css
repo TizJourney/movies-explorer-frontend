@@ -1,5 +1,14 @@
 .movies {
-  min-height: 74px;
-  width: 100%;
-  background-color: blue;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.movies__page {
+  width: min(1280px, 100%);
+  padding: 0 70px 0 70px;
+}
+
+.movies__item {
+  margin: 0 70px 0 70px;
 }
