@@ -2,13 +2,19 @@ import classnames from 'classnames';
 
 import './SearchForm.css';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 function FilterCheckbox(props) {
+  const [isActive, setActive] = useState(false);
+
+  const toggleClass = () => {
+    setActive(!isActive);
+  };
+
   return (
     <div className='search-form__filter-container'>
+      <button className={classnames('search-form__filter-button', isActive ? null : 'search-form__filter-button_disable')} onClick={toggleClass} />
       <p className='search-form__widget-title'>Короткометражки</p>
-      <input type="checkbox" className='search-form__filter-checkbox'></input>
     </div>
   )
 }
