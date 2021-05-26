@@ -2,8 +2,6 @@ import classnames from 'classnames';
 
 import './SearchForm.css';
 
-import search_button from '../../images/search-button.png';
-
 import React from 'react';
 
 function FilterCheckbox(props) {
