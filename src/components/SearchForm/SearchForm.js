@@ -29,9 +29,11 @@ function SearchFormButton(props) {
 export default function SearchForm(props) {
   return (
     <div className={classnames('search-form', props.className)}>
-      <p className='search-form__content'>search-form Left Block</p>
-      <SearchFormButton />
-      <FilterCheckbox />
+      <div className='search-form__widget'>
+        <p className='search-form__content'>search-form Left Block</p>
+        <SearchFormButton />
+        <FilterCheckbox />
+      </div>
     </div>
   )
 }
