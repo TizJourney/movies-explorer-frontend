@@ -1,3 +1,5 @@
+import classnames from 'classnames';
+
 import './Header.css';
 
 import React from 'react';
@@ -8,7 +10,7 @@ export default function Header(props) {
   const linkClassName = `header__link ${props.darkTheme && 'header__link_dark'}`;
 
   return (
-    <header className='header'>
+    <header className={classnames(props.className, 'header')}>
       <Link to='profile' className={linkClassName}>profile</Link>
       <Link to='signin' className={linkClassName}>login</Link>
       <Link to='signup' className={linkClassName}>register</Link>
