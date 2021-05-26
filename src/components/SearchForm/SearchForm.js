@@ -2,6 +2,8 @@ import classnames from 'classnames';
 
 import './SearchForm.css';
 
+import search_icon from '../../images/search-icon.png'
+
 import React, { useState } from 'react';
 
 function FilterCheckbox(props) {
@@ -27,10 +29,19 @@ function SearchFormButton(props) {
 
 
 export default function SearchForm(props) {
+
+  const [inputValue, setInputValue] = useState('');
+
   return (
     <div className={classnames('search-form', props.className)}>
       <div className='search-form__widget'>
-        <p className='search-form__content'>search-form Left Block</p>
+        {!inputValue &&
+          <div className='search-form__placeholder'>
+            <img src={search_icon} className='search-form__placeholder-icon' alt='Изображение лупы' />
+            <p className='search-form__placeholder-text'>Фильм</p>
+          </div>
+        }
+        <input className='search-form__input' value={inputValue.value} onChange={e => setInputValue(e.target.value)} />
         <SearchFormButton />
         <FilterCheckbox />
       </div>
