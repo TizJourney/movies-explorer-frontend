@@ -4,11 +4,8 @@
   flex-direction: column;
 }
 
-.movies__page {
+.movies__content {
   width: min(1280px, 100%);
   padding: 0 70px 0 70px;
 }
 
-.movies__item {
-  padding: 0 70px 0 70px;
-}
