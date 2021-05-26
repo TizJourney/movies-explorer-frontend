@@ -24,6 +24,10 @@
   cursor: pointer;
 }
 
+.movies-card__button_saved {
+  background-image: url('../../images/card-button-unsave.png');
+}
+
 .movies-card__text-blocks {
   margin: 14px;
 }
