@@ -11,15 +11,15 @@ import React from 'react';
 export default function MoviesCardList(props) {
   return (
     <ul className={classnames('movies-card-list', props.className)}>
-      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample}/>
-      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} saved={true}/>
-      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample}/>
-      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample}/>
-      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} saved={true}/>
-      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample}/>
-      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} saved={true}/>
-      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample}/>
-      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample}/>
+      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode}/>
+      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode} saved={true}/>
+      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode}/>
+      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode}/>
+      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode} saved={true}/>
+      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode}/>
+      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode} saved={true}/>
+      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode}/>
+      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode}/>
     </ul>
   )
 }

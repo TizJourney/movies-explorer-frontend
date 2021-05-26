@@ -24,12 +24,24 @@
   cursor: pointer;
 }
 
-.movies-card__button_saved {
+.movies-card__button_normal-mode_active {
+  background-image: url('../../images/card-button-save.png');
+}
+
+.movies-card__button_normal-mode_disable {
   background-image: url('../../images/card-button-unsave.png');
 }
 
 .movies-card__text-blocks {
   margin: 14px;
+}
+
+.movies-card__button_saved-mode_active {
+  background-image: url('../../images/card-button-save.png');
+}
+
+.movies-card__button_saved-mode_disable {
+  background-image: url('../../images/card-button-remove.png');
 }
 
 .movies-card__title {

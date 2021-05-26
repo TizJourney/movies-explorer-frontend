@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, } from 'react-router-dom';
 
 import Movies from '../Movies/Movies';
-import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
@@ -17,7 +16,7 @@ function AppInternal() {
           <Movies/>
         </Route>
         <Route exact path='/saved-movies'>
-          <SavedMovies />
+          <Movies savedMode={true} />
         </Route>
         <Route exact path='/profile'>
           <Profile/>
