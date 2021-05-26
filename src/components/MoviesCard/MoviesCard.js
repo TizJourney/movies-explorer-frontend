@@ -10,7 +10,7 @@ export default function MoviesCard(props) {
       <div className='movies-card__info'>
         <div className='movies-card__text-blocks'>
           <h2 className='movies-card__title'>{props.title}</h2>
-          <p className='movies-card__title'>{props.duration}</p>
+          <p className='movies-card__duration'>{props.duration}</p>
         </div>
         <button className='movies-card__button' />
       </div>
