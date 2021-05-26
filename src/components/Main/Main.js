@@ -52,11 +52,11 @@ export default function Main(props) {
 
       <MainPage>
         <MainTitle title='Студент' />
-        <AboutMe className='main-content__student-content'/>
-        <Portfolio className='main-content__portfolio'/>
+        <AboutMe className='main-content__student-content' />
+        <Portfolio className='main-content__portfolio' />
       </MainPage>
 
-      <Footer className='main-content__page'/>
+      <Footer className='main-content__page' />
     </div>
   )
 }
