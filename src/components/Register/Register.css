@@ -1,5 +1,10 @@
 .register {
-  min-height: 74px;
-  width: 100%;
-  background-color:darkmagenta;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.register__content {
+  width: min(1280px, 100%);
+  padding: 0 70px 0 70px;
 }
