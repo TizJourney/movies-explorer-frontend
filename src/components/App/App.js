@@ -42,8 +42,8 @@ function AppInternal() {
         <Route exact path='/signin'>
           <Login handleSubmit={handleLogin} />
         </Route>
-        <Route exact path='/signup' handleSubmit={handleLogin}>
-          <Register />
+        <Route exact path='/signup'>
+          <Register  handleSubmit={handleLogin} />
         </Route>
         <Route exact path='/'>
           <Main />
