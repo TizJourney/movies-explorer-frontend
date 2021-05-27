@@ -5,13 +5,15 @@
 }
 
 .profile__content {
-  width: min(410px, 100%);
+  width: min(1280px, 100%);
+}
+
+.profile__body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
 .profile__title {
   margin-top: 74px;
 }
