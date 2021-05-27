@@ -29,8 +29,8 @@ export default function Header(props) {
       {userContext.logged &&
         <nav className='header__links-block'>
           <Link to='profile' className={classnames('header__link header__link_account', extraLinkClassName)}><AccountLogo className='header__account-logo' /></Link>
-          <Link to='movies' className={classnames('header__link header__link_movies', extraLinkClassName)}>Фильмы</Link>
           <Link to='saved-movies' className={classnames('header__link header__link_saved-movies', extraLinkClassName)}>Сохранённые фильмы</Link>
+          <Link to='movies' className={classnames('header__link header__link_movies', extraLinkClassName)}>Фильмы</Link>
         </nav>
       }
       {!userContext.logged &&

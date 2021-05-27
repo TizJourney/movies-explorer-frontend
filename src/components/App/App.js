@@ -27,6 +27,9 @@ function AppInternal() {
     history.push('/');
   }
 
+  const handleEditProfile = () => {
+    history.goBack();
+  }
 
   return (
       <Switch>
@@ -37,7 +40,7 @@ function AppInternal() {
           <Movies savedMode={true} />
         </Route>
         <Route exact path='/profile'>
-          <Profile handleLogout={handleLogout} />
+          <Profile handleLogout={handleLogout} handleEditProfile={handleEditProfile} />
         </Route>
         <Route exact path='/signin'>
           <Login handleSubmit={handleLogin} />

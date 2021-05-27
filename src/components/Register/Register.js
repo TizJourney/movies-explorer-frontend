@@ -10,7 +10,7 @@ export default function Register(props) {
         <FormInput className='register__input' title='Имя' />
         <FormInput className='register__input' title='E-mail' />
         <FormInput className='register__input' title='Пароль' />
-        <FormButton className='register__button' title='Зарегистрироваться' />
+        <FormButton className='register__button' title='Зарегистрироваться' handleSubmit={props.handleSubmit} />
         <FormHelper
           className='register__helper'
           title='Уже зарегистрированы?'

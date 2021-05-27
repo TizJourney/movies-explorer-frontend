@@ -33,7 +33,7 @@ export default function Profile(props) {
           <h2 className='profile__title'>{userContext.name}</h2>
           <ProfileInput className='profile__input profile__input_bottom-divider' title='E-mail' value={userContext.email} />
           <ProfileInput className='profile__input' title='Пароль' value={userContext.password} />
-          <button className='profile__button'>Редактировать</button>
+          <button className='profile__button' onClick={props.handleEditProfile}>Редактировать</button>
           <button className='profile__button profile__button_logout' onClick={props.handleLogout}>Выйти из аккаунта</button>
         </div>
       </div>
