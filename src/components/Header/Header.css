@@ -24,9 +24,7 @@
 }
 
 .header__link {
-  min-height: 32px;
   color: black;
-  margin: 0;
   text-decoration: none;
   cursor: pointer;
 
@@ -34,7 +32,6 @@
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
-  line-height: 1.69;
   text-align: right;
 }
 
