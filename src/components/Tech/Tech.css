@@ -80,3 +80,33 @@
     font-size: 12px;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .about__timeline {
+    margin-top: 60px;
+    margin-bottom: 49px;
+  }
+
+  .tech__title {
+    margin-top: 60px;
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .tech-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .tech__tech-items {
+    margin-top: 50px;
+    margin-bottom: 70px;
+  }
+
+  .tech-items__item {
+    font-size: 12px;
+  }
+
+}
+
