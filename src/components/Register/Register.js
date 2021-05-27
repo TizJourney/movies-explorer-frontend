@@ -6,8 +6,6 @@ import './Register.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Footer from '../Footer/Footer';
-
 function FormTitle(props) {
   return (
     <div  className={classnames('form-title', props.className)}>
@@ -23,7 +21,10 @@ function FormInput(props) {
   return (
     <div  className={classnames('form-input', props.className)}>
       <p className='form-input__title'>{props.title}</p>
-      <input className='form-input__input' value={inputValue.value} onChange={e => setInputValue(e.target.value)} />
+      <div className='form-input__container' >
+        <input className='form-input__input' value={inputValue.value} onChange={e => setInputValue(e.target.value)} />
+        <p className='form-input__input-error' >Текст ошибки</p>
+      </div>
     </div>
   )
 }
@@ -58,7 +59,6 @@ export default function Register(props) {
           buttonTitle='Войти'
           linkTo='signin'
         />
-        <Footer className='movies__footer movies__item' />
       </div>
     </div>
   )
