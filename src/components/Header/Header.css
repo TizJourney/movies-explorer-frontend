@@ -23,6 +23,13 @@
   align-items: center;
 }
 
+.header__links-block_unauth {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+}
+
 .header__link {
   color: black;
   text-decoration: none;
@@ -52,8 +59,18 @@
 
 .header__link_saved-movies {
   margin-right: 20px;
-
 }
+
+.header__link_login {
+  background: #2BE080;
+  border-radius: 3px;
+  padding: 8px 20px;
+}
+
+.header__link_register {
+  margin-right: 20px;
+}
+
 
 .account-logo {
   display: flex;

@@ -6,6 +6,8 @@ import Header from '../Header/Header';
 
 import React, { useState } from 'react';
 
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 export function ProfileInput(props) {
   const [inputValue, setInputValue] = useState(props.value);
 
@@ -21,14 +23,16 @@ export function ProfileInput(props) {
 }
 
 export default function Login(props) {
+  const userContext = React.useContext(CurrentUserContext);
+
   return (
     <div className='profile'>
       <div className='profile__content'>
         <Header className='profile__header' />
         <div className='profile__body'>
-          <h2 className='profile__title'>Привет, Константин!</h2>
-          <ProfileInput className='profile__input profile__input_bottom-divider' title='E-mail' value='Константин' />
-          <ProfileInput className='profile__input' title='Пароль' value='example@mail.ru' />
+          <h2 className='profile__title'>{userContext.name}</h2>
+          <ProfileInput className='profile__input profile__input_bottom-divider' title='E-mail' value={userContext.email} />
+          <ProfileInput className='profile__input' title='Пароль' value={userContext.password} />
           <button className='profile__button'>Редактировать</button>
           <button className='profile__button profile__button_logout'>Выйти из аккаунт</button>
         </div>

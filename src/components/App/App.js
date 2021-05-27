@@ -8,32 +8,36 @@ import Register from '../Register/Register';
 import Main from '../Main/Main';
 import NotFound from '../NotFound/NotFound';
 
+import { CurrentUserContext, userPlaceholderData } from '../../contexts/CurrentUserContext';
+
 
 function AppInternal() {
   return (
+    <CurrentUserContext.Provider value={userPlaceholderData}>
       <Switch>
         <Route exact path='/movies'>
-          <Movies/>
+          <Movies />
         </Route>
         <Route exact path='/saved-movies'>
           <Movies savedMode={true} />
         </Route>
         <Route exact path='/profile'>
-          <Profile/>
+          <Profile />
         </Route>
         <Route exact path='/signin'>
-          <Login/>
+          <Login />
         </Route>
         <Route exact path='/signup'>
-          <Register/>
+          <Register />
         </Route>
         <Route exact path='/'>
-          <Main/>
+          <Main />
         </Route>
         <Route path='*'>
-          <NotFound/>
+          <NotFound />
         </Route>
       </Switch>
+    </CurrentUserContext.Provider>
   );
 }
 
