@@ -13,7 +13,7 @@ export function ProfileInput(props) {
     <div  className={classnames('profile-input', props.className)}>
       <div className='profile-input__container' >
         <p className='profile-input__title'>{props.title}</p>
-        <input className='profile-input__input' value={inputValue.value} onChange={e => setInputValue(e.target.value)} />
+        <input className='profile-input__input' defaultValue={inputValue} value={inputValue.value} onChange={e => setInputValue(e.target.value)} />
       </div>
       <p className='profile-input__input-error'>Текст ошибки</p>
     </div>
