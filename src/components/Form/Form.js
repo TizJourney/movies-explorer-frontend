@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 export function FormTitle(props) {
   return (
     <div  className={classnames('form-title', props.className)}>
-      <img src={form_logo} className='form-title__icon' alt='Иконка формы' />
+      <Link to='/' className='form-title__link'><img src={form_logo} className='form-title__icon' alt='Иконка формы' /></Link>
       <h2 className='form-title__title'>{props.title}</h2>
     </div>
   )
