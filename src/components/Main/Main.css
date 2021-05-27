@@ -47,7 +47,7 @@
 }
 
 .main-content__portfolio {
-  margin: 100px 0 125px 0;
+  margin: 100px 0;
 }
 
 .main-content__about-project {
@@ -55,5 +55,5 @@
 }
 
 .main-content__tech {
-  margin: 0px 0 100px 0;
+  margin: 0;
 }
