@@ -10,10 +10,25 @@ import NotFound from '../NotFound/NotFound';
 
 import { CurrentUserContext, userPlaceholderData } from '../../contexts/CurrentUserContext';
 
+import { useHistory } from 'react-router-dom';
 
 function AppInternal() {
+
+  const history = useHistory();
+  const userContext = React.useContext(CurrentUserContext);
+
+  const handleLogin = () => {
+    userContext.logged = true;
+    history.push('/movies');
+  }
+
+  const handleLogout = () => {
+    userContext.logged = false;
+    history.push('/');
+  }
+
+
   return (
-    <CurrentUserContext.Provider value={userPlaceholderData}>
       <Switch>
         <Route exact path='/movies'>
           <Movies />
@@ -22,12 +37,12 @@ function AppInternal() {
           <Movies savedMode={true} />
         </Route>
         <Route exact path='/profile'>
-          <Profile />
+          <Profile handleLogout={handleLogout} />
         </Route>
         <Route exact path='/signin'>
-          <Login />
+          <Login handleSubmit={handleLogin} />
         </Route>
-        <Route exact path='/signup'>
+        <Route exact path='/signup' handleSubmit={handleLogin}>
           <Register />
         </Route>
         <Route exact path='/'>
@@ -37,12 +52,12 @@ function AppInternal() {
           <NotFound />
         </Route>
       </Switch>
-    </CurrentUserContext.Provider>
+
   );
 }
 
 function App() {
-  return (<BrowserRouter><AppInternal /></BrowserRouter>)
+  return (<CurrentUserContext.Provider value={userPlaceholderData}><BrowserRouter><AppInternal /></BrowserRouter></CurrentUserContext.Provider>)
 }
 
 export default App;

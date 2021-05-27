@@ -9,7 +9,7 @@ export default function Login(props) {
         <FormTitle className='login__header' title='Рады видеть!' />
         <FormInput className='login__input' title='E-mail' />
         <FormInput className='login__input' title='Пароль' />
-        <FormButton className='login__button' title='Войти' />
+        <FormButton className='login__button' title='Войти' handleSubmit={props.handleSubmit} />
         <FormHelper
           className='login__helper'
           title='Ещё не зарегистрированы?'
