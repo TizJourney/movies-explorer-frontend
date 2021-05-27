@@ -97,7 +97,9 @@
   }
 
   .main-content__title {
-    margin-top: 100px;
+    margin-top: 70px;
+    font-size: 18px;
+    padding-bottom: 30px;
   }
 
   .main-content__title_tech {

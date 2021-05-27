@@ -113,7 +113,15 @@
 
 @media screen and (max-width: 767px) {
   .header {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .header__link {
+    font-size: 10px;
+  }
+
+  .header__link_login {
+    padding: 5px 12px;
   }
 }

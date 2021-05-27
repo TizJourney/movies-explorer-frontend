@@ -30,3 +30,16 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+
+@media screen and (max-width: 767px) {
+  .promo__logo {
+      width: 268px;
+    }
+
+  .promo__title {
+    max-width: 300px;
+    font-size: 31px;
+    line-height: 1.26;
+  }
+}
