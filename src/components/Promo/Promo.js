@@ -7,7 +7,7 @@ export default function Promo(props) {
   return (
     <div className="promo">
       <img className="promo__logo" src={promo_logo} alt="Лого промо страницы"/>
-      <h1 className="promo__title">Учебный проект студента веб разработки</h1>
+      <h1 className="promo__title">Учебный проект студента факультета Веб-разработки.</h1>
     </div>
   )
 }

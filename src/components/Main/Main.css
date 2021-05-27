@@ -20,7 +20,7 @@
 }
 
 .main-content__page_promo {
-  min-height: 100vh;
+  min-height: 664px;
   display: grid;
   grid-template-rows: min-content 1fr min-content;
 }
