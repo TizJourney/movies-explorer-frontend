@@ -14,9 +14,11 @@
   line-height: 1.16;
   text-align: center;
   letter-spacing: -0.04em;
+  max-width: 600px;
 }
 
 .tech__description {
+  max-width: 460px;
   padding: 0;
   margin: 26px 0 0 0;
 
@@ -31,7 +33,7 @@
 
 .tech__tech-items {
   padding: 0;
-  margin: 100px 0 100px 0;
+  margin: 100px 0 90px 0;
 }
 
 
