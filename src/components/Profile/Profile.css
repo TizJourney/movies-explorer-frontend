@@ -1,5 +1,97 @@
 .profile {
-  min-height: 74px;
-  width: 100%;
-  background-color:cornsilk;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
+
+.profile__content {
+  width: min(410px, 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile__title {
+  margin-top: 74px;
+}
+
+.profile__input_bottom-divider {
+  border-bottom: solid 1px #E8E8E8;
+}
+
+.profile__button {
+  margin-top: 210px;
+  padding: 0;
+  width: 100%;
+  border: none;
+  background-color: white;;
+  cursor: pointer;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 1.23;
+  text-align: center;
+  color:black;
+}
+
+.profile__button_logout {
+  margin-top: 19px;
+  color: #FF004D;
+}
+
+
+.profile-input {
+  padding-bottom: 16px;
+  position: relative;
+}
+
+.profile-input__container {
+  margin-top: 17px;
+  display: grid;
+  grid-template-columns: 141px 1fr;
+}
+
+.profile-input__title {
+  margin: 0;
+  padding: 0;
+}
+
+.profile-input__input-error {
+  position: absolute;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 1.2;
+  text-align: left;
+
+  padding: 0;
+  margin: 0;
+
+  color: #FF3055;
+  right: 0px;
+  bottom: 0px;
+}
+
+.profile-input__title {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.23;
+}
+
+.profile-input__input {
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 1.23;
+}
+
