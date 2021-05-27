@@ -1,48 +1,6 @@
-import classnames from 'classnames';
-
-import form_logo from '../../images/form-logo.png';
-
 import './Register.css';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-function FormTitle(props) {
-  return (
-    <div  className={classnames('form-title', props.className)}>
-      <img src={form_logo} className='form-title__icon' alt='Иконка формы' />
-      <h2 className='form-title__title'>{props.title}</h2>
-    </div>
-  )
-}
-
-function FormInput(props) {
-  const [inputValue, setInputValue] = useState('');
-
-  return (
-    <div  className={classnames('form-input', props.className)}>
-      <p className='form-input__title'>{props.title}</p>
-      <div className='form-input__container' >
-        <input className='form-input__input' value={inputValue.value} onChange={e => setInputValue(e.target.value)} />
-        <p className='form-input__input-error' >Текст ошибки</p>
-      </div>
-    </div>
-  )
-}
-
-function FormButton(props) {
-  return (
-    <button className={classnames(props.className, 'form-button')}>{props.title}</button>
-  )
-}
-
-function FormHelper(props) {
-  return (
-    <div  className={classnames('form-helper', props.className)}>
-      <p className='form-helper__text'>{props.title}</p>
-      <Link to={props.linkTo} className='form-helper__button'>{props.buttonTitle}</Link>
-    </div>
-  )
-}
+import { FormTitle, FormInput, FormButton, FormHelper} from '../Form/Form.js';
 
 export default function Register(props) {
   return (

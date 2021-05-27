@@ -1,5 +1,21 @@
 .login {
-  min-height: 74px;
-  width: 100%;
-  background-color:darkkhaki;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login__header {
+  margin-top: 70px;
+}
+
+.login__content {
+  width: min(396px, 100%);
+}
+
+.login__button {
+  margin-top: 178px;
+}
+
+.login__helper {
+  margin-top: 16px;
 }
