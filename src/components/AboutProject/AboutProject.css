@@ -11,8 +11,9 @@
   list-style-type: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  row-gap: 26px;
+  row-gap: 25px;
   column-gap: 40px;
+  padding: 0;
 }
 
 .about-info__item {
@@ -23,7 +24,6 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 1.43;
-  font-size: 20px;
 }
 
 .about-info__item_title {

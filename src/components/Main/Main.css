@@ -6,7 +6,8 @@
 
 .main-content__page {
   width: min(1280px, 100%);
-  padding: 0 70px 0 70px;
+  box-sizing: border-box;
+  padding: 0 70px 10px 70px;
 }
 
 .main-content__page_dark {
@@ -30,10 +31,19 @@
 }
 
 .main-content__title {
-  margin: 0;
   border-bottom: 1px solid black;
   padding-bottom: 23px;
   margin: 110px 0 0 0;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  letter-spacing: -0.04em;
+}
+
+.main-content__title_tech {
+  margin-top: 90px;
 }
 
 .main-content__portfolio {
@@ -41,9 +51,9 @@
 }
 
 .main-content__about-project {
-  margin: 0 0 110px 0;
+  margin: 0 0 10px 0;
 }
 
 .main-content__tech {
-  margin: 0 0 100px 0;
+  margin: 0px 0 100px 0;
 }

@@ -27,7 +27,7 @@ function MainPage(props) {
 
 function MainTitle(props) {
   return (
-    <h2 className="main-content__title">{props.title}</h2>
+    <h2 className={classnames('main-content__title', props.className, props.theme)}>{props.title}</h2>
   )
 }
 
@@ -46,7 +46,7 @@ export default function Main(props) {
       </MainPage>
 
       <MainPage theme='main-content__page_grey'>
-        <MainTitle title='Технологии' />
+        <MainTitle title='Технологии' className='main-content__title_tech' />
         <Tech className='main-content__tech' />
       </MainPage>
 
