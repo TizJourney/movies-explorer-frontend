@@ -59,6 +59,7 @@
 
 .student__photo {
   width: 270px;
+  border-radius: 10px;
 }
 
 
@@ -86,4 +87,30 @@
 }
 
 @media screen and (max-width: 767px) {
+  .student {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .student__title {
+    font-size: 30px;
+    line-height: 1.2;
+    margin-top: 40px;
+  }
+
+  .student__subtitle {
+    margin-top: 20px;
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .student__text {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .student__links-block {
+    margin-top: 40px;
+  }
+
 }
