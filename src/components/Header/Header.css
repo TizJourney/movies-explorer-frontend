@@ -16,7 +16,6 @@
   height: 38px;
 }
 
-
 .header__links-block {
   display: flex;
   flex-direction: row-reverse;
@@ -102,4 +101,19 @@
   padding: 7px;
   width: 10px;
   height: 10px;
+}
+
+
+@media screen and (max-width: 1279px) {
+  .header {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }

@@ -56,3 +56,56 @@
 .main-content__tech {
   margin: 0;
 }
+
+@media screen and (max-width: 1279px) {
+  .main-content__page {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .main-content__page_dark {
+    padding: 0;
+  }
+
+  .main-content__title {
+    margin-top: 90px;
+  }
+
+  .main-content__title_tech {
+    margin-top: 90px;
+  }
+
+  .main-content__page_promo {
+    min-height: 930px;
+  }
+
+  .main-content__portfolio {
+    margin-top: 90px;
+    margin-bottom: 70px;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  .main-content__page {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .main-content__page_dark {
+    padding: 0;
+  }
+
+  .main-content__title {
+    margin-top: 100px;
+  }
+
+  .main-content__title_tech {
+    margin-top: 90px;
+  }
+
+  .main-content__page_promo {
+    min-height: 710px;
+  }
+
+}
