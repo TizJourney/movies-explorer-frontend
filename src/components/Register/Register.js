@@ -4,6 +4,7 @@ import form_logo from '../../images/form-logo.png';
 
 import './Register.css';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Footer from '../Footer/Footer';
 
@@ -27,6 +28,21 @@ function FormInput(props) {
   )
 }
 
+function FormButton(props) {
+  return (
+    <button className={classnames('form-button', props.className)}>{props.title}</button>
+  )
+}
+
+function FormHelper(props) {
+  return (
+    <div  className={classnames('form-helper', props.className)}>
+      <p className='form-helper__text'>{props.title}</p>
+      <Link to={props.linkTo} className='form-helper__button'>{props.buttonTitle}</Link>
+    </div>
+  )
+}
+
 export default function Register(props) {
   return (
     <div className='register'>
@@ -35,6 +51,13 @@ export default function Register(props) {
         <FormInput className='register__input' title='Имя' />
         <FormInput className='register__input' title='E-mail' />
         <FormInput className='register__input' title='Пароль' />
+        <FormButton className='register__button' title='Зарегистрироваться' />
+        <FormHelper
+          className='register__helper'
+          title='Уже зарегистрированы?'
+          buttonTitle='Войти'
+          linkTo='signin'
+        />
         <Footer className='movies__footer movies__item' />
       </div>
     </div>
