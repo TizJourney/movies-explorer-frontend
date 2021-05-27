@@ -31,7 +31,7 @@ function FormInput(props) {
 
 function FormButton(props) {
   return (
-    <button className={classnames('form-button', props.className)}>{props.title}</button>
+    <button className={classnames(props.className, 'form-button')}>{props.title}</button>
   )
 }
 
