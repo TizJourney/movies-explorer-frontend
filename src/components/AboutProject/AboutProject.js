@@ -17,8 +17,8 @@ export default function About(props) {
       <ul className="about__timeline about-timeline">
         <li className="about-timeline__item about-timeline__item_highlight">1 неделя</li>
         <li className="about-timeline__item">4 недели</li>
-        <li className="about-timeline__title">Front-end</li>
         <li className="about-timeline__title">Back-end</li>
+        <li className="about-timeline__title">Front-end</li>
       </ul>
     </div>
   )
