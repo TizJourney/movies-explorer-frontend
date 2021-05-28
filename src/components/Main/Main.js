@@ -8,7 +8,6 @@ import React from 'react';
 
 
 import Promo from '../Promo/Promo';
-import NavTab from '../NavTab/NavTab';
 import AboutProject from '../AboutProject/AboutProject';
 import Tech from '../Tech/Tech';
 import AboutMe from '../AboutMe/AboutMe';
@@ -19,7 +18,7 @@ import Footer from '../Footer/Footer';
 
 function MainPage(props) {
   return (
-    <div  id={props.id} className={classnames('main-content__page', props.className, props.theme)}>
+    <div  id={props.id} className={classnames('main-content__page', props.className)}>
       {props.children}
     </div>
   )
@@ -34,10 +33,9 @@ function MainTitle(props) {
 export default function Main(props) {
   return (
     <div className="main-content">
-      <MainPage theme='main-content__page_dark' className='main-content__page_promo'>
-        <Header darkTheme={true} />
-        <Promo />
-        <NavTab />
+      <MainPage className='main-content__page_promo'>
+        <Header className='main-conetent__header' />
+        <Promo className='main-conetent__promo'/>
       </MainPage>
 
       <MainPage id='project'>
