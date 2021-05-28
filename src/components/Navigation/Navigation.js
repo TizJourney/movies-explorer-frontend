@@ -9,6 +9,7 @@ export default function Navigation(props) {
 
   return (
     <div className={`navigation ${props.isOpen && "navigation_opened"}`}>
+      <div className='navigation__overlay' ></div>
       <button className='navigation__close-button' onClick={() => {props.handleClose()} } />
       <div className='navigation__internal-content' >
         <nav className='navigation__links-block header__links-block_auth'>
