@@ -14,6 +14,14 @@
   padding-bottom: 80px;
 }
 
+.movies__movies-card-list {
+  margin-top: 70px;
+}
+
+.movies__footer {
+  margin-top: 79px;
+}
+
 
 @media screen and (max-width: 1279px) {
   .movies__content {
