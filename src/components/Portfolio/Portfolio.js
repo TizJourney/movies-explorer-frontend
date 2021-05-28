@@ -18,9 +18,9 @@ export default function Portofolio(props) {
     <div className={classnames('portfolio', props.className)}>
       <h3 className='portfolio__title'>Портфолио</h3>
       <div className='portfolio__links-blocks'>
-        <PortofolioLink link='hhttps://github.com/TizJourney/how-to-learn'>Статичный сайт</PortofolioLink>
-        <PortofolioLink link='https://github.com/TizJourney/russian-travel'>Адаптивный сайт</PortofolioLink>
-        <PortofolioLink link='https://github.com/TizJourney/react-mesto-api-full'>Одностраничное приложение</PortofolioLink>
+        <PortofolioLink link='https://github.com/TizJourney/how-to-learn'>Статичный сайт</PortofolioLink>
+        <PortofolioLink link='https://tizjourney.github.io/russian-travel/'>Адаптивный сайт</PortofolioLink>
+        <PortofolioLink link='http://tizjourney-mesto.nomoredomains.club/sign-in'>Одностраничное приложение</PortofolioLink>
       </div>
     </div>
   )
