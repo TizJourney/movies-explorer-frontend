@@ -104,7 +104,7 @@
 }
 
 .header__burger {
-  visibility: hidden;
+  display: none;
   border: none;
   background-image: url('../../images/burger-icon.svg');
   background-repeat: no-repeat;
@@ -123,11 +123,11 @@
   }
 
   .header__links-block_auth {
-    visibility: hidden;
+    display: none;
   }
 
   .header__burger {
-    visibility: visible;
+    display: block;
   }
 }
 
