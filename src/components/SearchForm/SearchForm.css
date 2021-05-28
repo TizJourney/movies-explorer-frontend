@@ -20,7 +20,6 @@
 
 .search-form__filter-container {
   display: flex;
-  justify-content: row;
   text-align: center;
   align-items: center;
   padding: 0 29px 0 30px;
@@ -29,6 +28,7 @@
 }
 
 .search-form__filter-container_external {
+  border-left: none;
   align-self: center;
   margin-bottom: 58px;
 }

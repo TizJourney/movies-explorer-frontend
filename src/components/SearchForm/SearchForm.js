@@ -15,7 +15,7 @@ function FilterCheckbox(props) {
   };
 
   return (
-    <div className='search-form__filter-container'>
+    <div className={classnames('search-form__filter-container', props.className)}>
       <button className={classnames('search-form__filter-button', isActive ? null : 'search-form__filter-button_disable')} onClick={toggleClass} />
       <p className='search-form__widget-title'>Короткометражки</p>
     </div>
