@@ -2,10 +2,7 @@ import classnames from 'classnames';
 
 import './SearchForm.css';
 
-import search_icon from '../../images/search-icon.png'
-
 import React, { useState } from 'react';
-import MediaQuery from "react-responsive";
 
 function FilterCheckbox(props) {
   const [isActive, setActive] = useState(false);
@@ -17,17 +14,10 @@ function FilterCheckbox(props) {
   return (
     <div className={classnames('search-form__filter-container', props.className)}>
       <button className={classnames('search-form__filter-button', isActive ? null : 'search-form__filter-button_disable')} onClick={toggleClass} />
-      <p className='search-form__widget-title'>Короткометражки</p>
+      <p className='search-form__filter-title'>Короткометражки</p>
     </div>
   )
 }
-
-function SearchFormButton(props) {
-  return (
-    <button className={classnames('search-form__submit-button', props.className)} />
-  )
-}
-
 
 export default function SearchForm(props) {
 
@@ -35,33 +25,11 @@ export default function SearchForm(props) {
 
   return (
     <div className={classnames('search-form', props.className)}>
-      <MediaQuery query='screen and (min-width: 1280px)'>
         <div className='search-form__widget'>
-          {!inputValue &&
-            <div className='search-form__placeholder'>
-              <img src={search_icon} className='search-form__placeholder-icon' alt='Изображение лупы' />
-              <p className='search-form__placeholder-text'>Фильм</p>
-            </div>
-          }
-          <input className='search-form__input' value={inputValue.value} onChange={e => setInputValue(e.target.value)} />
-          <SearchFormButton />
-          <FilterCheckbox />
+          <input className='search-form__input' placeholder='Фильмы' value={inputValue.value} onChange={e => setInputValue(e.target.value)} />
+          <button className={classnames('search-form__submit-button', props.className)} >Найти</button>
         </div>
-      </MediaQuery>
-
-      <MediaQuery query='screen and (max-width: 1279px)'>
-        <div className='search-form__widget'>
-          {!inputValue &&
-            <div className='search-form__placeholder'>
-              <img src={search_icon} className='search-form__placeholder-icon' alt='Изображение лупы' />
-              <p className='search-form__placeholder-text'>Фильм</p>
-            </div>
-          }
-          <input className='search-form__input' value={inputValue.value} onChange={e => setInputValue(e.target.value)} />
-          <SearchFormButton />
-        </div>
-        <FilterCheckbox className='search-form__filter-container_external' />
-      </MediaQuery>
+        <FilterCheckbox className='search-form__filter' />
     </div>
   )
 }
