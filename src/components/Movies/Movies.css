@@ -9,3 +9,18 @@
   padding: 0 70px 0 70px;
 }
 
+
+@media screen and (max-width: 1279px) {
+  .movies__content {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  .movies__content {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
