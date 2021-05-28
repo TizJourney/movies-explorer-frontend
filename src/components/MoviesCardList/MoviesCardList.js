@@ -19,7 +19,7 @@ export default function MoviesCardList(props) {
       <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode}/>
       <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode} saved={true}/>
       <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode}/>
-      <MoviesCard className='movies-card-list__card' title='33 слова о дизайне' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode}/>
+      <MoviesCard className='movies-card-list__card' title='Очень длинное название фильма, которое точно не поместится' duration='1ч 47м' image={imageFilmExample} savedMode={props.savedMode}/>
     </ul>
   )
 }

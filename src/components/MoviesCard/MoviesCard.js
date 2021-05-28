@@ -13,16 +13,17 @@ export default function MoviesCard(props) {
   const toggleClass = () => {
     setActive(!isActive);
   };
+
   return (
     <li className={classnames('movies-card', props.className)}>
-      <div className='movies-card__info'>
-        <div className='movies-card__text-blocks'>
+      <div className='movies-card__image-container'>
+        <img src={props.image} className='movies-card__image' alt={props.title} />
+        <button className={classnames('movies-card__button', isActive ? disableClassName : activeClassName )} onClick={toggleClass} />
+      </div>
+      <div className='movies-card__text-blocks'>
           <h2 className='movies-card__title'>{props.title}</h2>
           <p className='movies-card__duration'>{props.duration}</p>
         </div>
-        <button className={classnames('movies-card__button', isActive ? disableClassName : activeClassName )} onClick={toggleClass} />
-      </div>
-      <img src={props.image} className='movies-card__image' alt={props.title} />
     </li>
   )
 }
