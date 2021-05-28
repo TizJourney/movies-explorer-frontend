@@ -7,6 +7,11 @@
 .movies__content {
   width: min(1280px, 100%);
   padding: 0 70px 0 70px;
+  box-sizing: border-box;
+}
+
+.movies__search-form {
+  margin-bottom: 80px;
 }
 
 
