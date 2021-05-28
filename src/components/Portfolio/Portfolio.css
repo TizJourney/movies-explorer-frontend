@@ -37,3 +37,22 @@
   margin: 0;
   padding: 0;
 }
+
+
+@media screen and (max-width: 767px) {
+  .portfolio__title {
+    font-size: 14px;
+    line-height: 1.43;
+  }
+
+  .portfolio__links-blocks {
+    margin-top: 20px;
+  }
+
+  .portfolio-link__link-text {
+    font-size: 18px;
+    line-height: 1.56;
+  }
+
+}
+
