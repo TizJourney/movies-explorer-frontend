@@ -1,7 +1,6 @@
 import './Navigation.css';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import AccountButton from '../AccountButton/AccountButton.js';
 

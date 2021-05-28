@@ -35,9 +35,11 @@
 }
 
 .navigation__link {
+  margin-bottom: 2px;
   margin-top: 24px;
   background-color: white;
   border: none;
+  cursor: pointer;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
@@ -46,6 +48,17 @@
   text-align: center;
 }
 
+.navigation__link:hover{
+  margin-bottom: 0;
+  border-bottom: 2px black solid;
+}
+
 .navigation__link_account {
   margin-top: 159px;
 }
+
+.navigation__link_account:hover{
+  border-bottom: None;
+  box-shadow: black 2px solid;
+}
+
