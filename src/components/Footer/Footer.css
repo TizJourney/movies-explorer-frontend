@@ -44,3 +44,40 @@
   color: black;
   margin: 0 0 0 20px;
 }
+
+@media screen and (max-width: 767px) {
+  .footer__title {
+    margin-top: 50px;
+  }
+
+  .footer__title {
+    font-size: 12px;
+  }
+
+  .footer__text-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .footer__link-block {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .footer__link {
+    font-size: 12px;
+    margin-left: 0;
+    margin-top: 12px;
+  }
+
+  .footer__text {
+    margin-top: 35px;
+    font-size: 12px;
+    color: #A0A0A0;
+  }
+
+}
