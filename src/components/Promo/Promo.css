@@ -1,7 +1,6 @@
 .promo {
   display: grid;
   grid-template-rows: 1fr min-content;
-  margin-bottom: 40px;
   align-items: center;
   justify-items: center;;
 

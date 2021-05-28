@@ -35,7 +35,7 @@ export default function Main(props) {
     <div className="main-content">
       <MainPage className='main-content__page_promo'>
         <Header className='main-conetent__header' />
-        <Promo className='main-conetent__promo'/>
+        <Promo className='main-content__promo'/>
       </MainPage>
 
       <MainPage id='project'>
@@ -43,7 +43,7 @@ export default function Main(props) {
         <AboutProject className='main-content__about-project' />
       </MainPage>
 
-      <MainPage id='tech' theme='main-content__page_grey'>
+      <MainPage id='tech' className='main-content__page_grey'>
         <MainTitle title='Технологии' className='main-content__title_tech' />
         <Tech className='main-content__tech' />
       </MainPage>
