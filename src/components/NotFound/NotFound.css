@@ -3,23 +3,25 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 700px;
 }
 
 .not-found__title {
   padding: 0;
-  margin: auto 0 0 0;
+  margin: 246px 0 0 0;
+  width: 400px;
   font-family: Inter, Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 140px;
   line-height: 169px;
   text-align: center;
+
 }
 
 .not-found__text {
   padding: 0;
-  margin: 9px 0 0 0;
+  margin: 5px 0 0 0;
   font-family: Inter, Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -32,7 +34,7 @@
   margin: auto 0 60px 0;
   cursor: pointer;
   border: none;
-  color: #3456F3;
+  color: #2BE080;
   padding: 0;
   font-family: Inter, Helvetica, Arial, sans-serif;
   font-style: normal;
