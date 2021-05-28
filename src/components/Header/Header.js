@@ -2,8 +2,8 @@ import classnames from 'classnames';
 
 import './Header.css';
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 import main_logo from '../../images/main-logo.png';
 
@@ -15,8 +15,27 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 
 export default function Header(props) {
+  const history = useHistory();
+
   const userContext = React.useContext(CurrentUserContext);
   const extraLinkClassName = props.darkTheme ? 'header__link_dark' : null;
+
+  const [isNavigationOpen, setNavigationStatus] = useState(false);
+
+  const handleNavigationClose = () => {
+    setNavigationStatus(false);
+  };
+
+  const setNavigationOpen = () => {
+    setNavigationStatus(true);
+  }
+
+  const navigateToRoute = (route) => {
+    history.push(route);
+    setNavigationStatus(false);
+  };
+
+
 
   return (
     <div>
@@ -29,7 +48,7 @@ export default function Header(props) {
               <Link to='saved-movies' className={classnames('header__link header__link_saved-movies', extraLinkClassName)}>Сохранённые фильмы</Link>
               <Link to='movies' className={classnames('header__link header__link_movies', extraLinkClassName)}>Фильмы</Link>
             </nav>
-            <button className='header__burger' />
+            <button className='header__burger' onClick={setNavigationOpen} />
           </div>
         }
         {!userContext.logged &&
@@ -40,7 +59,7 @@ export default function Header(props) {
         }
       </header>
 
-      <Navigation isOpen={true} />
+      <Navigation isOpen={isNavigationOpen} handleClose={handleNavigationClose} handleClick={navigateToRoute} />
     </div>
   )
 }
