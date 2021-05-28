@@ -1,5 +1,10 @@
-.form-title__icon {
+.form-title__link {
+  background-image: url('../../images/form-logo.png');
   width: 38px;
+  height: 38px;
+  background-color: white;
+  padding: 0;
+  margin: 0;
 }
 
 .form-input__title {
@@ -104,4 +109,16 @@
 
   color: #3456F3;
   text-decoration: none;
+}
+
+@media screen and (max-width: 1279px) {
+  .form-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
 }

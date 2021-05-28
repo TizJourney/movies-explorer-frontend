@@ -8,7 +8,6 @@
   width: min(396px, 100%);
 }
 
-
 .login__header {
   margin-top: 70px;
 }
@@ -19,4 +18,23 @@
 
 .login__helper {
   margin-top: 16px;
+}
+
+
+@media screen and (max-width: 1279px) {
+  .form-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  .login__content {
+    width: min(260px, 100%);
+    margin: 0 auto;
+    box-sizing: content-box;
+    padding: 30px;
+  }
 }

@@ -1,15 +1,17 @@
 import classnames from 'classnames';
 
-import form_logo from '../../images/form-logo.png';
-
 import './Form.css';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
+
+
 
 export function FormTitle(props) {
+  const history = useHistory();
+
   return (
     <div className={classnames('form-title', props.className)}>
-      <Link to='/' className='form-title__link'><img src={form_logo} className='form-title__icon' alt='Иконка формы' /></Link>
+      <button className='form-title__link' onClick={() =>{history.push('/');}}/>
       <h2 className='form-title__title'>{props.title}</h2>
     </div>
   )
