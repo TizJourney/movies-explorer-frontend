@@ -30,10 +30,14 @@
 }
 
 @media screen and (max-width: 767px) {
-  .login__content {
+  .register__content {
     width: min(260px, 100%);
     margin: 0 auto;
     box-sizing: content-box;
     padding: 30px;
+  }
+
+  .register__button {
+    margin-top: auto;
   }
 }
