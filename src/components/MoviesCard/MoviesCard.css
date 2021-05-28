@@ -2,10 +2,14 @@
 .movies-card {
   display: flex;
   flex-direction: column;
+  max-width: 339px;
+  margin: 0 auto;
 }
 
 .movies-card__image {
   border-radius: 6px;
+  width: 100%;
+  object-fit: contain;
 }
 
 .movies-card__button {
@@ -99,8 +103,8 @@
 }
 
 @media screen and (max-width: 767px) {
-  .movies-card__image {
-    width: 300px;
+  .movies-card {
+    max-width: 300px;
   }
 
 }
