@@ -1,0 +1,14 @@
+.navigation {
+  display: none;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: min(100%, 520px);
+  height: 100vh;
+  background-color: white;
+  z-index: 1;
+}
+
+.navigation_opened {
+  display: flex;
+}
