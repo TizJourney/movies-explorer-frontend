@@ -6,10 +6,8 @@
 
 .login__content {
   width: min(396px, 100%);
-}
-
-.login__header {
-  margin-top: 70px;
+  margin: auto 0px;
+  min-height: 700px;
 }
 
 .login__button {
@@ -22,14 +20,11 @@
 
 
 @media screen and (max-width: 767px) {
+  .login__header {
+    margin-top: 56px;
+  }
   .login__content {
     width: min(260px, 100%);
-    margin: 0 auto;
-    box-sizing: content-box;
-    padding: 30px;
   }
 
-  .login__button {
-    margin-top: auto;
-  }
 }
