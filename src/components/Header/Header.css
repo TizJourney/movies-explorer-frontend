@@ -103,11 +103,31 @@
   height: 10px;
 }
 
+.header__burger {
+  visibility: hidden;
+  border: none;
+  background-image: url('../../images/burger-icon.svg');
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 43px;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 1279px) {
   .header {
     padding-left: 30px;
     padding-right: 30px;
+  }
+
+  .header__links-block_auth {
+    visibility: hidden;
+  }
+
+  .header__burger {
+    visibility: visible;
   }
 }
 

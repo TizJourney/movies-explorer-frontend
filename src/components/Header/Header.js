@@ -27,11 +27,14 @@ export default function Header(props) {
     <header className={classnames(props.className, 'header')}>
       <Link to='/' className={'header__link header__link_main'}><img src={main_logo} alt='лого главной страницы' className='header__main-logo' /></Link>
       {userContext.logged &&
-        <nav className='header__links-block'>
-          <Link to='profile' className={classnames('header__link header__link_account', extraLinkClassName)}><AccountLogo className='header__account-logo' /></Link>
-          <Link to='saved-movies' className={classnames('header__link header__link_saved-movies', extraLinkClassName)}>Сохранённые фильмы</Link>
-          <Link to='movies' className={classnames('header__link header__link_movies', extraLinkClassName)}>Фильмы</Link>
-        </nav>
+        <div className='header_mode-selector'>
+          <nav className='header__links-block header__links-block_auth'>
+            <Link to='profile' className={classnames('header__link header__link_account', extraLinkClassName)}><AccountLogo className='header__account-logo' /></Link>
+            <Link to='saved-movies' className={classnames('header__link header__link_saved-movies', extraLinkClassName)}>Сохранённые фильмы</Link>
+            <Link to='movies' className={classnames('header__link header__link_movies', extraLinkClassName)}>Фильмы</Link>
+          </nav>
+          <button className='header__burger' />
+        </div>
       }
       {!userContext.logged &&
         <nav className='header__links-block header__links-block_unauth'>
