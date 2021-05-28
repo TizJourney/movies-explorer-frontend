@@ -47,12 +47,20 @@
 
 
 @media screen and (max-width: 767px) {
+  .not-found {
+    min-height: 780px;
+  }
+
   .not-found__title {
+    margin-top: 329px;
     font-size: 80px;
+    line-height: 97px;
+    width: 300px;
   }
 
   .not-found__text {
     font-size: 12px;
+    margin-top: 10px;
   }
 
   .not-found__back-button {
