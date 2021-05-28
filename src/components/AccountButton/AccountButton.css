@@ -9,6 +9,7 @@
 }
 
 .account-logo__text {
+  border: none;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
