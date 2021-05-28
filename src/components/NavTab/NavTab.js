@@ -2,14 +2,14 @@ import './NavTab.css';
 
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 export default function NavTab(props) {
   return (
     <header className='nav-tab'>
-      <Link to='profile' className='nav-tab__link'>О проекте</Link>
-      <Link to='signin' className='nav-tab__link'>Технологии</Link>
-      <Link to='signup' className='nav-tab__link'>Студент</Link>
+      <HashLink to='/#project' className='nav-tab__link'>О проекте</HashLink>
+      <HashLink to='/#tech' className='nav-tab__link'>Технологии</HashLink>
+      <HashLink to='/#me' className='nav-tab__link'>Студент</HashLink>
     </header>
   )
 }

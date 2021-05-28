@@ -19,7 +19,7 @@ import Footer from '../Footer/Footer';
 
 function MainPage(props) {
   return (
-    <div className={classnames('main-content__page', props.className, props.theme)}>
+    <div  id={props.id} className={classnames('main-content__page', props.className, props.theme)}>
       {props.children}
     </div>
   )
@@ -40,17 +40,17 @@ export default function Main(props) {
         <NavTab />
       </MainPage>
 
-      <MainPage>
-        <MainTitle title='О проекте' />
+      <MainPage id='project'>
+        <MainTitle  title='О проекте' />
         <AboutProject className='main-content__about-project' />
       </MainPage>
 
-      <MainPage theme='main-content__page_grey'>
+      <MainPage id='tech' theme='main-content__page_grey'>
         <MainTitle title='Технологии' className='main-content__title_tech' />
         <Tech className='main-content__tech' />
       </MainPage>
 
-      <MainPage>
+      <MainPage id='me' >
         <MainTitle title='Студент' />
         <AboutMe className='main-content__student-content' />
         <Portfolio className='main-content__portfolio' />
