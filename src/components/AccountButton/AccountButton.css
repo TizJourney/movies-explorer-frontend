@@ -1,0 +1,31 @@
+.account-logo {
+  display: flex;
+  flex-direction: row;
+  background: #FFFFFF;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.08);
+  border-radius: 40px;
+}
+
+.account-logo__text {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 0.92;
+
+  margin: 0;
+  padding: 0;
+
+  color: #222222;
+}
+
+.account-logo__logo {
+  margin-left: 7px;
+  background: #F5F5F5;
+  border-radius: 50px;
+  padding: 7px;
+  width: 10px;
+  height: 10px;
+}

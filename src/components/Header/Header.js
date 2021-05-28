@@ -6,20 +6,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import main_logo from '../../images/main-logo.png';
-import account_logo from '../../images/account-logo.svg';
+
 
 import Navigation from '../Navigation/Navigation.js';
+import AccountButton from '../AccountButton/AccountButton.js';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function AccountLogo(props) {
-  return (
-    <div className={classnames(props.className, 'account-logo')}>
-      <p className='account-logo__text'>Аккаунт</p>
-      <img className='account-logo__logo' src={account_logo} alt='Изображение лого аккаунта' />
-    </div>
-  )
-}
 
 export default function Header(props) {
   const userContext = React.useContext(CurrentUserContext);
@@ -32,7 +25,7 @@ export default function Header(props) {
         {userContext.logged &&
           <div className='header_mode-selector'>
             <nav className='header__links-block header__links-block_auth'>
-              <Link to='profile' className={classnames('header__link header__link_account', extraLinkClassName)}><AccountLogo className='header__account-logo' /></Link>
+              <Link to='profile' className={classnames('header__link header__link_account', extraLinkClassName)}><AccountButton className='header__account-logo' /></Link>
               <Link to='saved-movies' className={classnames('header__link header__link_saved-movies', extraLinkClassName)}>Сохранённые фильмы</Link>
               <Link to='movies' className={classnames('header__link header__link_movies', extraLinkClassName)}>Фильмы</Link>
             </nav>
