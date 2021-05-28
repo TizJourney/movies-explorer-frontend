@@ -22,7 +22,7 @@ export default function MoviesCard(props) {
         </div>
         <button className={classnames('movies-card__button', isActive ? disableClassName : activeClassName )} onClick={toggleClass} />
       </div>
-      <img src={props.image} className='movies-card__info' alt={props.title} />
+      <img src={props.image} className='movies-card__image' alt={props.title} />
     </li>
   )
 }

@@ -29,7 +29,7 @@
   border: none;
   background-color: white;;
   cursor: pointer;
-  font-family: Inter;
+  font-family: Inter, Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 13px;
@@ -63,7 +63,7 @@
 .profile-input__input-error {
   visibility: hidden;
   position: absolute;
-  font-family: Inter;
+  font-family: Inter, Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 10px;
@@ -79,7 +79,7 @@
 }
 
 .profile-input__title {
-  font-family: Inter;
+  font-family: Inter, Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 11px;
@@ -91,7 +91,7 @@
   margin: 0;
   padding: 0;
   text-align: right;
-  font-family: Inter;
+  font-family: Inter, Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 11px;

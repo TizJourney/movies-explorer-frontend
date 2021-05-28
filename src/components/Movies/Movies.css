@@ -25,7 +25,14 @@
 
 @media screen and (max-width: 767px) {
   .movies__content {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .movies__search-form {
+    padding-bottom: 60px;
+  }
+
+  .movies__search-form {
+    padding-bottom: 0;
   }
 }
