@@ -12,8 +12,7 @@ export default function Profile(props) {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (values) => {
-    console.log(values);
-    //props.handleEditProfile();
+    props.handleEditProfile();
   };
 
   return (
