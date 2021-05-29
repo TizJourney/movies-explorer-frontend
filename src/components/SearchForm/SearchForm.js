@@ -34,7 +34,7 @@ export default function SearchForm(props) {
 
   return (
     <div className={classnames('search-form', props.className)}>
-        <form name='searchForm' className='search-form__widget' onSubmit={handleSubmit(onSubmit)}>
+      <form name='searchForm' className='search-form__widget' onSubmit={handleSubmit(onSubmit)}>
         <input
           name='searchField'
           input="text"
@@ -43,11 +43,11 @@ export default function SearchForm(props) {
           value={inputValue.value}
           onChange={e => setInputValue(e.target.value)
           }
-          {...register('searchField', {required: true})}
+          {...register('searchField', { required: true })}
         />
         <button className={classnames('search-form__submit-button', disableClassName)} disabled={errors.searchField}>Найти</button>
-        </form>
-        <FilterCheckbox className='search-form__filter' />
+      </form>
+      <FilterCheckbox className='search-form__filter' />
     </div>
   )
 }
