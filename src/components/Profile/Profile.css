@@ -6,6 +6,8 @@
 
 .profile__content {
   width: min(1280px, 100%);
+  box-sizing: border-box;
+  padding: 0 70px 10px 70px;
 }
 
 .profile__body {
@@ -94,5 +96,21 @@
   font-weight: normal;
   font-size: 11px;
   line-height: 1.23;
+}
+
+@media screen and (max-width: 1279px) {
+  .profile__content {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  .profile__content {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
 }
 
