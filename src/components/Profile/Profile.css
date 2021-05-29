@@ -16,8 +16,13 @@
 }
 .profile__title {
   margin-top: 74px;
-}
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
 
+  text-align: center;
+}
 .profile__input_bottom-divider {
   border-bottom: solid 1px #E8E8E8;
 }
@@ -44,24 +49,15 @@
 }
 
 
-.profile-input {
+.profile__input-container {
   padding-bottom: 16px;
-  position: relative;
-}
-
-.profile-input__container {
   margin-top: 17px;
   display: grid;
   grid-template-columns: 141px 1fr;
+  position: relative;
 }
 
-.profile-input__title {
-  margin: 0;
-  padding: 0;
-}
-
-.profile-input__input-error {
-  visibility: hidden;
+.profile__input-error {
   position: absolute;
   font-family: Inter, Helvetica, Arial, sans-serif;
   font-style: normal;
@@ -78,15 +74,17 @@
   bottom: 0px;
 }
 
-.profile-input__title {
+.profile__input-title {
   font-family: Inter, Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 11px;
   line-height: 1.23;
+  margin: 0;
+  padding: 0;
 }
 
-.profile-input__input {
+.profile__input {
   border: none;
   margin: 0;
   padding: 0;
