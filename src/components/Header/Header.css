@@ -84,11 +84,6 @@
 }
 
 @media screen and (max-width: 1279px) {
-  .header {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-
   .header__links-block_auth {
     display: none;
   }
@@ -99,10 +94,6 @@
 }
 
 @media screen and (max-width: 767px) {
-  .header {
-    padding-left: 14px;
-    padding-right: 14px;
-  }
 
   .header__link {
     font-size: 10px;
