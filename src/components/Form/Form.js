@@ -1,9 +1,9 @@
 import classnames from 'classnames';
 
 import './Form.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useHistory} from 'react-router-dom';
-
+import { useFormContext } from "react-hook-form";
 
 
 export function FormTitle(props) {
@@ -18,28 +18,22 @@ export function FormTitle(props) {
 }
 
 export function FormInput(props) {
-  const [inputValue, setInputValue] = useState('');
+  const { register } = useFormContext();
 
   return (
     <div className={classnames('form-input', props.className)}>
       <p className='form-input__title'>{props.title}</p>
       <div className='form-input__container' >
-        <input className='form-input__input' value={inputValue.value} onChange={e => setInputValue(e.target.value)} />
-        <p className='form-input__input-error' >Текст ошибки</p>
+        <input className='form-input__input' type={props.type} name={props.name} {...register(props.name)} />
+        {props.error && <p className='form-input__input-error'> {props.error.message} </p>}
       </div>
     </div>
   )
 }
 
 export function FormButton(props) {
-
-  const handleSubmit = (e) =>  {
-    e.preventDefault();
-    props.handleSubmit();
-  }
-
   return (
-    <button className={classnames(props.className, 'form-button')} onClick={handleSubmit} >{props.title}</button>
+    <button type="submit" className={classnames(props.className, 'form-button')} >{props.title}</button>
   )
 }
 
