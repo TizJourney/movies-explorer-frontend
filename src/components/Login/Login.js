@@ -2,7 +2,6 @@ import './Login.css';
 
 import { FormTitle, FormInput, FormButton, FormHelper } from '../Form/Form.js';
 import { useForm, FormProvider } from "react-hook-form";
-
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from "joi";
 
@@ -27,8 +26,7 @@ export default function Login(props) {
   });
 
   const onSubmit = (values) => {
-    console.log(values);
-    //props.handleSubmit();
+    props.handleSubmit();
   };
 
   return (
