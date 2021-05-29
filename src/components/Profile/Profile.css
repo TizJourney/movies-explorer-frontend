@@ -15,7 +15,7 @@
   align-items: center;
 }
 .profile__title {
-  margin-top: 74px;
+  margin: 74px 0 120px 0;
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
