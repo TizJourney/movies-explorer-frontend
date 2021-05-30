@@ -24,17 +24,19 @@ export default function Movies(props) {
           handleSearchRequest={props.handleSearchRequest}
           filterState={props.filterState}
           handleFilterStateChange={props.handleFilterStateChange}
-      />
+        />
+        {
+          props.searchRequest && props.moviesCards.length === 0 &&
+          <p className='movies__nothing-found'>Ничего не найдено</p>
+        }
         <MoviesCardList
         className='movies__movies-card-list'
         savedMode={props.savedMode}
         moviesCards={props.moviesCards}
         handleCardClick={props.handleCardClick}
         />
-        {!props.savedMode &&
-          <Preloader className='movies__preloader' />
-        }
-        { props.isMoreButtonActive &&
+        <Preloader className='movies__preloader' />
+        { !props.savedMode && props.isMoreButtonActive &&
           <div>
             <button className='movies__more-button' onClick={handleMoreButton}>Ещё</button>
           </div>

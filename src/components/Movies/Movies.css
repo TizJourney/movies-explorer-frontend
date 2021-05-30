@@ -34,6 +34,18 @@
   color: black;
 }
 
+.movies__nothing-found {
+  margin: 70px;
+  padding: 0;
+  text-align: center;
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 15px;
+  color: black;
+}
+
 
 .movies__footer {
   margin-top: 79px;
