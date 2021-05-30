@@ -9,8 +9,14 @@ import { apiMoviesBaseUrl } from '../../utils/utils';
 import React from 'react';
 
 export default function MoviesCardList(props) {
+
+  const columnsToClass = {
+    1: 'movies-card-list_1-column',
+    2: 'movies-card-list_2-columns',
+    3: 'movies-card-list_3-columns',
+  }
   return (
-    <ul className={classnames('movies-card-list', props.className)}>
+    <ul className={classnames('movies-card-list', columnsToClass[props.cardsColumns], props.className)}>
       {props.moviesCards.map((card) => (
             <MoviesCard
               key={card.id}

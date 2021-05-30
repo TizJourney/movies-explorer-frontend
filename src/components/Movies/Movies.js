@@ -33,6 +33,9 @@ export default function Movies(props) {
           props.moviesCards.length > 0 &&
           <MoviesCardList
           className='movies__movies-card-list'
+
+          cardsColumns={props.cardsColumns}
+
           savedMode={props.savedMode}
           moviesCards={props.moviesCards}
           handleCardClick={props.handleCardClick}

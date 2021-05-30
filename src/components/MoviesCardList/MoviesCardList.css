@@ -5,15 +5,14 @@
   padding: 0;
 }
 
-@media screen and (max-width: 1279px) {
-  .movies-card-list {
-    grid-template-columns: 1fr 1fr;
-  }
+.movies-card-list_3-columns {
+  grid-template-columns: repeat(3, 1fr);
 }
 
-@media screen and (max-width: 767px) {
-  .movies-card-list {
-    grid-template-columns: 1fr;
-  }
+.movies-card-list_2-columns {
+  grid-template-columns: repeat(2, 1fr);
+}
 
+.movies-card-list_1-column {
+  grid-template-columns: 1fr;
 }

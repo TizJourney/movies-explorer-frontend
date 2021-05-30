@@ -92,7 +92,7 @@ function AppInternal() {
 
   // фильтрация данных для главной страницы
   React.useEffect( () => {
-    function filterMovies(movies, count, request, filterState) {
+    function filterMovies(movies, request, filterState) {
       if (!request) {
         return [];
       }
@@ -115,8 +115,8 @@ function AppInternal() {
       return filteredMovies
     }
 
-    setMoviesCards(filterMovies(moviesData, showMoviesCount, moviesSearchRequest, moviesFilterState));
-}, [moviesData, showMoviesCount, moviesSearchRequest, moviesFilterState])
+    setMoviesCards(filterMovies(moviesData, moviesSearchRequest, moviesFilterState));
+}, [moviesData, moviesSearchRequest, moviesFilterState])
 
   return (
       <Switch>
