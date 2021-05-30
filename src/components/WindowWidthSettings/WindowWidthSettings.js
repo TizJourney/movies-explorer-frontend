@@ -12,16 +12,15 @@ function getWindowDimensions() {
 export default function WindowWidthSettings() {
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
-  function handleResizeDebounded() {
+  function handleResizeDeffered() {
     setWindowDimensions(getWindowDimensions());
-    console.log('resize');
   }
 
   useEffect(() => {
     let doit;
     function handleResize() {
       clearTimeout(doit);
-      doit = setTimeout(handleResizeDebounded, 100);
+      doit = setTimeout(handleResizeDeffered, 100);
     }
 
     window.addEventListener('resize', handleResize);
