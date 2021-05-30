@@ -37,13 +37,13 @@ class Api {
 
 class MoviesApi extends Api {
   getMovies() {
-    return this._request('beatfilm-movies');
+    return this._request('/beatfilm-movies');
   }
 }
 
 class BackendApi extends Api {
   getMovies() {
-    return this._request('beatfilm-movies');
+    return this._request('/beatfilm-movies');
   }
 }
 

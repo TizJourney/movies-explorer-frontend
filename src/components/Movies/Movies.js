@@ -12,13 +12,16 @@ import { moviesApiInstance } from '../../utils/api';
 
 export default function Movies(props) {
 
-  const [filmsData, setFilmsData] = React.useState({});
+  const [moviesData, setMoviesData] = React.useState([]);
+  const [showMoviesCount, setMoviesCount] = React.useState(8);
+
+  const [moviesCards, setMoviesCards] = React.useState([]);
 
   const initMoviesPage = () => {
     moviesApiInstance.getMovies()
       .then((movies) => {
         if (movies) {
-          setFilmsData(movies)
+          setMoviesData(movies);
         }
         else {
           throw new Error('Не получилось скачать данные фильмов. Перезагрузите страницу.')
@@ -35,12 +38,16 @@ export default function Movies(props) {
     // eslint-disable-next-line
   }, []);
 
+  React.useEffect(() => {
+    setMoviesCards(moviesData.slice(0, showMoviesCount));
+  }, [showMoviesCount, moviesData]);
+
   return (
     <div className='movies'>
       <div className='movies__content'>
         <Header className='movies__header' />
         <SearchForm className='movies__search-form' />
-        <MoviesCardList className='movies__movies-card-list' savedMode={props.savedMode} />
+        <MoviesCardList className='movies__movies-card-list' savedMode={props.savedMode} moviesCards={moviesCards} />
         {!props.savedMode &&
           <Preloader className='movies__preloader' />
         }
