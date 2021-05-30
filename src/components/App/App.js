@@ -32,6 +32,7 @@ function AppInternal() {
 
   // это результат фильтрации для страницы movies
   const [moviesCards, setMoviesCards] = React.useState([]);
+  const isMovieMoreButtonActive = showMoviesCount < moviesCards.length;
 
   // обработчики функциональности авторизации
   const handleLogin = () => {
@@ -105,7 +106,7 @@ function AppInternal() {
         });
       }
 
-      return filteredMovies.slice(0, showMoviesCount)
+      return filteredMovies
     }
 
     setMoviesCards(filterMovies(moviesData, showMoviesCount, moviesSearchRequest, moviesFilterState));
@@ -116,7 +117,7 @@ function AppInternal() {
         <Route exact path='/movies'>
           <Movies
             handleCardClick={handleCardClick}
-            moviesCards={moviesCards}
+            moviesCards={moviesCards.slice(0, showMoviesCount)}
 
             searchRequest={moviesSearchRequest}
             handleSearchRequest={handleMoviesSearchRequest}
@@ -125,6 +126,7 @@ function AppInternal() {
             handleFilterStateChange={handleMoviesFilterStateChange}
 
             cardsColumns={windowWidthSettings.columns}
+            isMoreButtonActive={isMovieMoreButtonActive}
           />
         </Route>
         <Route exact path='/saved-movies'>

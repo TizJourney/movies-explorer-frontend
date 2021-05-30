@@ -30,9 +30,6 @@ export default function Preloader(props) {
         </div>
       </div>
       }
-      <div>
-        <button className='preloader__button' onClick={activatePreload}>Ещё</button>
-      </div>
     </div>
   )
 }
