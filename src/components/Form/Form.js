@@ -9,9 +9,13 @@ import { useFormContext } from "react-hook-form";
 export function FormTitle(props) {
   const history = useHistory();
 
+  function handleClick() {
+    history.push('/');
+  }
+
   return (
     <div className={classnames('form-title', props.className)}>
-      <button className='form-title__link' onClick={() =>{history.push('/');}}/>
+      <button className='form-title__link' onClick={handleClick}/>
       <h2 className='form-title__title'>{props.title}</h2>
     </div>
   )

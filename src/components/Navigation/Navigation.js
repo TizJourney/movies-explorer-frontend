@@ -6,7 +6,6 @@ import AccountButton from '../AccountButton/AccountButton.js';
 
 export default function Navigation(props) {
 
-
   return (
     <div className={`navigation ${props.isOpen && "navigation_opened"}`}>
       <div className='navigation__overlay' ></div>

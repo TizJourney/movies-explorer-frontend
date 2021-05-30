@@ -10,6 +10,10 @@ import Footer from '../Footer/Footer';
 
 export default function Movies(props) {
 
+  function handleMoreButton() {
+    props.handleMoreButton();
+  }
+
   return (
     <div className='movies'>
       <div className='movies__content'>
@@ -32,7 +36,7 @@ export default function Movies(props) {
         }
         { props.isMoreButtonActive &&
           <div>
-            <button className='movies__more-button' onClick={props.handleMoreButton}>Ещё</button>
+            <button className='movies__more-button' onClick={handleMoreButton}>Ещё</button>
           </div>
         }
         <Footer className='movies__footer' />

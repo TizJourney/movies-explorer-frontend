@@ -11,7 +11,7 @@ export default function Profile(props) {
   const userContext = React.useContext(CurrentUserContext);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (values) => {
+  function onSubmit(values) {
     props.handleEditProfile();
   };
 
@@ -57,7 +57,7 @@ export default function Profile(props) {
             {errors.email && <p className='profile__input-error'>{errors.email.message}</p>}
           </div>
           <button type="submit" className='profile__button'>Редактировать</button>
-          <button className='profile__button profile__button_logout' onClick={props.handleLogout}>Выйти из аккаунта</button>
+          <button className='profile__button profile__button_logout' onClick={() => {props.handleLogout()}}>Выйти из аккаунта</button>
         </form>
       </div>
     </div >

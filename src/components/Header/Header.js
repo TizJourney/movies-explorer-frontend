@@ -21,15 +21,15 @@ export default function Header(props) {
 
   const [isNavigationOpen, setNavigationStatus] = useState(false);
 
-  const handleNavigationClose = () => {
+  function handleNavigationClose() {
     setNavigationStatus(false);
   };
 
-  const setNavigationOpen = () => {
+  function setNavigationOpen() {
     setNavigationStatus(true);
   }
 
-  const navigateToRoute = (route) => {
+  function navigateToRoute(route) {
     history.push(route);
     setNavigationStatus(false);
   };

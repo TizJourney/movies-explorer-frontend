@@ -10,11 +10,11 @@ export default function MoviesCard(props) {
 
   const extraButtonClassName = isHovored ? (isActive ? 'movies-card__button_remove' : 'movies-card__button_save') : (isActive && !props.savedMode ? 'movies-card__button_saved' : null);
 
-  const toggleClass = () => {
+  function toggleClass() {
     setActive(!isActive);
   };
 
-  const handleClick = () => { props.handleCardClick(props.trailerUrl); }
+  function handleClick() { props.handleCardClick(props.trailerUrl); }
 
   return (
     <li className={classnames('movies-card', props.className)}>

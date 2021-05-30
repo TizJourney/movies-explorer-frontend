@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 function FilterCheckbox(props) {
   const [isActive, setActive] = useState(props.filterState);
 
-  const toggleFilter = () => {
+  function toggleFilter() {
     props.handleFilterStateChange(!props.filterState);
     setActive(!props.filterState);
   };
