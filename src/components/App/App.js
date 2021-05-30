@@ -12,6 +12,8 @@ import { CurrentUserContext, userPlaceholderData } from '../../contexts/CurrentU
 
 import { useHistory } from 'react-router-dom';
 
+import { MoviesApiInstance } from '../../utils/MoviesApi';
+
 function AppInternal() {
 
   const history = useHistory();
@@ -35,17 +37,50 @@ function AppInternal() {
     window.open(trailerUrl, '_blank');
   }
 
+  const [moviesData, setMoviesData] = React.useState([]);
+  const [showMoviesCount, setMoviesCount] = React.useState(8);
+
+  const [moviesCards, setMoviesCards] = React.useState([]);
+
+  const initMoviesPage = () => {
+    MoviesApiInstance.getMovies()
+      .then((movies) => {
+        if (movies) {
+          setMoviesData(movies);
+        }
+        else {
+          throw new Error('Не получилось скачать данные фильмов. Перезагрузите страницу.')
+        }
+      })
+      .catch((e) => {
+        //вызвать обработчик ошибок
+        console.log(e);
+      })
+  }
+
+  React.useEffect(() => {
+    initMoviesPage();
+    // eslint-disable-next-line
+  }, []);
+
+  React.useEffect(() => {
+    setMoviesCards(moviesData.slice(0, showMoviesCount));
+  }, [showMoviesCount, moviesData]);
+
+
   return (
       <Switch>
         <Route exact path='/movies'>
           <Movies
             handleCardClick={handleCardClick}
+            moviesCards={moviesCards}
           />
         </Route>
         <Route exact path='/saved-movies'>
         <Movies
           savedMode={true}
           handleCardClick={handleCardClick}
+          moviesCards={moviesCards}
         />
         </Route>
         <Route exact path='/profile'>

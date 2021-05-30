@@ -8,39 +8,7 @@ import Preloader from '../Preloader/Preloader';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-import { MoviesApiInstance } from '../../utils/MoviesApi';
-
 export default function Movies(props) {
-
-  const [moviesData, setMoviesData] = React.useState([]);
-  const [showMoviesCount, setMoviesCount] = React.useState(8);
-
-  const [moviesCards, setMoviesCards] = React.useState([]);
-
-  const initMoviesPage = () => {
-    MoviesApiInstance.getMovies()
-      .then((movies) => {
-        if (movies) {
-          setMoviesData(movies);
-        }
-        else {
-          throw new Error('Не получилось скачать данные фильмов. Перезагрузите страницу.')
-        }
-      })
-      .catch((e) => {
-        //вызвать обработчик ошибок
-        console.log(e);
-      })
-  }
-
-  React.useEffect(() => {
-    initMoviesPage();
-    // eslint-disable-next-line
-  }, []);
-
-  React.useEffect(() => {
-    setMoviesCards(moviesData.slice(0, showMoviesCount));
-  }, [showMoviesCount, moviesData]);
 
   return (
     <div className='movies'>
@@ -50,7 +18,7 @@ export default function Movies(props) {
         <MoviesCardList
         className='movies__movies-card-list'
         savedMode={props.savedMode}
-        moviesCards={moviesCards}
+        moviesCards={props.moviesCards}
         handleCardClick={props.handleCardClick}
         />
         {!props.savedMode &&
