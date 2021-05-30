@@ -21,13 +21,17 @@
   justify-content: center;
   align-items: center;
 
-  cursor: pointer;
+}
+
+movies-card__image-button {
+  width: 100%;
 }
 
 .movies-card__image {
-  width: calc(100%+1px);
+  width: 100%;
   overflow: hidden;
   object-fit:cover;
+  cursor: pointer;
 }
 
 .movies-card__button {
