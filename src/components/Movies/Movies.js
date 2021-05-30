@@ -8,7 +8,7 @@ import Preloader from '../Preloader/Preloader';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-import { moviesApiInstance } from '../../utils/api';
+import { MoviesApiInstance } from '../../utils/MoviesApi';
 
 export default function Movies(props) {
 
@@ -18,7 +18,7 @@ export default function Movies(props) {
   const [moviesCards, setMoviesCards] = React.useState([]);
 
   const initMoviesPage = () => {
-    moviesApiInstance.getMovies()
+    MoviesApiInstance.getMovies()
       .then((movies) => {
         if (movies) {
           setMoviesData(movies);
