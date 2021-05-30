@@ -1,4 +1,4 @@
-import { apiFilmBaseUrl, apiBackendBaseUrl } from './utils.js'
+import { apiMoviesBaseUrl, apiBackendBaseUrl } from './utils.js'
 
 class Api {
   constructor(baseUrl) {
@@ -35,18 +35,18 @@ class Api {
   }
 }
 
-class FilmsApi extends Api {
-  getFilms() {
+class MoviesApi extends Api {
+  getMovies() {
     return this._request('beatfilm-movies');
   }
 }
 
 class BackendApi extends Api {
-  getFilms() {
+  getMovies() {
     return this._request('beatfilm-movies');
   }
 }
 
-export const filmApiInstance = new FilmsApi(apiFilmBaseUrl);
+export const moviesApiInstance = new MoviesApi(apiMoviesBaseUrl);
 export const backendApiInstance = new BackendApi(apiBackendBaseUrl);
 

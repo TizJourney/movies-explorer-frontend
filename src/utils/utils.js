@@ -1,5 +1,5 @@
 // параметры запросов по сети
-export const apiFilmBaseUrl = 'https://api.nomoreparties.co/beatfilm-movies/';
+export const apiMoviesBaseUrl = 'https://api.nomoreparties.co/';
 export const apiBackendBaseUrl = 'https://localhost:3001/';
 
 // параметры хранения токена
