@@ -25,7 +25,7 @@ export default function MoviesCard(props) {
       </div>
       <div className='movies-card__text-blocks'>
           <h2 className='movies-card__title'>{props.title}</h2>
-          <p className='movies-card__duration'>{props.duration}</p>
+          <p className='movies-card__duration'>{props.duration > 60 && `${Math.floor(props.duration /60)} ч`} {`${Math.floor(props.duration % 60)} м`} </p>
         </div>
     </li>
   )
