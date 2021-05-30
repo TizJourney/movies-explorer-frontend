@@ -18,7 +18,6 @@ export default function Movies(props) {
           className='movies__search-form'
           searchRequest={props.searchRequest}
           handleSearchRequest={props.handleSearchRequest}
-
           filterState={props.filterState}
           handleFilterStateChange={props.handleFilterStateChange}
       />

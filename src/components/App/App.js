@@ -19,13 +19,16 @@ function AppInternal() {
   const history = useHistory();
   const userContext = React.useContext(CurrentUserContext);
 
+  // это состояния фильтрации страницы movies
   const [moviesData, setMoviesData] = React.useState([]);
   const [showMoviesCount, setMoviesCount] = React.useState(8);
-  const [moviesCards, setMoviesCards] = React.useState([]);
-
   const [moviesSearchRequest, setMoviesSearchRequest] = React.useState('');
   const [moviesFilterState, setMoviesFilterState] = React.useState(true);
 
+  // это результат фильтрации для страницы movies
+  const [moviesCards, setMoviesCards] = React.useState([]);
+
+  // обработчики функциональности авторизации
   const handleLogin = () => {
     userContext.logged = true;
     history.push('/movies');
@@ -44,6 +47,7 @@ function AppInternal() {
     window.open(trailerUrl, '_blank');
   }
 
+  // обработчики функциональности фильтрации главной страницы
   const handleMoviesSearchRequest = (request) => {
     setMoviesSearchRequest(request);
   }
@@ -52,7 +56,7 @@ function AppInternal() {
     setMoviesFilterState(newState);
   }
 
-
+  // инициализация данных для главной страницы
   const initMoviesPage = () => {
     MoviesApiInstance.getMovies()
       .then((movies) => {
@@ -74,10 +78,34 @@ function AppInternal() {
     // eslint-disable-next-line
   }, []);
 
-  React.useEffect(() => {
-    setMoviesCards(moviesData.slice(0, showMoviesCount));
-  }, [showMoviesCount, moviesData]);
+  // фильтрация данных для главной страницы
 
+  React.useEffect( () => {
+    function filterMovies(movies, count, request, filterState) {
+      if (!request) {
+        return [];
+      }
+
+      let filteredMovies = movies;
+      if (filterState) {
+        filteredMovies = filteredMovies.filter( (item) => {
+          return item.duration <= 40;
+        });
+      }
+
+      if (request) {
+        const loweredReques = request.toLowerCase();
+        filteredMovies = filteredMovies.filter( (item) => {
+          return (item.nameRU && item.nameRU.toLowerCase().includes(loweredReques))
+            || (item.nameEN && item.nameEN.toLowerCase().includes(loweredReques));
+        });
+      }
+
+      return filteredMovies.slice(0, showMoviesCount)
+    }
+
+    setMoviesCards(filterMovies(moviesData, showMoviesCount, moviesSearchRequest, moviesFilterState));
+}, [moviesData, showMoviesCount, moviesSearchRequest, moviesFilterState])
 
   return (
       <Switch>

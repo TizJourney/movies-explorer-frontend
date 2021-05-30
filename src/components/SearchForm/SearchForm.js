@@ -6,15 +6,16 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 
 function FilterCheckbox(props) {
-  const [isActive, setActive] = useState(false);
+  const [isActive, setActive] = useState(props.filterState);
 
-  const toggleClass = () => {
-    setActive(!isActive);
+  const toggleFilter = () => {
+    props.handleFilterStateChange(!props.filterState);
+    setActive(!props.filterState);
   };
 
   return (
     <div className={classnames('search-form__filter-container', props.className)}>
-      <button className={classnames('search-form__filter-button', isActive ? null : 'search-form__filter-button_disable')} onClick={toggleClass} />
+      <button className={classnames('search-form__filter-button', isActive ? null : 'search-form__filter-button_disable')} onClick={toggleFilter} />
       <p className='search-form__filter-title'>Короткометражки</p>
     </div>
   )
@@ -23,8 +24,6 @@ function FilterCheckbox(props) {
 export default function SearchForm(props) {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-
-
 
   const disableClassName = errors.searchField ? 'search-form__submit-button_disable' : null;
 
@@ -45,7 +44,11 @@ export default function SearchForm(props) {
         />
         <button className={classnames('search-form__submit-button', disableClassName)} disabled={errors.searchField}>Найти</button>
       </form>
-      <FilterCheckbox className='search-form__filter' />
+      <FilterCheckbox
+        className='search-form__filter'
+        filterState={props.filterState}
+        handleFilterStateChange={props.handleFilterStateChange}
+      />
     </div>
   )
 }
