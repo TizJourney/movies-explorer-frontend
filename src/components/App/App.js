@@ -19,6 +19,13 @@ function AppInternal() {
   const history = useHistory();
   const userContext = React.useContext(CurrentUserContext);
 
+  const [moviesData, setMoviesData] = React.useState([]);
+  const [showMoviesCount, setMoviesCount] = React.useState(8);
+  const [moviesCards, setMoviesCards] = React.useState([]);
+
+  const [moviesSearchRequest, setMoviesSearchRequest] = React.useState('');
+  const [moviesFilterState, setMoviesFilterState] = React.useState(true);
+
   const handleLogin = () => {
     userContext.logged = true;
     history.push('/movies');
@@ -37,10 +44,14 @@ function AppInternal() {
     window.open(trailerUrl, '_blank');
   }
 
-  const [moviesData, setMoviesData] = React.useState([]);
-  const [showMoviesCount, setMoviesCount] = React.useState(8);
+  const handleMoviesSearchRequest = (request) => {
+    setMoviesSearchRequest(request);
+  }
 
-  const [moviesCards, setMoviesCards] = React.useState([]);
+  const handleMoviesFilterStateChange = (newState) => {
+    setMoviesFilterState(newState);
+  }
+
 
   const initMoviesPage = () => {
     MoviesApiInstance.getMovies()
@@ -74,6 +85,12 @@ function AppInternal() {
           <Movies
             handleCardClick={handleCardClick}
             moviesCards={moviesCards}
+
+            searchRequest={moviesSearchRequest}
+            handleSearchRequest={handleMoviesSearchRequest}
+
+            filterState={moviesFilterState}
+            handleFilterStateChange={handleMoviesFilterStateChange}
           />
         </Route>
         <Route exact path='/saved-movies'>

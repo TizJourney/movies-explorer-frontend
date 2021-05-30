@@ -14,7 +14,14 @@ export default function Movies(props) {
     <div className='movies'>
       <div className='movies__content'>
         <Header className='movies__header' />
-        <SearchForm className='movies__search-form' />
+        <SearchForm
+          className='movies__search-form'
+          searchRequest={props.searchRequest}
+          handleSearchRequest={props.handleSearchRequest}
+
+          filterState={props.filterState}
+          handleFilterStateChange={props.handleFilterStateChange}
+      />
         <MoviesCardList
         className='movies__movies-card-list'
         savedMode={props.savedMode}

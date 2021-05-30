@@ -24,13 +24,13 @@ export default function SearchForm(props) {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const [inputValue, setInputValue] = useState('');
 
-  const onSubmit = (values) => {
-    //todo
-  };
 
   const disableClassName = errors.searchField ? 'search-form__submit-button_disable' : null;
+
+  const onSubmit = (values) => {
+    props.handleSearchRequest(values.searchField);
+  };
 
   return (
     <div className={classnames('search-form', props.className)}>
@@ -40,9 +40,7 @@ export default function SearchForm(props) {
           input="text"
           className='search-form__input'
           placeholder='Фильмы'
-          value={inputValue.value}
-          onChange={e => setInputValue(e.target.value)
-          }
+          defaultValue={props.searchRequest}
           {...register('searchField', { required: true })}
         />
         <button className={classnames('search-form__submit-button', disableClassName)} disabled={errors.searchField}>Найти</button>
