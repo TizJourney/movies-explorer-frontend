@@ -19,7 +19,7 @@ import { MoviesApiInstance } from '../../utils/MoviesApi';
 function AppInternal() {
 
   const history = useHistory();
-  const userContext = React.useContext(CurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
 
   // состояние окна
   const windowWidthSettings = WindowWidthSettings();
@@ -36,12 +36,12 @@ function AppInternal() {
 
   // обработчики функциональности авторизации
   const handleLogin = () => {
-    userContext.logged = true;
+    currentUser.logged = true;
     history.push('/movies');
   }
 
   const handleLogout = () => {
-    userContext.logged = false;
+    currentUser.logged = false;
     history.push('/');
   }
 

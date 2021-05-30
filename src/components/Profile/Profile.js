@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function Profile(props) {
-  const userContext = React.useContext(CurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   function onSubmit(values) {
@@ -20,7 +20,7 @@ export default function Profile(props) {
       <div className='profile__content'>
         <Header className='profile__header' />
         <form name='profileForm' className='profile__body' onSubmit={handleSubmit(onSubmit)}>
-          <h2 className='profile__title'>Привет, {userContext.name}!  </h2>
+          <h2 className='profile__title'>Привет, {currentUser.name}!  </h2>
 
           <div className='profile__input-container' >
             <p className='profile__input-title'>Имя</p>
@@ -28,7 +28,7 @@ export default function Profile(props) {
               type='text'
               className='profile__input'
               name='name'
-              defaultValue={userContext.name}
+              defaultValue={currentUser.name}
               {...register('name',
                 {
                   required: { value: true, message: 'Поле обязательно для заполнения' },
@@ -47,7 +47,7 @@ export default function Profile(props) {
               type='email'
               className='profile__input'
               name='email'
-              defaultValue={userContext.email}
+              defaultValue={currentUser.email}
               {...register('email',
                 {
                   required: { value: true, message: 'Поле обязательно для заполнения' },
