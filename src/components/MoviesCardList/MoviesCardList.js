@@ -20,7 +20,7 @@ export default function MoviesCardList(props) {
               image={`${apiMoviesBaseUrl}${card.image.url}`}
               trailerUrl={card.trailerLink}
               savedMode={props.savedMode}
-              // onCardClick={props.onCardClick}
+              handleCardClick={props.handleCardClick}
               // onCardSave={props.onCardSave}
               // onCardDelete={props.onCardDelete}
             />

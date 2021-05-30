@@ -31,13 +31,22 @@ function AppInternal() {
     history.goBack();
   }
 
+  const handleCardClick = (trailerUrl) => {
+    window.open(trailerUrl, '_blank');
+  }
+
   return (
       <Switch>
         <Route exact path='/movies'>
-          <Movies />
+          <Movies
+            handleCardClick={handleCardClick}
+          />
         </Route>
         <Route exact path='/saved-movies'>
-          <Movies savedMode={true} />
+        <Movies
+          savedMode={true}
+          handleCardClick={handleCardClick}
+        />
         </Route>
         <Route exact path='/profile'>
           <Profile handleLogout={handleLogout} handleEditProfile={handleEditProfile} />

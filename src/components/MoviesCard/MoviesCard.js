@@ -14,15 +14,18 @@ export default function MoviesCard(props) {
     setActive(!isActive);
   };
 
+  const handleClick = () => { props.handleCardClick(props.trailerUrl); }
+
   return (
     <li className={classnames('movies-card', props.className)}>
-      <div className='movies-card__image-container'
+      <button className='movies-card__image-container'
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={handleClick}
         >
         <img src={props.image} className='movies-card__image' alt={props.title} />
         <button className={classnames('movies-card__button', extraButtonClassName )} onClick={toggleClass} />
-      </div>
+      </button>
       <div className='movies-card__text-blocks'>
           <h2 className='movies-card__title'>{props.title}</h2>
           <p className='movies-card__duration'>{props.duration > 60 && `${Math.floor(props.duration /60)} ч`} {`${Math.floor(props.duration % 60)} м`} </p>

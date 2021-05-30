@@ -47,7 +47,12 @@ export default function Movies(props) {
       <div className='movies__content'>
         <Header className='movies__header' />
         <SearchForm className='movies__search-form' />
-        <MoviesCardList className='movies__movies-card-list' savedMode={props.savedMode} moviesCards={moviesCards} />
+        <MoviesCardList
+        className='movies__movies-card-list'
+        savedMode={props.savedMode}
+        moviesCards={moviesCards}
+        handleCardClick={props.handleCardClick}
+        />
         {!props.savedMode &&
           <Preloader className='movies__preloader' />
         }
