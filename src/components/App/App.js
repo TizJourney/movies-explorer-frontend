@@ -26,9 +26,9 @@ function AppInternal() {
 
   // это состояния фильтрации страницы movies
   const [moviesData, setMoviesData] = React.useState([]);
-  const [showMoviesCount, setMoviesCount] = React.useState(windowWidthSettings.default);
+  const [showMoviesCount, setShowMoviesCount] = React.useState(windowWidthSettings.default);
   const [moviesSearchRequest, setMoviesSearchRequest] = React.useState('');
-  const [moviesFilterState, setMoviesFilterState] = React.useState(true);
+  const [moviesFilterState, setMoviesFilterState] = React.useState(false);
 
   // это результат фильтрации для страницы movies
   const [moviesCards, setMoviesCards] = React.useState([]);
@@ -56,10 +56,16 @@ function AppInternal() {
   // обработчики функциональности фильтрации главной страницы
   const handleMoviesSearchRequest = (request) => {
     setMoviesSearchRequest(request);
+    setShowMoviesCount(windowWidthSettings.default);
   }
 
   const handleMoviesFilterStateChange = (newState) => {
     setMoviesFilterState(newState);
+  }
+
+  const handleMovieMoreButton = () => {
+    // кроме добавления нового ряда так же добавим карточки, чтобы они полностью занимали всю линию
+    setShowMoviesCount(showMoviesCount + windowWidthSettings.grow + (windowWidthSettings.columns - Math.floor(showMoviesCount % windowWidthSettings.columns)) % windowWidthSettings.columns) ;
   }
 
   // инициализация данных для главной страницы
@@ -127,6 +133,7 @@ function AppInternal() {
 
             cardsColumns={windowWidthSettings.columns}
             isMoreButtonActive={isMovieMoreButtonActive}
+            handleMoreButton={handleMovieMoreButton}
           />
         </Route>
         <Route exact path='/saved-movies'>
