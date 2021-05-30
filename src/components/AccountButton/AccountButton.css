@@ -1,0 +1,31 @@
+.account-logo {
+  display: flex;
+  flex-direction: row;
+  background: #FFFFFF;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.account-logo__text {
+  border: none;
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 0.92;
+
+  margin: 0;
+  padding: 0;
+
+  color: #222222;
+}
+
+.account-logo__logo {
+  margin-left: 17px;
+  background: #F9F9F9;
+  border-radius: 4px;
+  padding: 8px;
+  width: 10px;
+  height: 10px;
+}

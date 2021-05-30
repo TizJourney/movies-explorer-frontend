@@ -1,0 +1,116 @@
+.profile {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile__content {
+  width: min(1280px, 100%);
+  box-sizing: border-box;
+  padding: 0 70px 10px 70px;
+}
+
+.profile__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profile__title {
+  margin: 74px 0 120px 0;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+
+  text-align: center;
+}
+.profile__input_bottom-divider {
+  border-bottom: solid 1px #E8E8E8;
+}
+
+.profile__button {
+  margin-top: 210px;
+  padding: 0;
+  width: 100%;
+  border: none;
+  background-color: white;;
+  cursor: pointer;
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 1.23;
+  text-align: center;
+  color:black;
+}
+
+.profile__button_logout {
+  margin-top: 19px;
+  color: #FF004D;
+}
+
+
+.profile__input-container {
+  padding-bottom: 16px;
+  margin-top: 17px;
+  display: grid;
+  grid-template-columns: 141px 1fr;
+  position: relative;
+}
+
+.profile__input-error {
+  position: absolute;
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 1.2;
+  text-align: left;
+
+  padding: 0;
+  margin: 0;
+
+  color: #FF3055;
+  right: 0px;
+  bottom: 0px;
+}
+
+.profile__input-title {
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.23;
+  margin: 0;
+  padding: 0;
+}
+
+.profile__input {
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 1.23;
+}
+
+@media screen and (max-width: 1279px) {
+  .profile__content {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  .profile__content {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+}
+

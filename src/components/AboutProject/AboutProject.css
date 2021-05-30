@@ -1,0 +1,131 @@
+.about__info {
+  margin-top: 70px;
+}
+
+.about__timeline {
+  margin: 110px 0 110px 0;
+}
+
+
+.about-info {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 25px;
+  column-gap: 40px;
+  padding: 0;
+}
+
+.about-info__item {
+  padding: 0;
+  margin: 0;
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.43;
+}
+
+.about-info__item_title {
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+.about-timeline {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.about-timeline__item {
+  background-color: #F2F2F2;
+  padding: 9px 0 9px 0;
+  text-align: center;
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.21;
+}
+
+.about-timeline__item_highlight {
+  background-color: #2BE080;
+}
+
+.about-timeline__title {
+  padding: 14px 0 14px 0;
+  text-align: center;
+  color: #A0A0A0;
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.21;
+}
+
+
+@media screen and (max-width: 1279px) {
+  .about__timeline {
+    margin-top: 80px;
+    margin-bottom: 70px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about__info {
+    margin-top: 60px;
+  }
+
+  .about-info {
+    grid-template-columns: 1fr;
+    row-gap: 10px;
+  }
+
+  .about-info__item {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .about-info__item:nth-child(1) {
+    order: 1;
+  }
+
+  .about-info__item:nth-child(2) {
+    order: 3;
+    margin-top: 45px;
+  }
+
+  .about-info__item:nth-child(3) {
+    order: 2;
+  }
+
+  .about-info__item:nth-child(4) {
+    order: 4;
+  }
+
+  .about-info__item_title {
+    font-size: 18px;
+  }
+
+  .about__timeline {
+    margin-top: 60px;
+    margin-bottom: 45px;
+  }
+
+  .about-timeline {
+    grid-template-columns: 100px 1fr;
+  }
+
+  .about-timeline__item {
+    font-size: 11px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+
+  .about-timeline__title {
+  font-size: 11px;
+  line-height: 1.21;
+  }
+}
