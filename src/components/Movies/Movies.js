@@ -29,12 +29,16 @@ export default function Movies(props) {
           props.searchRequest && props.moviesCards.length === 0 &&
           <p className='movies__nothing-found'>Ничего не найдено</p>
         }
-        <MoviesCardList
-        className='movies__movies-card-list'
-        savedMode={props.savedMode}
-        moviesCards={props.moviesCards}
-        handleCardClick={props.handleCardClick}
-        />
+        {
+          props.moviesCards.length > 0 &&
+          <MoviesCardList
+          className='movies__movies-card-list'
+          savedMode={props.savedMode}
+          moviesCards={props.moviesCards}
+          handleCardClick={props.handleCardClick}
+          />
+        }
+
         <Preloader className='movies__preloader' />
         { !props.savedMode && props.isMoreButtonActive &&
           <div>
