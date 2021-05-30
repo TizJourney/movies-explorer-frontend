@@ -8,6 +8,8 @@ import Register from '../Register/Register';
 import Main from '../Main/Main';
 import NotFound from '../NotFound/NotFound';
 
+import WindowWidthSettings from '../WindowWidthSettings/WindowWidthSettings';
+
 import { CurrentUserContext, userPlaceholderData } from '../../contexts/CurrentUserContext';
 
 import { useHistory } from 'react-router-dom';
@@ -19,9 +21,12 @@ function AppInternal() {
   const history = useHistory();
   const userContext = React.useContext(CurrentUserContext);
 
+  // состояние окна
+  const windowWidthSettings = WindowWidthSettings();
+
   // это состояния фильтрации страницы movies
   const [moviesData, setMoviesData] = React.useState([]);
-  const [showMoviesCount, setMoviesCount] = React.useState(8);
+  const [showMoviesCount, setMoviesCount] = React.useState(windowWidthSettings.default);
   const [moviesSearchRequest, setMoviesSearchRequest] = React.useState('');
   const [moviesFilterState, setMoviesFilterState] = React.useState(true);
 
@@ -79,7 +84,6 @@ function AppInternal() {
   }, []);
 
   // фильтрация данных для главной страницы
-
   React.useEffect( () => {
     function filterMovies(movies, count, request, filterState) {
       if (!request) {
@@ -119,6 +123,8 @@ function AppInternal() {
 
             filterState={moviesFilterState}
             handleFilterStateChange={handleMoviesFilterStateChange}
+
+            cardsColumns={windowWidthSettings.columns}
           />
         </Route>
         <Route exact path='/saved-movies'>
@@ -126,6 +132,7 @@ function AppInternal() {
           savedMode={true}
           handleCardClick={handleCardClick}
           moviesCards={moviesCards}
+          cardsColumns={windowWidthSettings.columns}
         />
         </Route>
         <Route exact path='/profile'>
