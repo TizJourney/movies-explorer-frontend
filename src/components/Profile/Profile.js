@@ -2,14 +2,24 @@ import './Profile.css';
 
 import Header from '../Header/Header';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, setValue} = useForm(
+    {
+      reValidateMode: 'onChange',
+    }
+  );
+
+  useEffect(() => {
+    setValue('name', currentUser.name);
+    setValue('email', currentUser.email);
+    // eslint-disable-next-line
+  }, [currentUser]);
 
   function onSubmit(values) {
     props.handleEditProfile();
@@ -28,7 +38,6 @@ export default function Profile(props) {
               type='text'
               className='profile__input'
               name='name'
-              defaultValue={currentUser.name}
               {...register('name',
                 {
                   required: { value: true, message: 'Поле обязательно для заполнения' },
@@ -47,7 +56,6 @@ export default function Profile(props) {
               type='email'
               className='profile__input'
               name='email'
-              defaultValue={currentUser.email}
               {...register('email',
                 {
                   required: { value: true, message: 'Поле обязательно для заполнения' },

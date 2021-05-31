@@ -25,20 +25,24 @@ import { tokenHandlerInstance } from '../../utils/login-tools';
 function AppInternal() {
 
   const history = useHistory();
-  const currentUser = React.useContext(CurrentUserContext);
+
+  const [currentUser, setCurrentUser] = React.useState(USER_PLACEHOLDER_DATA);
 
   // работа с авторизацией
-  function tokenCheckAndRedirect(redirect=null) {
-    currentUser.logged = false;
+  function tokenCheckAndRedirect(redirect = null) {
+    setCurrentUser({...currentUser, logged: false})
+
     const jwt = tokenHandlerInstance.get();
     if (jwt) {
       MainApiInstance.setToken(jwt);
       MainApiInstance.getUserInfo()
         .then((res) => {
           if (res) {
-            currentUser.name = res.name
-            currentUser.email = res.email
-            currentUser.logged = true;
+            setCurrentUser({
+              logged: true,
+              name: res.name,
+              email: res.email
+            })
           }
           if (redirect) {
             history.push(redirect);
@@ -80,7 +84,7 @@ function AppInternal() {
 
   const handleMovieMoreButton = () => {
     // кроме добавления нового ряда так же добавим карточки, чтобы они полностью занимали всю линию
-    setShowMoviesCount(showMoviesCount + windowWidthSettings.grow + (windowWidthSettings.columns - Math.floor(showMoviesCount % windowWidthSettings.columns)) % windowWidthSettings.columns) ;
+    setShowMoviesCount(showMoviesCount + windowWidthSettings.grow + (windowWidthSettings.columns - Math.floor(showMoviesCount % windowWidthSettings.columns)) % windowWidthSettings.columns);
   }
 
   // инициализация данных для главной страницы
@@ -102,34 +106,33 @@ function AppInternal() {
 
   // инициализация данных при старте приложения
   React.useEffect(() => {
-      tokenCheckAndRedirect();
-      initMoviesPage();
+    tokenCheckAndRedirect();
+    initMoviesPage();
     // eslint-disable-next-line
   }, []);
 
   // обработчики для работы с авторизацией
   function handleRegister(name, email, password) {
     MainApiInstance.register(name, email, password)
-    .then(() => {
-      return MainApiInstance.login(email, password)
-    })
-    .then((res) => {
-      tokenHandlerInstance.set(res.token);
-      MainApiInstance.setToken(res.token);
-      tokenCheckAndRedirect('/movies');
-    })
-    .catch((err) => {
-      //todo: добавить обработчик ошибок
-    })
+      .then(() => {
+        return MainApiInstance.login(email, password)
+      })
+      .then((res) => {
+        tokenHandlerInstance.set(res.token);
+        MainApiInstance.setToken(res.token);
+        tokenCheckAndRedirect('/movies');
+      })
+      .catch((err) => {
+        //todo: добавить обработчик ошибок
+      })
   }
 
   function handleLogin(email, password) {
-    currentUser.logged = true;
     MainApiInstance.login(email, password)
       .then((res) => {
-          tokenHandlerInstance.set(res.token);
-          MainApiInstance.setToken(res.token);
-          tokenCheckAndRedirect('/movies');
+        tokenHandlerInstance.set(res.token);
+        MainApiInstance.setToken(res.token);
+        tokenCheckAndRedirect('/movies');
       })
       .catch((err) => {
         //todo: добавить обработчик ошибок
@@ -138,7 +141,7 @@ function AppInternal() {
 
   function handleLogout() {
     tokenHandlerInstance.remove();
-    currentUser.logged = false;
+    setCurrentUser({...currentUser, logged: false})
     history.push('/');
   }
 
@@ -149,7 +152,7 @@ function AppInternal() {
 
 
   // фильтрация данных для главной страницы
-  React.useEffect( () => {
+  React.useEffect(() => {
     function filterMovies(movies, request, filterState) {
       if (!request) {
         return [];
@@ -157,14 +160,14 @@ function AppInternal() {
 
       let filteredMovies = movies;
       if (filterState) {
-        filteredMovies = filteredMovies.filter( (item) => {
+        filteredMovies = filteredMovies.filter((item) => {
           return item.duration <= 40;
         });
       }
 
       if (request) {
         const loweredReques = request.toLowerCase();
-        filteredMovies = filteredMovies.filter( (item) => {
+        filteredMovies = filteredMovies.filter((item) => {
           return (item.nameRU && item.nameRU.toLowerCase().includes(loweredReques))
             || (item.nameEN && item.nameEN.toLowerCase().includes(loweredReques));
         });
@@ -174,9 +177,10 @@ function AppInternal() {
     }
 
     setMoviesCards(filterMovies(moviesData, moviesSearchRequest, moviesFilterState));
-}, [moviesData, moviesSearchRequest, moviesFilterState])
+  }, [moviesData, moviesSearchRequest, moviesFilterState])
 
   return (
+    <CurrentUserContext.Provider value={currentUser}>
       <Switch>
         <Route exact path='/movies'>
           <Movies
@@ -195,12 +199,12 @@ function AppInternal() {
           />
         </Route>
         <Route exact path='/saved-movies'>
-        <Movies
-          savedMode={true}
-          handleCardClick={handleCardClick}
-          moviesCards={moviesCards}
-          cardsColumns={windowWidthSettings.columns}
-        />
+          <Movies
+            savedMode={true}
+            handleCardClick={handleCardClick}
+            moviesCards={moviesCards}
+            cardsColumns={windowWidthSettings.columns}
+          />
         </Route>
         <Route exact path='/profile'>
           <Profile handleLogout={handleLogout} handleEditProfile={handleEditProfile} />
@@ -209,7 +213,7 @@ function AppInternal() {
           <Login handleLogin={handleLogin} />
         </Route>
         <Route exact path='/signup'>
-          <Register  handleRegister={handleRegister} />
+          <Register handleRegister={handleRegister} />
         </Route>
         <Route exact path='/'>
           <Main />
@@ -218,12 +222,12 @@ function AppInternal() {
           <NotFound />
         </Route>
       </Switch>
-
+    </CurrentUserContext.Provider>
   );
 }
 
 function App() {
-  return (<CurrentUserContext.Provider value={USER_PLACEHOLDER_DATA}><BrowserRouter><AppInternal /></BrowserRouter></CurrentUserContext.Provider>)
+  return (<BrowserRouter><AppInternal /></BrowserRouter>)
 }
 
 export default App;
