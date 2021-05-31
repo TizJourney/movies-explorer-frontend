@@ -1,10 +1,12 @@
 import './InfoPopup.css';
 
 import React from 'react';
+import classnames from 'classnames';
 
 export default React.memo(function InfoPopup({info}) {
+  const infoClassName = !info.alert ? 'info-popup_info' : null;
   return (
-    <div className={'info-popup'}>
+    <div className={classnames('info-popup', infoClassName)}>
       { info.title &&
         <h2 className='info-popup__title'>{info.title}</h2>
       }

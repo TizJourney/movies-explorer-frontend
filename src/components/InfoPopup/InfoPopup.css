@@ -7,6 +7,10 @@
   padding: 20px;
 }
 
+.info-popup_info {
+  border: 2px solid #2BE080;
+}
+
 .info-popup__title {
   margin: 0;
   padding: 0;

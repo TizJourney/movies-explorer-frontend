@@ -39,8 +39,8 @@ function AppInternal() {
   // состояние инфо окна (ошибок и т.п.)
   const [info, setInfo] = React.useState({});
 
-  function handleInfo(title, message) {
-    setInfo({title, message});
+  function handleInfo(title, message, alert=true) {
+    setInfo({title, message, alert});
     setTimeout(() => { setInfo({}) }, 10000);
   }
 
@@ -214,6 +214,7 @@ function AppInternal() {
       .then((res) => {
         setCurrentUser({ ...currentUser, name: res.name, email: res.email })
         history.goBack();
+        handleInfo('Успех!', 'профиль успешно изменён', false);
       })
       .catch((err) => {
         handleInfo('Ошибка разлогина', err.message);

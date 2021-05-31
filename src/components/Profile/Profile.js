@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 
 import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
+import classnames from 'classnames';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -26,9 +27,11 @@ const schema = Joi.object({
 
 export default function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm({
+  const [isDisabled, setIsDisabled] = React.useState(true);
+
+  const { register, handleSubmit, setValue, getValues, formState: {errors} } = useForm({
     resolver: joiResolver(schema),
-    reValidateMode: 'onChange',
+    mode: 'onChange',
   });
 
   useEffect(() => {
@@ -40,11 +43,19 @@ export default function Profile(props) {
     props.handleEditProfile(values);
   };
 
+  function onChange(values) {
+    const formValues = getValues();
+    setIsDisabled(Object.keys(errors).length > 0 || (currentUser.name === formValues.name && currentUser.email === formValues.email));
+  };
+
+  const isDisabledClass = isDisabled ? 'profile__button_disabled' : null;
+
+
   return (
     <div className='profile'>
       <div className='profile__content'>
         <Header className='profile__header' />
-        <form name='profileForm' className='profile__body' onSubmit={handleSubmit(onSubmit)}>
+        <form name='profileForm' className='profile__body' onSubmit={handleSubmit(onSubmit)} onChange={onChange}>
           <h2 className='profile__title'>Привет, {currentUser.name}!  </h2>
 
           <div className='profile__input-container' >
@@ -69,7 +80,7 @@ export default function Profile(props) {
             />
             {errors.email && <p className='profile__input-error'>{errors.email.message}</p>}
           </div>
-          <button type="submit" className='profile__button'>Редактировать</button>
+          <button type="submit" className={classnames('profile__button', isDisabledClass)} disabled={isDisabled}>Редактировать</button>
           <button className='profile__button profile__button_logout' onClick={() => {props.handleLogout()}}>Выйти из аккаунта</button>
         </form>
       </div>
