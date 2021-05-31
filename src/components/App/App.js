@@ -216,8 +216,8 @@ function AppInternal() {
 
   // фильтрация данных
   function filterMovies(movies, request, filterState, savedMode=false) {
-    if (!request) {
-      return savedMode ? movies : [];
+    if (!request && !savedMode) {
+      return [];
     }
 
     let filteredMovies = movies;
