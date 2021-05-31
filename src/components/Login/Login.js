@@ -23,6 +23,7 @@ const schema = Joi.object({
 export default function Login(props) {
   const methods = useForm({
     resolver: joiResolver(schema),
+    reValidateMode: 'onChange',
   });
 
   const onSubmit = ({email, password}) => {

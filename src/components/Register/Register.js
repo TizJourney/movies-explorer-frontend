@@ -30,6 +30,7 @@ const schema = Joi.object({
 export default function Register(props) {
   const methods = useForm({
     resolver: joiResolver(schema),
+    reValidateMode: 'onChange',
   });
 
   const onSubmit = ({name, email, password}) => {

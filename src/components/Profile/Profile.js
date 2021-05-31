@@ -7,19 +7,34 @@ import { useForm } from "react-hook-form";
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
+import { joiResolver } from '@hookform/resolvers/joi';
+import Joi from "joi";
+
+const schema = Joi.object({
+  name: Joi.string().required().min(3)
+    .messages({
+      "string.min": "Пароль должен быть минимум длины 3",
+      "string.empty": "Поле обязательно для заполнения",
+    }),
+  email: Joi.string().email({ tlds: { allow: false } }).required()
+    .messages({
+      "string.email": "Должен быть валидный email",
+      "string.empty": "Поле обязательно для заполнения",
+    }),
+});
+
+
 export default function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
-  const { register, handleSubmit, formState: { errors }, setValue} = useForm(
-    {
-      reValidateMode: 'onChange',
-    }
-  );
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm({
+    resolver: joiResolver(schema),
+    reValidateMode: 'onChange',
+  });
 
   useEffect(() => {
     setValue('name', currentUser.name);
     setValue('email', currentUser.email);
-    // eslint-disable-next-line
-  }, [currentUser]);
+  }, [currentUser, setValue]);
 
   function onSubmit(values) {
     props.handleEditProfile(values);
@@ -38,13 +53,7 @@ export default function Profile(props) {
               type='text'
               className='profile__input'
               name='name'
-              {...register('name',
-                {
-                  required: { value: true, message: 'Поле обязательно для заполнения' },
-                  minLength: { value: 3, message: 'Минимальная длина поля 3' },
-                  maxLength: { value: 30, message: 'Максимальная длина поля 30' }
-                })
-              }
+              {...register('name')}
             />
             {errors.name && <p className='profile__input-error'>{errors.name.message}</p>}
           </div>
@@ -56,11 +65,7 @@ export default function Profile(props) {
               type='email'
               className='profile__input'
               name='email'
-              {...register('email',
-                {
-                  required: { value: true, message: 'Поле обязательно для заполнения' },
-                })
-              }
+              {...register('email')}
             />
             {errors.email && <p className='profile__input-error'>{errors.email.message}</p>}
           </div>

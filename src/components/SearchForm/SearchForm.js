@@ -23,7 +23,11 @@ function FilterCheckbox(props) {
 
 export default function SearchForm(props) {
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm(
+    {
+      reValidateMode: 'onChange',
+    }
+  );
 
   const disableClassName = errors.searchField ? 'search-form__submit-button_disable' : null;
 
