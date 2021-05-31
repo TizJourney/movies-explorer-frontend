@@ -1,4 +1,4 @@
-import { apiMoviesBaseUrl, } from './utils.js'
+import { API_MOVIES_BASE_URL } from './utils.js'
 
 import Api from './api';
 
@@ -8,4 +8,4 @@ class MoviesApi extends Api {
   }
 }
 
-export const MoviesApiInstance = new MoviesApi(apiMoviesBaseUrl);
+export const MoviesApiInstance = new MoviesApi(API_MOVIES_BASE_URL);

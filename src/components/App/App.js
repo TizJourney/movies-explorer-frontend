@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, } from 'react-router-dom';
 
+// компоненты страниц сайта
 import Movies from '../Movies/Movies';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
@@ -8,18 +9,43 @@ import Register from '../Register/Register';
 import Main from '../Main/Main';
 import NotFound from '../NotFound/NotFound';
 
+// компонента отслеживания ширины окна
 import WindowWidthSettings from '../WindowWidthSettings/WindowWidthSettings';
 
-import { CurrentUserContext, userPlaceholderData } from '../../contexts/CurrentUserContext';
+// контекст для хранения состония пользователя
+import { CurrentUserContext, USER_PLACEHOLDER_DATA } from '../../contexts/CurrentUserContext';
 
 import { useHistory } from 'react-router-dom';
 
+// работа с api и авторизацией
 import { MoviesApiInstance } from '../../utils/MoviesApi';
+import { MainApiInstance } from '../../utils/MainApi';
+import { tokenHandlerInstance } from '../../utils/login-tools';
 
 function AppInternal() {
 
   const history = useHistory();
   const currentUser = React.useContext(CurrentUserContext);
+
+  // работа с авторизацией
+  const tokenCheck = () => {
+    currentUser.logged = false;
+    const jwt = tokenHandlerInstance.get();
+    if (jwt) {
+      MainApiInstance.setToken(jwt);
+      MainApiInstance.getUserInfo(jwt)
+        .then((res) => {
+          if (res) {
+            currentUser.name = res.name
+            currentUser.email = res.email
+            currentUser.logged = true;
+          }
+        })
+        .catch((e) => {
+          //todo: вывести ошибку
+        })
+    }
+  }
 
   // состояние окна
   const windowWidthSettings = WindowWidthSettings();
@@ -85,8 +111,10 @@ function AppInternal() {
       })
   }
 
+  // инициализация данных при старте приложения
   React.useEffect(() => {
-    initMoviesPage();
+      tokenCheck();
+      initMoviesPage();
     // eslint-disable-next-line
   }, []);
 
@@ -165,7 +193,7 @@ function AppInternal() {
 }
 
 function App() {
-  return (<CurrentUserContext.Provider value={userPlaceholderData}><BrowserRouter><AppInternal /></BrowserRouter></CurrentUserContext.Provider>)
+  return (<CurrentUserContext.Provider value={USER_PLACEHOLDER_DATA}><BrowserRouter><AppInternal /></BrowserRouter></CurrentUserContext.Provider>)
 }
 
 export default App;

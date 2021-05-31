@@ -1,4 +1,4 @@
-import { apiBackendBaseUrl } from './utils.js'
+import { API_MAIN_BASE_URL } from './utils.js'
 
 import Api from './api';
 
@@ -8,4 +8,4 @@ class MainApi extends Api {
   }
 }
 
-export const MainApiInstance = new MainApi(apiBackendBaseUrl);
+export const MainApiInstance = new MainApi(API_MAIN_BASE_URL);
