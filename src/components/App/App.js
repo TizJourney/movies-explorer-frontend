@@ -9,10 +9,13 @@ import Register from '../Register/Register';
 import Main from '../Main/Main';
 import NotFound from '../NotFound/NotFound';
 
+// обёртка с защитой от неавторизованного пользователя
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+
 // компонента отслеживания ширины окна
 import WindowWidthSettings from '../WindowWidthSettings/WindowWidthSettings';
 
-// контекст для хранения состония пользователя
+// контекст для хранения состояния пользователя
 import { CurrentUserContext, USER_PLACEHOLDER_DATA } from '../../contexts/CurrentUserContext';
 
 // работа с api и авторизацией
@@ -59,7 +62,7 @@ function AppInternal() {
 
   // работа с авторизацией
   function tokenCheckAndRedirect(redirect = null) {
-    setCurrentUser({...currentUser, logged: false});
+    setCurrentUser({ ...currentUser, logged: false });
     SetIsPreloaderActive(true);
 
     const jwt = tokenHandlerInstance.get();
@@ -127,8 +130,8 @@ function AppInternal() {
     MoviesApiInstance.getMovies()
       .then((movies) => {
         if (movies) {
-          const convertedMovies= movies.map((movieData) => {
-            const movieImageUrl = movieData.image ? `${API_MOVIES_BASE_URL}${movieData.image.url}`: '';
+          const convertedMovies = movies.map((movieData) => {
+            const movieImageUrl = movieData.image ? `${API_MOVIES_BASE_URL}${movieData.image.url}` : '';
             return {
               country: movieData.country,
               director: movieData.director,
@@ -194,14 +197,14 @@ function AppInternal() {
 
   function handleLogout() {
     tokenHandlerInstance.remove();
-    setCurrentUser({...currentUser, logged: false})
+    setCurrentUser({ ...currentUser, logged: false })
     history.push('/');
   }
 
   const handleEditProfile = (values) => {
     MainApiInstance.updateUserInfo(values)
       .then((res) => {
-        setCurrentUser({...currentUser, name: res.name, email: res.email})
+        setCurrentUser({ ...currentUser, name: res.name, email: res.email })
         history.goBack();
       })
       .catch((err) => {
@@ -231,7 +234,7 @@ function AppInternal() {
   }
 
   // фильтрация данных
-  function filterMovies(movies, request, filterState, savedMode=false) {
+  function filterMovies(movies, request, filterState, savedMode = false) {
     if (!request && !savedMode) {
       return [];
     }
@@ -272,30 +275,26 @@ function AppInternal() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
-        <Route exact path='/movies'>
-          <Movies
-            handleCardClick={handleCardClick}
-            moviesCards={moviesCards.slice(0, showMoviesCount)}
-            savedMovieIds={savedMovieIds}
+        <ProtectedRoute exact path='/movies'
+          handleCardClick={handleCardClick}
+          moviesCards={moviesCards.slice(0, showMoviesCount)}
+          savedMovieIds={savedMovieIds}
 
-            searchRequest={moviesSearchRequest}
-            handleSearchRequest={handleMoviesSearchRequest}
+          searchRequest={moviesSearchRequest}
+          handleSearchRequest={handleMoviesSearchRequest}
 
-            filterState={moviesFilterState}
-            handleFilterStateChange={handleMoviesFilterStateChange}
+          filterState={moviesFilterState}
+          handleFilterStateChange={handleMoviesFilterStateChange}
 
-            cardsColumns={windowWidthSettings.columns}
-            isMoreButtonActive={isMovieMoreButtonActive}
-            handleMoreButton={handleMovieMoreButton}
-            handleSaveMovie={handleSaveMovie}
-            handleRemoveMovie={handleRemoveMovie}
+          cardsColumns={windowWidthSettings.columns}
+          isMoreButtonActive={isMovieMoreButtonActive}
+          handleMoreButton={handleMovieMoreButton}
+          handleSaveMovie={handleSaveMovie}
+          handleRemoveMovie={handleRemoveMovie}
 
-            isPreloaderActive={isPreloaderActive}
-
-          />
-        </Route>
-        <Route exact path='/saved-movies'>
-          <Movies
+          isPreloaderActive={isPreloaderActive}
+        />
+        <ProtectedRoute exact path='/saved-movies' component={Movies}
             savedMode={true}
 
             handleCardClick={handleCardClick}
@@ -314,11 +313,12 @@ function AppInternal() {
             handleRemoveMovie={handleRemoveMovie}
 
             isPreloaderActive={isPreloaderActive}
-          />
-        </Route>
-        <Route exact path='/profile'>
-          <Profile handleLogout={handleLogout} handleEditProfile={handleEditProfile} />
-        </Route>
+        />
+
+        <ProtectedRoute exact path='/profile' component={Profile}
+          handleLogout={handleLogout}
+          handleEditProfile={handleEditProfile}
+        />
         <Route exact path='/signin'>
           <Login handleLogin={handleLogin} />
         </Route>
