@@ -1,6 +1,6 @@
 import { API_MOVIES_BASE_URL } from './utils.js'
 
-import Api from './api';
+import Api from './Api';
 
 class MoviesApi extends Api {
   getMovies() {
