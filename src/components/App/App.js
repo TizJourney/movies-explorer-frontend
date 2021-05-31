@@ -196,8 +196,8 @@ function AppInternal() {
   // обработчики функциональности карточек
   function handleSaveMovie(movieData) {
     MainApiInstance.saveMovie(movieData)
-      .then((res) => {
-        //todo: добавить фильм в список любимых
+      .then((newMovie) => {
+        setSavedMoviesCards([...savedMoviesCards, newMovie])
       })
       .catch((err) => {
         //todo: добавить обработчик ошибок
@@ -207,7 +207,7 @@ function AppInternal() {
   function handleRemoveMovie(movieId) {
     MainApiInstance.removeMovie(movieId)
       .then((res) => {
-        //обновить список любимых
+        setSavedMoviesCards(savedMoviesCards.filter((item) => item.movieId !== movieId))
       })
       .catch((err) => {
         //todo: добавить обработчик ошибок
