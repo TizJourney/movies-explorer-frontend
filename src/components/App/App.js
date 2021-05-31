@@ -275,7 +275,7 @@ function AppInternal() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
-        <ProtectedRoute exact path='/movies'
+        <ProtectedRoute exact path='/movies' component={Movies}
           handleCardClick={handleCardClick}
           moviesCards={moviesCards.slice(0, showMoviesCount)}
           savedMovieIds={savedMovieIds}

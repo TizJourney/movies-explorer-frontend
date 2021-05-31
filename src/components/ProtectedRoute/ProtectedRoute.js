@@ -4,11 +4,11 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const ProtectedRoute = ({ component: Component, ...props  }) => {
 
-  const userAuth = React.useContext(CurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
   return (
     <Route>
       {
-        () => userAuth.loggedIn ? <Component {...props} /> : <Redirect to='/signin' />
+        () => currentUser.logged ? <Component {...props} /> : <Redirect to='/signin' />
       }
     </Route>
 )}
