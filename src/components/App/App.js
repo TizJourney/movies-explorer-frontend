@@ -21,8 +21,9 @@ import { CurrentUserContext, USER_PLACEHOLDER_DATA } from '../../contexts/Curren
 // работа с api и авторизацией
 import { MoviesApiInstance } from '../../utils/MoviesApi';
 import { MainApiInstance } from '../../utils/MainApi';
-import { API_MOVIES_BASE_URL } from '../../utils/utils';
+import { API_MOVIES_BASE_URL, ERROR_MESSAGE, ERROR_TITLE } from '../../utils/utils';
 import { tokenHandlerInstance } from '../../utils/login-tools';
+
 
 function AppInternal() {
 
@@ -94,7 +95,7 @@ function AppInternal() {
           }
         })
         .catch((e) => {
-          handleInfo('Ошибка загрузки', e.message);
+          handleInfo(ERROR_TITLE, ERROR_MESSAGE);
         })
         .finally(() => {
           SetIsPreloaderActive(false);
@@ -157,11 +158,11 @@ function AppInternal() {
           setMoviesData(convertedMovies);
         }
         else {
-          throw new Error('Не получилось скачать данные фильмов. Перезагрузите страницу.')
+          throw new Error(ERROR_MESSAGE)
         }
       })
       .catch((e) => {
-        handleInfo('Ошибка загрузки', e.message);
+        handleInfo(ERROR_TITLE, ERROR_MESSAGE);
       })
       .finally(() => {
         SetIsPreloaderActive(false);
