@@ -27,6 +27,28 @@ function AppInternal() {
 
   const [currentUser, setCurrentUser] = React.useState(USER_PLACEHOLDER_DATA);
 
+  // состояние окна
+  const windowWidthSettings = WindowWidthSettings();
+
+  // данные и состояния для страницы фильмов
+  const [moviesData, setMoviesData] = React.useState([]);
+
+  const [showMoviesCount, setShowMoviesCount] = React.useState(windowWidthSettings.default);
+  const [moviesSearchRequest, setMoviesSearchRequest] = React.useState('');
+  const [moviesFilterState, setMoviesFilterState] = React.useState(false);
+
+  // данные и состояния для страницы сохранённых фильмов
+  const [savedMoviesData, setSavedMoviesData] = React.useState([]);
+  const [savedMoviesSearchRequest, setSavedMoviesSearchRequest] = React.useState('');
+  const [savedMoviesFilterState, setSavedMoviesFilterState] = React.useState(false);
+
+  // результат фильтрации для страницы фильмов
+  const [moviesCards, setMoviesCards] = React.useState([]);
+  const isMovieMoreButtonActive = showMoviesCount < moviesCards.length;
+
+  // результат фильтрации для страницы сохранённых фильмов
+  const [savedMoviesCards, setSavedMoviesCards] = React.useState([]);
+
   // работа с авторизацией
   function tokenCheckAndRedirect(redirect = null) {
     setCurrentUser({...currentUser, logged: false})
@@ -43,6 +65,10 @@ function AppInternal() {
               email: res.email
             })
           }
+          return MainApiInstance.getMovies();
+        })
+        .then((moviesData) => {
+          setSavedMoviesData(moviesData);
           if (redirect) {
             history.push(redirect);
           }
@@ -53,25 +79,12 @@ function AppInternal() {
     }
   }
 
-  // состояние окна
-  const windowWidthSettings = WindowWidthSettings();
-
-  // это состояния фильтрации страницы movies
-  const [moviesData, setMoviesData] = React.useState([]);
-  const [showMoviesCount, setShowMoviesCount] = React.useState(windowWidthSettings.default);
-  const [moviesSearchRequest, setMoviesSearchRequest] = React.useState('');
-  const [moviesFilterState, setMoviesFilterState] = React.useState(false);
-
-  // это результат фильтрации для страницы movies
-  const [moviesCards, setMoviesCards] = React.useState([]);
-  const isMovieMoreButtonActive = showMoviesCount < moviesCards.length;
-
   // обработчики функциональности карточки
   const handleCardClick = (trailerUrl) => {
     window.open(trailerUrl, '_blank');
   }
 
-  // обработчики функциональности фильтрации главной страницы
+  // обработчики функциональности фильтрации главной страницы фильмов
   const handleMoviesSearchRequest = (request) => {
     setMoviesSearchRequest(request);
     setShowMoviesCount(windowWidthSettings.default);
@@ -85,6 +98,16 @@ function AppInternal() {
     // кроме добавления нового ряда так же добавим карточки, чтобы они полностью занимали всю линию
     setShowMoviesCount(showMoviesCount + windowWidthSettings.grow + (windowWidthSettings.columns - Math.floor(showMoviesCount % windowWidthSettings.columns)) % windowWidthSettings.columns);
   }
+
+  // обработчики функциональности фильтрации сохраннённых фильмов
+  const handleSavedMoviesSearchRequest = (request) => {
+    setSavedMoviesSearchRequest(request);
+  }
+
+  const handleSavedMoviesFilterStateChange = (newState) => {
+    setSavedMoviesFilterState(newState);
+  }
+
 
   // инициализация данных для главной страницы
   const initMoviesPage = () => {
@@ -114,8 +137,7 @@ function AppInternal() {
         }
       })
       .catch((e) => {
-        //вызвать обработчик ошибок
-        console.log(e);
+        //todo: вызвать обработчик ошибок
       })
   }
 
@@ -192,33 +214,40 @@ function AppInternal() {
       })
   }
 
-  // фильтрация данных для главной страницы
-  React.useEffect(() => {
-    function filterMovies(movies, request, filterState) {
-      if (!request) {
-        return [];
-      }
-
-      let filteredMovies = movies;
-      if (filterState) {
-        filteredMovies = filteredMovies.filter((item) => {
-          return item.duration <= 40;
-        });
-      }
-
-      if (request) {
-        const loweredReques = request.toLowerCase();
-        filteredMovies = filteredMovies.filter((item) => {
-          return (item.nameRU && item.nameRU.toLowerCase().includes(loweredReques))
-            || (item.nameEN && item.nameEN.toLowerCase().includes(loweredReques));
-        });
-      }
-
-      return filteredMovies
+  // фильтрация данных
+  function filterMovies(movies, request, filterState, savedMode=false) {
+    if (!request) {
+      return savedMode ? movies : [];
     }
 
+    let filteredMovies = movies;
+    if (filterState) {
+      filteredMovies = filteredMovies.filter((item) => {
+        return item.duration <= 40;
+      });
+    }
+
+    if (request) {
+      const loweredReques = request.toLowerCase();
+      filteredMovies = filteredMovies.filter((item) => {
+        return (item.nameRU && item.nameRU.toLowerCase().includes(loweredReques))
+          || (item.nameEN && item.nameEN.toLowerCase().includes(loweredReques));
+      });
+    }
+
+    return filteredMovies
+  }
+
+  // главная страница
+  React.useEffect(() => {
     setMoviesCards(filterMovies(moviesData, moviesSearchRequest, moviesFilterState));
   }, [moviesData, moviesSearchRequest, moviesFilterState])
+
+  // сохранённые фильмы
+  React.useEffect(() => {
+    setSavedMoviesCards(filterMovies(savedMoviesData, savedMoviesSearchRequest, savedMoviesFilterState, true));
+  }, [savedMoviesData, savedMoviesSearchRequest, savedMoviesFilterState])
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -245,9 +274,18 @@ function AppInternal() {
         <Route exact path='/saved-movies'>
           <Movies
             savedMode={true}
+
             handleCardClick={handleCardClick}
-            moviesCards={moviesCards}
+            moviesCards={savedMoviesCards}
+
+            searchRequest={savedMoviesSearchRequest}
+            handleSearchRequest={handleSavedMoviesSearchRequest}
+
+            filterState={savedMoviesFilterState}
+            handleFilterStateChange={handleSavedMoviesFilterStateChange}
+
             cardsColumns={windowWidthSettings.columns}
+
             handleSaveMovie={handleSaveMovie}
             handleRemoveMovie={handleRemoveMovie}
           />
