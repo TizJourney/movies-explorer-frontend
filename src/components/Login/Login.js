@@ -25,8 +25,8 @@ export default function Login(props) {
     resolver: joiResolver(schema),
   });
 
-  const onSubmit = (values) => {
-    props.handleSubmit();
+  const onSubmit = ({email, password}) => {
+    props.handleLogin(email, password);
   };
 
   return (
@@ -49,7 +49,7 @@ export default function Login(props) {
             type='password'
             error={methods.formState.errors.password}
           />
-          <FormButton className='login__button' title='Войти' handleSubmit={props.handleSubmit} />
+          <FormButton className='login__button' title='Войти'/>
           <FormHelper
             className='login__helper'
             title='Ещё не зарегистрированы?'

@@ -206,10 +206,10 @@ function AppInternal() {
           <Profile handleLogout={handleLogout} handleEditProfile={handleEditProfile} />
         </Route>
         <Route exact path='/signin'>
-          <Login handleSubmit={handleLogin} />
+          <Login handleLogin={handleLogin} />
         </Route>
         <Route exact path='/signup'>
-          <Register  handleSubmit={handleRegister} />
+          <Register  handleRegister={handleRegister} />
         </Route>
         <Route exact path='/'>
           <Main />

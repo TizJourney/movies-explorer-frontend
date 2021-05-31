@@ -32,8 +32,8 @@ export default function Register(props) {
     resolver: joiResolver(schema),
   });
 
-  const onSubmit = (values) => {
-    props.handleSubmit();
+  const onSubmit = ({name, email, password}) => {
+    props.handleRegister(name, email, password);
   };
 
   return (
