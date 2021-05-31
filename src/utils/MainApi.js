@@ -23,7 +23,11 @@ class MainApi extends Api {
     return this._request('/movies');
   }
 
-  deleteMovie(id) {
+  saveMovie(movieData) {
+    return this._request('/movies', 'POST', movieData);
+  }
+
+  removeMovie(id) {
     return this._request(`/movies/${id}`, 'DELETE');
   }
 }

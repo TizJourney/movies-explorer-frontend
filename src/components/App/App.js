@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 
 // компоненты страниц сайта
 import Movies from '../Movies/Movies';
@@ -15,11 +15,10 @@ import WindowWidthSettings from '../WindowWidthSettings/WindowWidthSettings';
 // контекст для хранения состония пользователя
 import { CurrentUserContext, USER_PLACEHOLDER_DATA } from '../../contexts/CurrentUserContext';
 
-import { useHistory } from 'react-router-dom';
-
 // работа с api и авторизацией
 import { MoviesApiInstance } from '../../utils/MoviesApi';
 import { MainApiInstance } from '../../utils/MainApi';
+import { API_MOVIES_BASE_URL } from '../../utils/utils';
 import { tokenHandlerInstance } from '../../utils/login-tools';
 
 function AppInternal() {
@@ -92,7 +91,23 @@ function AppInternal() {
     MoviesApiInstance.getMovies()
       .then((movies) => {
         if (movies) {
-          setMoviesData(movies);
+          const convertedMovies= movies.map((movieData) => {
+            const movieImageUrl = movieData.image ? `${API_MOVIES_BASE_URL}${movieData.image.url}`: '';
+            return {
+              country: movieData.country,
+              director: movieData.director,
+              description: movieData.description,
+              duration: movieData.duration,
+              year: movieData.year,
+              image: movieImageUrl,
+              trailer: movieData.trailerLink,
+              thumbnail: movieImageUrl,
+              movieId: movieData.id.toString(),
+              nameRU: movieData.nameRU,
+              nameEN: movieData.nameEN
+            }
+          })
+          setMoviesData(convertedMovies);
         }
         else {
           throw new Error('Не получилось скачать данные фильмов. Перезагрузите страницу.')
@@ -156,6 +171,26 @@ function AppInternal() {
       })
   }
 
+  // обработчики функциональности карточек
+  function handleSaveMovie(movieData) {
+    MainApiInstance.saveMovie(movieData)
+      .then((res) => {
+        //todo: добавить фильм в список любимых
+      })
+      .catch((err) => {
+        //todo: добавить обработчик ошибок
+      })
+  }
+
+  function handleRemoveMovie(movieId) {
+    MainApiInstance.removeMovie(movieId)
+      .then((res) => {
+        //обновить список любимых
+      })
+      .catch((err) => {
+        //todo: добавить обработчик ошибок
+      })
+  }
 
   // фильтрация данных для главной страницы
   React.useEffect(() => {
@@ -202,6 +237,9 @@ function AppInternal() {
             cardsColumns={windowWidthSettings.columns}
             isMoreButtonActive={isMovieMoreButtonActive}
             handleMoreButton={handleMovieMoreButton}
+            handleSaveMovie={handleSaveMovie}
+            handleRemoveMovie={handleRemoveMovie}
+
           />
         </Route>
         <Route exact path='/saved-movies'>
@@ -210,6 +248,8 @@ function AppInternal() {
             handleCardClick={handleCardClick}
             moviesCards={moviesCards}
             cardsColumns={windowWidthSettings.columns}
+            handleSaveMovie={handleSaveMovie}
+            handleRemoveMovie={handleRemoveMovie}
           />
         </Route>
         <Route exact path='/profile'>

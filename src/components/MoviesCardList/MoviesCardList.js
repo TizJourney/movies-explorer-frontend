@@ -4,8 +4,6 @@ import './MoviesCardList.css';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-import { API_MOVIES_BASE_URL } from '../../utils/utils';
-
 import React from 'react';
 
 export default function MoviesCardList(props) {
@@ -17,18 +15,20 @@ export default function MoviesCardList(props) {
   }
   return (
     <ul className={classnames('movies-card-list', columnsToClass[props.cardsColumns], props.className)}>
-      {props.moviesCards.map((card) => (
+      {props.moviesCards.map((movieData) => (
             <MoviesCard
-              key={card.id}
+              key={movieData.movieId}
               className='movies-card-list__card'
-              title={card.nameRU}
-              duration={card.duration}
-              image={`${API_MOVIES_BASE_URL}${card.image.url}`}
-              trailerUrl={card.trailerLink}
+              title={movieData.nameRU}
+              duration={movieData.duration}
+              image={movieData.image}
+              trailerUrl={movieData.trailerLink}
               savedMode={props.savedMode}
               handleCardClick={props.handleCardClick}
-              // onCardSave={props.onCardSave}
-              // onCardDelete={props.onCardDelete}
+
+              handleSaveMovie={props.handleSaveMovie}
+              handleRemoveMovie={props.handleRemoveMovie}
+              movieData={movieData}
             />
           ))}
     </ul>

@@ -5,16 +5,21 @@ import './MoviesCard.css';
 import React, { useState } from 'react';
 
 export default function MoviesCard(props) {
-  const [isActive, setActive] = useState(props.saved);
+  const [isSaved, setIsSaved] = useState(props.saved);
   const [isHovored, setIsHovered] = useState(false);
 
-  const extraButtonClassName = isHovored ? (isActive ? 'movies-card__button_remove' : 'movies-card__button_save') : (isActive && !props.savedMode ? 'movies-card__button_saved' : null);
+  const extraButtonClassName = isHovored ? (isSaved ? 'movies-card__button_remove' : 'movies-card__button_save') : (isSaved && !props.savedMode ? 'movies-card__button_saved' : null);
 
-  function toggleClass() {
-    setActive(!isActive);
+  function handleSaveClick() {
+    if (isSaved) {
+      props.handleRemoveMovie(props.movieData.id);
+    } else {
+      props.handleSaveMovie(props.movieData);
+    }
+    setIsSaved(!isSaved);
   };
 
-  function handleClick() { props.handleCardClick(props.trailerUrl); }
+  function handleTrailerClick() { props.handleCardClick(props.trailerUrl); }
 
   return (
     <li className={classnames('movies-card', props.className)}>
@@ -23,9 +28,9 @@ export default function MoviesCard(props) {
         onMouseLeave={() => setIsHovered(false)}
         >
         <button className='movies-card__image-button'>
-          <img src={props.image} className='movies-card__image' alt={props.title} onClick={handleClick} />
+          <img src={props.image} className='movies-card__image' alt={props.title} onClick={handleTrailerClick} />
         </button>
-        <button className={classnames('movies-card__button', extraButtonClassName )} onClick={toggleClass} />
+        <button className={classnames('movies-card__button', extraButtonClassName )} onClick={handleSaveClick} />
       </div>
       <div className='movies-card__text-blocks'>
           <h2 className='movies-card__title'>{props.title}</h2>

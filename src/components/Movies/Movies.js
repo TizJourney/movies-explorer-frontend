@@ -35,10 +35,13 @@ export default function Movies(props) {
           className='movies__movies-card-list'
 
           cardsColumns={props.cardsColumns}
-
           savedMode={props.savedMode}
+
           moviesCards={props.moviesCards}
+
           handleCardClick={props.handleCardClick}
+          handleSaveMovie={props.handleSaveMovie}
+          handleRemoveMovie={props.handleRemoveMovie}
           />
         }
 
