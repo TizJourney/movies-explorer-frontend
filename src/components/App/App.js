@@ -145,9 +145,15 @@ function AppInternal() {
     history.push('/');
   }
 
-  const handleEditProfile = () => {
-    // todo: сделать реализацию
-    history.goBack();
+  const handleEditProfile = (values) => {
+    MainApiInstance.updateUserInfo(values)
+      .then((res) => {
+        setCurrentUser({...currentUser, name: res.name, email: res.email})
+        history.goBack();
+      })
+      .catch((err) => {
+        //todo: добавить обработчик ошибок
+      })
   }
 
 

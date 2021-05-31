@@ -22,7 +22,7 @@ export default function Profile(props) {
   }, [currentUser]);
 
   function onSubmit(values) {
-    props.handleEditProfile();
+    props.handleEditProfile(values);
   };
 
   return (
