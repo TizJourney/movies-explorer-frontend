@@ -46,7 +46,11 @@ export default function Movies(props) {
           />
         }
 
-        <Preloader className='movies__preloader' />
+        {
+          props.isPreloaderActive &&
+          <Preloader className='movies__preloader' />
+        }
+
         { !props.savedMode && props.isMoreButtonActive &&
           <div>
             <button className='movies__more-button' onClick={handleMoreButton}>Ещё</button>

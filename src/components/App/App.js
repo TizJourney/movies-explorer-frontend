@@ -30,6 +30,9 @@ function AppInternal() {
   // состояние окна
   const windowWidthSettings = WindowWidthSettings();
 
+  // состояние прелоадера на странице фильмов
+  const [isPreloaderActive, SetIsPreloaderActive] = React.useState(false);
+
   // данные и состояния для страницы фильмов
   const [moviesData, setMoviesData] = React.useState([]);
 
@@ -56,7 +59,8 @@ function AppInternal() {
 
   // работа с авторизацией
   function tokenCheckAndRedirect(redirect = null) {
-    setCurrentUser({...currentUser, logged: false})
+    setCurrentUser({...currentUser, logged: false});
+    SetIsPreloaderActive(true);
 
     const jwt = tokenHandlerInstance.get();
     if (jwt) {
@@ -80,6 +84,9 @@ function AppInternal() {
         })
         .catch((e) => {
           //todo: вывести ошибку
+        })
+        .finally(() => {
+          SetIsPreloaderActive(false);
         })
     }
   }
@@ -116,6 +123,7 @@ function AppInternal() {
 
   // инициализация данных для главной страницы
   const initMoviesPage = () => {
+    SetIsPreloaderActive(true);
     MoviesApiInstance.getMovies()
       .then((movies) => {
         if (movies) {
@@ -143,6 +151,9 @@ function AppInternal() {
       })
       .catch((e) => {
         //todo: вызвать обработчик ошибок
+      })
+      .finally(() => {
+        SetIsPreloaderActive(false);
       })
   }
 
@@ -245,12 +256,16 @@ function AppInternal() {
 
   // главная страница
   React.useEffect(() => {
+    SetIsPreloaderActive(true);
     setMoviesCards(filterMovies(moviesData, moviesSearchRequest, moviesFilterState));
+    SetIsPreloaderActive(false);
   }, [moviesData, moviesSearchRequest, moviesFilterState])
 
   // сохранённые фильмы
   React.useEffect(() => {
+    SetIsPreloaderActive(true);
     setSavedMoviesCards(filterMovies(savedMoviesData, savedMoviesSearchRequest, savedMoviesFilterState, true));
+    SetIsPreloaderActive(false);
   }, [savedMoviesData, savedMoviesSearchRequest, savedMoviesFilterState])
 
 
@@ -275,6 +290,8 @@ function AppInternal() {
             handleSaveMovie={handleSaveMovie}
             handleRemoveMovie={handleRemoveMovie}
 
+            isPreloaderActive={isPreloaderActive}
+
           />
         </Route>
         <Route exact path='/saved-movies'>
@@ -295,6 +312,8 @@ function AppInternal() {
 
             handleSaveMovie={handleSaveMovie}
             handleRemoveMovie={handleRemoveMovie}
+
+            isPreloaderActive={isPreloaderActive}
           />
         </Route>
         <Route exact path='/profile'>
