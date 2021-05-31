@@ -42,7 +42,10 @@ function AppInternal() {
   const [savedMoviesSearchRequest, setSavedMoviesSearchRequest] = React.useState('');
   const [savedMoviesFilterState, setSavedMoviesFilterState] = React.useState(false);
 
-  const savedMovieIds = new Set(savedMoviesData.map(movieData => movieData.movieId));
+  const savedMovieIds = savedMoviesData.reduce(function (map, obj) {
+    map[obj.movieId] = obj._id;
+    return map;
+  }, {});
 
   // результат фильтрации для страницы фильмов
   const [moviesCards, setMoviesCards] = React.useState([]);
@@ -199,17 +202,17 @@ function AppInternal() {
   function handleSaveMovie(movieData) {
     MainApiInstance.saveMovie(movieData)
       .then((newMovie) => {
-        setSavedMoviesCards([...savedMoviesCards, newMovie])
+        setSavedMoviesData([...savedMoviesCards, newMovie]);
       })
       .catch((err) => {
         //todo: добавить обработчик ошибок
       })
   }
 
-  function handleRemoveMovie(movieId) {
-    MainApiInstance.removeMovie(movieId)
+  function handleRemoveMovie(id) {
+    MainApiInstance.removeMovie(id)
       .then((res) => {
-        setSavedMoviesCards(savedMoviesCards.filter((item) => item.movieId !== movieId))
+        setSavedMoviesData(savedMoviesData.filter((item) => item._id !== id));
       })
       .catch((err) => {
         //todo: добавить обработчик ошибок

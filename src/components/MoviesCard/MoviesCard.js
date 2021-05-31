@@ -5,14 +5,14 @@ import './MoviesCard.css';
 import React, { useState } from 'react';
 
 export default function MoviesCard(props) {
-  const [isSaved, setIsSaved] = useState(props.savedMovieIds.has(props.movieData.movieId));
+  const [isSaved, setIsSaved] = useState(props.movieData.movieId in props.savedMovieIds);
   const [isHovored, setIsHovered] = useState(false);
 
   const extraButtonClassName = isHovored ? (isSaved ? 'movies-card__button_remove' : 'movies-card__button_save') : (isSaved && !props.savedMode ? 'movies-card__button_saved' : null);
 
   function handleSaveClick() {
     if (isSaved) {
-      props.handleRemoveMovie(props.movieData.movieId);
+      props.handleRemoveMovie(props.savedMovieIds[props.movieData.movieId]);
     } else {
       props.handleSaveMovie(props.movieData);
     }
