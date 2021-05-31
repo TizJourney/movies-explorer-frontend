@@ -38,6 +38,7 @@ export default function Movies(props) {
           savedMode={props.savedMode}
 
           moviesCards={props.moviesCards}
+          savedMovieIds={props.savedMovieIds}
 
           handleCardClick={props.handleCardClick}
           handleSaveMovie={props.handleSaveMovie}

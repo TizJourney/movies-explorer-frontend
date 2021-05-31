@@ -42,6 +42,8 @@ function AppInternal() {
   const [savedMoviesSearchRequest, setSavedMoviesSearchRequest] = React.useState('');
   const [savedMoviesFilterState, setSavedMoviesFilterState] = React.useState(false);
 
+  const savedMovieIds = new Set(savedMoviesData.map(movieData => movieData.movieId));
+
   // результат фильтрации для страницы фильмов
   const [moviesCards, setMoviesCards] = React.useState([]);
   const isMovieMoreButtonActive = showMoviesCount < moviesCards.length;
@@ -256,6 +258,7 @@ function AppInternal() {
           <Movies
             handleCardClick={handleCardClick}
             moviesCards={moviesCards.slice(0, showMoviesCount)}
+            savedMovieIds={savedMovieIds}
 
             searchRequest={moviesSearchRequest}
             handleSearchRequest={handleMoviesSearchRequest}
@@ -277,6 +280,7 @@ function AppInternal() {
 
             handleCardClick={handleCardClick}
             moviesCards={savedMoviesCards}
+            savedMovieIds={savedMovieIds}
 
             searchRequest={savedMoviesSearchRequest}
             handleSearchRequest={handleSavedMoviesSearchRequest}
