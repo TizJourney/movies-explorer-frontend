@@ -4,6 +4,7 @@ import { FormTitle, FormInput, FormButton, FormHelper } from '../Form/Form.js';
 import { useForm, FormProvider } from "react-hook-form";
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from "joi";
+import React from 'react';
 
 const schema = Joi.object({
   email: Joi.string().email({ tlds: { allow: false } }).required()
@@ -19,12 +20,18 @@ const schema = Joi.object({
 
 });
 
-
 export default function Login(props) {
+  const [isDisabled, setIsDisabled] = React.useState(true);
+
   const methods = useForm({
     resolver: joiResolver(schema),
-    reValidateMode: 'onChange',
+    mode: 'onChange',
   });
+
+  function onChange() {
+    setIsDisabled(Object.keys(methods.formState.errors).length > 0);
+  }
+
 
   const onSubmit = ({email, password}) => {
     props.handleLogin(email, password);
@@ -33,7 +40,7 @@ export default function Login(props) {
   return (
     <div className='login'>
       <FormProvider {...methods} >
-        <form name='login-form' className='login__content' onSubmit={methods.handleSubmit(onSubmit)}>
+        <form name='login-form' className='login__content' onChange={onChange} onSubmit={methods.handleSubmit(onSubmit)}>
           <FormTitle className='login__header' title='Рады видеть!' />
           <FormInput
             className='login__input'
@@ -50,7 +57,7 @@ export default function Login(props) {
             type='password'
             error={methods.formState.errors.password}
           />
-          <FormButton className='login__button' title='Войти'/>
+          <FormButton className='login__button' isDisabled={isDisabled} title='Войти'/>
           <FormHelper
             className='login__helper'
             title='Ещё не зарегистрированы?'
