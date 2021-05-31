@@ -45,6 +45,11 @@
   color:black;
 }
 
+.profile__button_disabled {
+  color:grey;
+}
+
+
 .profile__button_logout {
   margin-top: 19px;
   color: #FF004D;
