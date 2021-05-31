@@ -14,6 +14,7 @@ import AboutMe from '../AboutMe/AboutMe';
 import Portfolio from '../Portfolio/Portfolio';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import InfoPopup from '../InfoPopup/InfoPopup';
 
 
 function MainPage(props) {
@@ -55,6 +56,9 @@ export default function Main(props) {
       </MainPage>
 
       <Footer className='main-content__page main-content__footer' />
+      { props.info.message &&
+      <InfoPopup info={props.info}/>
+      }
     </div>
   )
 }
