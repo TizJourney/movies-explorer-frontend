@@ -3,8 +3,6 @@ import { API_MAIN_BASE_URL } from './utils.js'
 import Api from './Api';
 
 class MainApi extends Api {
-
-
   register(name, email, password) {
     return this._request('/signup', 'POST', { name, password, email });
   }
@@ -14,7 +12,7 @@ class MainApi extends Api {
   }
 
   getUserInfo(token) {
-    return this._request('/users/me', 'GET', null, token);
+    return this._request('/users/me');
   }
 
   updateUserInfo(data) {

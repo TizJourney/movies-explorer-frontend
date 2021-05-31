@@ -28,17 +28,20 @@ function AppInternal() {
   const currentUser = React.useContext(CurrentUserContext);
 
   // работа с авторизацией
-  const tokenCheck = () => {
+  function tokenCheckAndRedirect(redirect=null) {
     currentUser.logged = false;
     const jwt = tokenHandlerInstance.get();
     if (jwt) {
       MainApiInstance.setToken(jwt);
-      MainApiInstance.getUserInfo(jwt)
+      MainApiInstance.getUserInfo()
         .then((res) => {
           if (res) {
             currentUser.name = res.name
             currentUser.email = res.email
             currentUser.logged = true;
+          }
+          if (redirect) {
+            history.push(redirect);
           }
         })
         .catch((e) => {
@@ -60,21 +63,7 @@ function AppInternal() {
   const [moviesCards, setMoviesCards] = React.useState([]);
   const isMovieMoreButtonActive = showMoviesCount < moviesCards.length;
 
-  // обработчики функциональности авторизации
-  const handleLogin = () => {
-    currentUser.logged = true;
-    history.push('/movies');
-  }
-
-  const handleLogout = () => {
-    currentUser.logged = false;
-    history.push('/');
-  }
-
-  const handleEditProfile = () => {
-    history.goBack();
-  }
-
+  // обработчики функциональности карточки
   const handleCardClick = (trailerUrl) => {
     window.open(trailerUrl, '_blank');
   }
@@ -113,10 +102,51 @@ function AppInternal() {
 
   // инициализация данных при старте приложения
   React.useEffect(() => {
-      tokenCheck();
+      tokenCheckAndRedirect();
       initMoviesPage();
     // eslint-disable-next-line
   }, []);
+
+  // обработчики для работы с авторизацией
+  function handleRegister(name, email, password) {
+    MainApiInstance.register(name, email, password)
+    .then(() => {
+      return MainApiInstance.login(email, password)
+    })
+    .then((res) => {
+      tokenHandlerInstance.set(res.token);
+      MainApiInstance.setToken(res.token);
+      tokenCheckAndRedirect('/movies');
+    })
+    .catch((err) => {
+      //todo: добавить обработчик ошибок
+    })
+  }
+
+  function handleLogin(email, password) {
+    currentUser.logged = true;
+    MainApiInstance.login(email, password)
+      .then((res) => {
+          tokenHandlerInstance.set(res.token);
+          MainApiInstance.setToken(res.token);
+          tokenCheckAndRedirect('/movies');
+      })
+      .catch((err) => {
+        //todo: добавить обработчик ошибок
+      })
+  }
+
+  function handleLogout() {
+    tokenHandlerInstance.remove();
+    currentUser.logged = false;
+    history.push('/');
+  }
+
+  const handleEditProfile = () => {
+    // todo: сделать реализацию
+    history.goBack();
+  }
+
 
   // фильтрация данных для главной страницы
   React.useEffect( () => {
@@ -179,7 +209,7 @@ function AppInternal() {
           <Login handleSubmit={handleLogin} />
         </Route>
         <Route exact path='/signup'>
-          <Register  handleSubmit={handleLogin} />
+          <Register  handleSubmit={handleRegister} />
         </Route>
         <Route exact path='/'>
           <Main />
