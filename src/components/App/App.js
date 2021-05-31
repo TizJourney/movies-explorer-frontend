@@ -36,6 +36,14 @@ function AppInternal() {
   // состояние прелоадера на странице фильмов
   const [isPreloaderActive, SetIsPreloaderActive] = React.useState(false);
 
+  // состояние инфо окна (ошибок и т.п.)
+  const [info, setInfo] = React.useState({});
+
+  function handleInfo(title, message) {
+    setInfo({title, message});
+    setTimeout(() => { setInfo({}) }, 10000);
+  }
+
   // данные и состояния для страницы фильмов
   const [moviesData, setMoviesData] = React.useState([]);
 
@@ -86,7 +94,7 @@ function AppInternal() {
           }
         })
         .catch((e) => {
-          //todo: вывести ошибку
+          handleInfo('Ошибка загрузки', e.message);
         })
         .finally(() => {
           SetIsPreloaderActive(false);
@@ -153,7 +161,7 @@ function AppInternal() {
         }
       })
       .catch((e) => {
-        //todo: вызвать обработчик ошибок
+        handleInfo('Ошибка загрузки', e.message);
       })
       .finally(() => {
         SetIsPreloaderActive(false);
@@ -179,7 +187,7 @@ function AppInternal() {
         tokenCheckAndRedirect('/movies');
       })
       .catch((err) => {
-        //todo: добавить обработчик ошибок
+        handleInfo('Ошибка загрузки', err.message);
       })
   }
 
@@ -191,7 +199,7 @@ function AppInternal() {
         tokenCheckAndRedirect('/movies');
       })
       .catch((err) => {
-        //todo: добавить обработчик ошибок
+        handleInfo('Ошибка загрузки', err.message);
       })
   }
 
@@ -208,7 +216,7 @@ function AppInternal() {
         history.goBack();
       })
       .catch((err) => {
-        //todo: добавить обработчик ошибок
+        handleInfo('Ошибка разлогина', err.message);
       })
   }
 
@@ -219,7 +227,7 @@ function AppInternal() {
         setSavedMoviesData([...savedMoviesCards, newMovie]);
       })
       .catch((err) => {
-        //todo: добавить обработчик ошибок
+        handleInfo('Ошибка сохраненения фильма', err.message);
       })
   }
 
@@ -229,7 +237,7 @@ function AppInternal() {
         setSavedMoviesData(savedMoviesData.filter((item) => item._id !== id));
       })
       .catch((err) => {
-        //todo: добавить обработчик ошибок
+        handleInfo('Ошибка удаления фильма', err.message);
       })
   }
 
@@ -271,7 +279,6 @@ function AppInternal() {
     SetIsPreloaderActive(false);
   }, [savedMoviesData, savedMoviesSearchRequest, savedMoviesFilterState])
 
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
@@ -293,6 +300,7 @@ function AppInternal() {
           handleRemoveMovie={handleRemoveMovie}
 
           isPreloaderActive={isPreloaderActive}
+          info={info}
         />
         <ProtectedRoute exact path='/saved-movies' component={Movies}
             savedMode={true}
@@ -313,20 +321,22 @@ function AppInternal() {
             handleRemoveMovie={handleRemoveMovie}
 
             isPreloaderActive={isPreloaderActive}
+            info={info}
         />
 
         <ProtectedRoute exact path='/profile' component={Profile}
           handleLogout={handleLogout}
           handleEditProfile={handleEditProfile}
+          info={info}
         />
         <Route exact path='/signin'>
-          <Login handleLogin={handleLogin} />
+          <Login handleLogin={handleLogin} info={info}/>
         </Route>
         <Route exact path='/signup'>
-          <Register handleRegister={handleRegister} />
+          <Register handleRegister={handleRegister} info={info}/>
         </Route>
         <Route exact path='/'>
-          <Main />
+          <Main info={info} />
         </Route>
         <Route path='*'>
           <NotFound />

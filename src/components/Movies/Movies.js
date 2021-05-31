@@ -8,7 +8,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-
+import InfoPopup from '../InfoPopup/InfoPopup';
 
 export default function Movies(props) {
 
@@ -60,6 +60,9 @@ export default function Movies(props) {
         }
         <Footer className='movies__footer' />
       </div>
+    { props.info.message &&
+      <InfoPopup info={props.info}/>
+    }
     </div>
   )
 }
