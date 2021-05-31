@@ -2,18 +2,22 @@ import './Register.css';
 
 import { FormTitle, FormInput, FormButton, FormHelper } from '../Form/Form.js';
 
+import classnames from 'classnames';
+import React from 'react';
 import { useForm, FormProvider } from "react-hook-form";
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from "joi";
 
 const schema = Joi.object({
-  name: Joi.string().required().min(3).max(30)
+  // eslint-disable-next-line no-useless-escape
+  name: Joi.string().required().min(3).max(30).regex(/^[a-zA-Zа-яА-Я \\-]+$/u, 'format')
     .messages({
       "string.min": "Минимальная длина имени 3",
       "string.max": "Максимальная длина имени 30",
       "string.empty": "Поле обязательно для заполнения",
+      "string.pattern.name": "Поле должно содержать только кирилицу, латиницу, пробел или дефис",
     }),
-  email: Joi.string().email({ tlds: { allow: false } }).required()
+  email: Joi.string ().email({ tlds: { allow: false } }).required()
     .messages({
       "string.email": "Должен быть валидный email",
       "string.empty": "Поле обязательно для заполнения",
@@ -23,24 +27,29 @@ const schema = Joi.object({
       "string.min": "Пароль должен быть минимум длины 3",
       "string.empty": "Поле обязательно для заполнения",
     }),
-
 });
 
 
 export default function Register(props) {
+  const [isDisabled, setIsDisabled] = React.useState(true);
+
   const methods = useForm({
     resolver: joiResolver(schema),
-    reValidateMode: 'onChange',
+    mode: 'onChange',
   });
 
-  const onSubmit = ({name, email, password}) => {
+  function onSubmit({name, email, password}) {
     props.handleRegister(name, email, password);
   };
+
+  function onChange() {
+    setIsDisabled(Object.keys(methods.formState.errors).length > 0);
+  }
 
   return (
     <div className='register'>
       <FormProvider {...methods} >
-        <form className='register__content' name='register-form' onSubmit={methods.handleSubmit(onSubmit)}>
+        <form className='register__content' name='register-form' onChange={onChange} onSubmit={methods.handleSubmit(onSubmit)}>
           <FormTitle className='register__header' title='Добро пожаловать!' />
           <FormInput
             className='register__input'
@@ -63,7 +72,7 @@ export default function Register(props) {
             type='password'
             error={methods.formState.errors.password}
           />
-          <FormButton className='register__button' title='Зарегистрироваться' />
+          <FormButton className={classnames('profile__button')} isDisabled={isDisabled} title='Зарегистрироваться' />
           <FormHelper
             className='register__helper'
             title='Уже зарегистрированы?'

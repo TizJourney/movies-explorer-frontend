@@ -37,7 +37,7 @@ export function FormInput(props) {
 
 export function FormButton(props) {
   return (
-    <button type="submit" className={classnames(props.className, 'form-button')} >{props.title}</button>
+    <button type="submit" className={classnames(props.className, 'form-button', props.isDisabled ? 'form-button_disable' : null)} disabled={props.isDisabled}>{props.title}</button>
   )
 }
 

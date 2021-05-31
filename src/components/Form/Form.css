@@ -85,6 +85,11 @@
   text-align: center;
 }
 
+.form-button_disable {
+  background-color: grey;
+  color: black;
+}
+
 .form-helper {
   display: flex;
   justify-content: center;
