@@ -1,6 +1,8 @@
 // параметры запросов по сети
 export const API_MOVIES_BASE_URL = 'https://api.nomoreparties.co';
-export const API_MAIN_BASE_URL = 'http://localhost:3001';
+
+
+export const API_MAIN_BASE_URL = `${window.location.protocol}${process.env.REACT_APP_API_URL || '//localhost:3001'}`
 
 // параметры хранения токена
 export const TOKEN_KEY_NAME = 'jwt-token';
