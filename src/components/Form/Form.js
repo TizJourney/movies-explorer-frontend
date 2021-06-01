@@ -28,7 +28,7 @@ export function FormInput(props) {
     <div className={classnames('form-input', props.className)}>
       <p className='form-input__title'>{props.title}</p>
       <div className='form-input__container' >
-        <input className='form-input__input' type={props.type} name={props.name} {...register(props.name)} />
+        <input className='form-input__input' type={props.type} name={props.name} {...register(props.name)} disabled={props.isInputBlocked} />
         {props.error && <p className='form-input__input-error'> {props.error.message} </p>}
       </div>
     </div>

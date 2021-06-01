@@ -32,6 +32,7 @@ const schema = Joi.object({
 
 export default function Register(props) {
   const [isDisabled, setIsDisabled] = React.useState(true);
+  const isDisabledExternal = props.isInputBlocked || isDisabled;
 
   const methods = useForm({
     resolver: joiResolver(schema),
@@ -63,6 +64,7 @@ export default function Register(props) {
             name='name'
             type='text'
             error={methods.formState.errors.name}
+            isInputBlocked={props.isInputBlocked}
           />
           <FormInput
             className='register__input'
@@ -70,6 +72,7 @@ export default function Register(props) {
             name='email'
             type='text'
             error={methods.formState.errors.email}
+            isInputBlocked={props.isInputBlocked}
           />
           <FormInput
             className='register__input'
@@ -77,12 +80,13 @@ export default function Register(props) {
             name='password'
             type='password'
             error={methods.formState.errors.password}
+            isInputBlocked={props.isInputBlocked}
           />
           <div className='register__submit-block'>
             { props.info &&
               <FormError className='register__error' info={props.info} />
             }
-            <FormButton className={classnames('register__button')} isDisabled={isDisabled} title='Зарегистрироваться' />
+            <FormButton className={classnames('register__button')} isDisabled={isDisabledExternal} title='Зарегистрироваться' />
             <FormHelper
               className='register__helper'
               title='Уже зарегистрированы?'

@@ -30,8 +30,10 @@ const schema = Joi.object({
 export default function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
   const [isDisabled, setIsDisabled] = React.useState(true);
+  const isDisabledExternal = props.isInputBlocked || isDisabled;
+  const isDisabledClass = isDisabledExternal ? 'profile__button_disabled' : null;
 
-  const { register, handleSubmit, setValue, getValues, formState: {errors} } = useForm({
+  const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm({
     resolver: joiResolver(schema),
     mode: 'onChange',
   });
@@ -47,11 +49,12 @@ export default function Profile(props) {
 
   function onChange(values) {
     const formValues = getValues();
-    setIsDisabled(Object.keys(errors).length > 0 || (currentUser.name === formValues.name && currentUser.email === formValues.email));
+    setIsDisabled(
+      props.isInputBlocked ||
+      Object.keys(errors).length > 0 ||
+      (currentUser.name === formValues.name && currentUser.email === formValues.email)
+    );
   };
-
-  const isDisabledClass = isDisabled ? 'profile__button_disabled' : null;
-
 
   return (
     <div className='profile'>
@@ -67,6 +70,7 @@ export default function Profile(props) {
               className='profile__input'
               name='name'
               {...register('name')}
+              disabled={props.isInputBlocked}
             />
             {errors.name && <p className='profile__input-error'>{errors.name.message}</p>}
           </div>
@@ -79,16 +83,17 @@ export default function Profile(props) {
               className='profile__input'
               name='email'
               {...register('email')}
+              disabled={props.isInputBlocked}
             />
             {errors.email && <p className='profile__input-error'>{errors.email.message}</p>}
           </div>
 
           <div className='profile__sumbit-block'>
-            { props.info &&
-                <p className='profile__error-text'>{props.info.message}</p>
-              }
-            <button type="submit" className={classnames('profile__button', isDisabledClass)} disabled={isDisabled}>Редактировать</button>
-            <button className='profile__button profile__button_logout' onClick={() => {props.handleLogout()}}>Выйти из аккаунта</button>
+            {props.info &&
+              <p className='profile__error-text'>{props.info.message}</p>
+            }
+            <button type="submit" className={classnames('profile__button', isDisabledClass)} disabled={isDisabledExternal}>Редактировать</button>
+            <button className='profile__button profile__button_logout' onClick={() => { props.handleLogout() }}>Выйти из аккаунта</button>
           </div>
         </form>
       </div>

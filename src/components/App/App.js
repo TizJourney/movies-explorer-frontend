@@ -50,6 +50,12 @@ function AppInternal() {
     setTimeout(() => { setInfo({}) }, 10000);
   }
 
+  // состояние инпутов регистрации
+  const [isRegisterBlocked, SetIsRegisterBlocked] = React.useState(false);
+  const [isLoginBlocked, SetIsLoginBlocked] = React.useState(false);
+  const [isProfileBlocked, SetIsProfileBlocked] = React.useState(false);
+
+
   // данные и состояния для страницы фильмов
   const [moviesData, setMoviesData] = React.useState([]);
 
@@ -208,6 +214,7 @@ function AppInternal() {
 
   // обработчики для работы с авторизацией
   function handleRegister(name, email, password) {
+    SetIsRegisterBlocked(true);
     MainApiInstance.register(name, email, password)
       .then(() => {
         return MainApiInstance.login(email, password)
@@ -226,9 +233,11 @@ function AppInternal() {
           handleInfo('Ошибка регистрации', 'Ошибка выполнения команды. Попробуйте снова.');
         }
       })
+      .finally(() => {SetIsRegisterBlocked(false)})
   }
 
   function handleLogin(email, password) {
+    SetIsLoginBlocked(true);
     MainApiInstance.login(email, password)
       .then((res) => {
         tokenHandlerInstance.set(res.token);
@@ -244,6 +253,7 @@ function AppInternal() {
           handleInfo('Ошибка залогина', 'Ошибка выполнения команды. Попробуйте снова.');
         }
       })
+      .finally(() => {SetIsLoginBlocked(false)})
   }
 
   function handleLogout() {
@@ -253,6 +263,7 @@ function AppInternal() {
   }
 
   const handleEditProfile = (values) => {
+    SetIsProfileBlocked(true);
     MainApiInstance.updateUserInfo(values)
       .then((res) => {
         clearDataFromStorage();
@@ -270,6 +281,7 @@ function AppInternal() {
           handleInfo('Ошибка изменения профиля', 'Ошибка выполнения команды. Попробуйте снова.');
         }
       })
+      .finally(() => {SetIsProfileBlocked(false)})
   }
 
   // обработчики функциональности карточек
@@ -378,12 +390,13 @@ function AppInternal() {
           handleLogout={handleLogout}
           handleEditProfile={handleEditProfile}
           info={info}
+          isInputBlocked={isProfileBlocked}
         />
         <Route exact path='/signin'>
-          <Login handleLogin={handleLogin} info={info}/>
+          <Login handleLogin={handleLogin} info={info} isInputBlocked={isLoginBlocked}/>
         </Route>
         <Route exact path='/signup'>
-          <Register handleRegister={handleRegister} info={info}/>
+          <Register handleRegister={handleRegister} info={info} isInputBlocked={isRegisterBlocked}/>
         </Route>
         <Route exact path='/'>
           <Main info={info} />

@@ -22,6 +22,7 @@ const schema = Joi.object({
 
 export default function Login(props) {
   const [isDisabled, setIsDisabled] = React.useState(true);
+  const isDisabledExternal = props.isInputBlocked || isDisabled;
 
   const methods = useForm({
     resolver: joiResolver(schema),
@@ -36,7 +37,6 @@ export default function Login(props) {
       !formValues.password
       );
   }
-
 
   const onSubmit = ({email, password}) => {
     props.handleLogin(email, password);
@@ -53,6 +53,7 @@ export default function Login(props) {
             name='email'
             type='email'
             error={methods.formState.errors.email}
+            isInputBlocked={props.isInputBlocked}
           />
 
           <FormInput
@@ -61,12 +62,13 @@ export default function Login(props) {
             name='password'
             type='password'
             error={methods.formState.errors.password}
+            isInputBlocked={props.isInputBlocked}
           />
           <div className='login__submit-block'>
             { props.info &&
               <FormError className='login__error' info={props.info} />
             }
-            <FormButton className='login__button' isDisabled={isDisabled} title='Войти'/>
+            <FormButton className='login__button' isDisabled={isDisabledExternal} title='Войти'/>
             <FormHelper
               className='login__helper'
               title='Ещё не зарегистрированы?'
