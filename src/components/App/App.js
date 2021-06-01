@@ -23,7 +23,7 @@ import { MoviesApiInstance } from '../../utils/MoviesApi';
 import { MainApiInstance } from '../../utils/MainApi';
 import { API_MOVIES_BASE_URL, ERROR_MESSAGE, ERROR_TITLE } from '../../utils/utils';
 import { tokenHandlerInstance } from '../../utils/login-tools';
-
+import { storageInstance } from '../../utils/Storage';
 
 function AppInternal() {
 
@@ -69,6 +69,32 @@ function AppInternal() {
   // результат фильтрации для страницы сохранённых фильмов
   const [savedMoviesCards, setSavedMoviesCards] = React.useState([]);
 
+  // работа с хранилищем данных
+  function saveDataToStorage() {
+    storageInstance.set(currentUser.email, {
+      savedMoviesSearchRequest,
+      savedMoviesFilterState,
+      moviesSearchRequest,
+      moviesFilterState,
+    })
+  }
+
+  function loadDataFromStorage() {
+    const values = storageInstance.get(currentUser.email);
+    if (!values) {
+      return;
+    }
+    setMoviesSearchRequest(values.moviesSearchRequest);
+    setMoviesFilterState(values.moviesFilterState);
+
+    setSavedMoviesSearchRequest(values.savedMoviesSearchRequest);
+    setSavedMoviesFilterState(values.savedMoviesFilterState);
+  }
+
+  function clearDataFromStorage() {
+    storageInstance.remove(currentUser.email);
+  }
+
   // работа с авторизацией
   function tokenCheckAndRedirect(redirect = null) {
     setCurrentUser({ ...currentUser, logged: false });
@@ -86,6 +112,7 @@ function AppInternal() {
               email: res.email
             })
           }
+          loadDataFromStorage();
           return MainApiInstance.getMovies();
         })
         .then((moviesData) => {
@@ -104,29 +131,32 @@ function AppInternal() {
   }
 
   // обработчики функциональности фильтрации главной страницы фильмов
-  const handleMoviesSearchRequest = (request) => {
+  function handleMoviesSearchRequest(request) {
     setMoviesSearchRequest(request);
+    saveDataToStorage();
     setShowMoviesCount(windowWidthSettings.default);
   }
 
-  const handleMoviesFilterStateChange = (newState) => {
+  function handleMoviesFilterStateChange(newState) {
     setMoviesFilterState(newState);
+    saveDataToStorage();
   }
 
-  const handleMovieMoreButton = () => {
+  function handleMovieMoreButton() {
     // кроме добавления нового ряда так же добавим карточки, чтобы они полностью занимали всю линию
     setShowMoviesCount(showMoviesCount + windowWidthSettings.grow + (windowWidthSettings.columns - Math.floor(showMoviesCount % windowWidthSettings.columns)) % windowWidthSettings.columns);
   }
 
   // обработчики функциональности фильтрации сохраннённых фильмов
-  const handleSavedMoviesSearchRequest = (request) => {
+  function handleSavedMoviesSearchRequest(request) {
     setSavedMoviesSearchRequest(request);
+    saveDataToStorage();
   }
 
-  const handleSavedMoviesFilterStateChange = (newState) => {
+  function handleSavedMoviesFilterStateChange(newState) {
     setSavedMoviesFilterState(newState);
+    saveDataToStorage();
   }
-
 
   // инициализация данных для главной страницы
   const initMoviesPage = () => {
@@ -220,7 +250,9 @@ function AppInternal() {
   const handleEditProfile = (values) => {
     MainApiInstance.updateUserInfo(values)
       .then((res) => {
+        clearDataFromStorage();
         setCurrentUser({ ...currentUser, name: res.name, email: res.email })
+        saveDataToStorage();
         history.goBack();
         handleInfo('Успех!', 'профиль успешно изменён', false);
       })

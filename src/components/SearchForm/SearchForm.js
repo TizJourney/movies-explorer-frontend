@@ -2,11 +2,16 @@ import classnames from 'classnames';
 
 import './SearchForm.css';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 
 function FilterCheckbox(props) {
   const [isActive, setActive] = useState(props.filterState);
+
+  useEffect(() => {
+    setActive(props.filterState);
+  }, [props.filterState]);
+
 
   function toggleFilter() {
     props.handleFilterStateChange(!props.filterState);
@@ -23,17 +28,21 @@ function FilterCheckbox(props) {
 
 export default function SearchForm(props) {
 
-  const { register, handleSubmit, formState: { errors } } = useForm(
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm(
     {
-      reValidateMode: 'onChange',
+      mode: 'onChange',
     }
   );
 
   const disableClassName = errors.searchField ? 'search-form__submit-button_disable' : null;
 
-  const onSubmit = (values) => {
+  function onSubmit(values) {
     props.handleSearchRequest(values.searchField);
   };
+
+  useEffect(() => {
+    setValue('searchField', props.searchRequest);
+  }, [props.searchRequest, setValue]);
 
   return (
     <div className={classnames('search-form', props.className)}>
@@ -43,7 +52,6 @@ export default function SearchForm(props) {
           input="text"
           className='search-form__input'
           placeholder='Фильмы'
-          defaultValue={props.searchRequest}
           {...register('searchField', { required: true })}
         />
         <button className={classnames('search-form__submit-button', disableClassName)} disabled={errors.searchField}>Найти</button>
