@@ -29,8 +29,11 @@
   border-bottom: solid 1px #E8E8E8;
 }
 
-.profile__button {
+.profile__sumbit-block {
   margin-top: 210px;
+}
+
+.profile__button {
   padding: 0;
   width: 100%;
   border: none;
@@ -79,6 +82,20 @@
   color: #FF3055;
   right: 0px;
   bottom: 0px;
+}
+
+.profile__error-text {
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 1.2;
+  text-align: center;
+
+  padding: 0;
+  margin: 0 0 20px 0;
+
+  color: #FF3055;
 }
 
 .profile__input-title {

@@ -58,7 +58,7 @@ export default function Login(props) {
             error={methods.formState.errors.password}
           />
           <div className='login__submit-block'>
-            { props &&
+            { props.info &&
               <FormError className='login__error' info={props.info} />
             }
             <FormButton className='login__button' isDisabled={isDisabled} title='Войти'/>

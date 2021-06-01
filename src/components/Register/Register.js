@@ -73,7 +73,7 @@ export default function Register(props) {
             error={methods.formState.errors.password}
           />
           <div className='register__submit-block'>
-            { props &&
+            { props.info &&
               <FormError className='register__error' info={props.info} />
             }
             <FormButton className={classnames('register__button')} isDisabled={isDisabled} title='Зарегистрироваться' />

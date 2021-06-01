@@ -189,7 +189,7 @@ function AppInternal() {
       })
       .catch((err) => {
         if (err.status && err.status === 409 ) {
-          handleInfo('Ошибка регистрации', 'Пользователь с таким паролем уже существует');
+          handleInfo('Ошибка регистрации', 'Пользователь с таким email уже существует');
         } else if (err.status && err.status === 400) {
           handleInfo('Ошибка регистрации', 'Проверьте формат данных');
         } else {
@@ -230,7 +230,13 @@ function AppInternal() {
         handleInfo('Успех!', 'профиль успешно изменён', false);
       })
       .catch((err) => {
-        handleInfo('Ошибка разлогина', err.message);
+        if (err.status && err.status === 409 ) {
+          handleInfo('Ошибка изменения профиля', 'Пользователь с такими данными уже существует');
+        } else if (err.status && err.status === 400) {
+          handleInfo('Ошибка изменения профиля', 'Проверьте формат данных');
+        } else {
+          handleInfo('Ошибка изменения профиля', 'Ошибка выполнения команды. Попробуйте снова.');
+        }
       })
   }
 

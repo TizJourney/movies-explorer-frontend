@@ -80,8 +80,14 @@ export default function Profile(props) {
             />
             {errors.email && <p className='profile__input-error'>{errors.email.message}</p>}
           </div>
-          <button type="submit" className={classnames('profile__button', isDisabledClass)} disabled={isDisabled}>Редактировать</button>
-          <button className='profile__button profile__button_logout' onClick={() => {props.handleLogout()}}>Выйти из аккаунта</button>
+
+          <div className='profile__sumbit-block'>
+            { props.info &&
+                <p className='profile__error-text'>{props.info.message}</p>
+              }
+            <button type="submit" className={classnames('profile__button', isDisabledClass)} disabled={isDisabled}>Редактировать</button>
+            <button className='profile__button profile__button_logout' onClick={() => {props.handleLogout()}}>Выйти из аккаунта</button>
+          </div>
         </form>
       </div>
     </div >
