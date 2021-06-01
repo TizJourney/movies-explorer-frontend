@@ -103,11 +103,6 @@ function AppInternal() {
     }
   }
 
-  // обработчики функциональности карточки
-  const handleCardClick = (trailerUrl) => {
-    window.open(trailerUrl, '_blank');
-  }
-
   // обработчики функциональности фильтрации главной страницы фильмов
   const handleMoviesSearchRequest = (request) => {
     setMoviesSearchRequest(request);
@@ -303,7 +298,6 @@ function AppInternal() {
     <CurrentUserContext.Provider value={currentUser}>
       <Switch>
         <ProtectedRoute exact path='/movies' component={Movies}
-          handleCardClick={handleCardClick}
           moviesCards={moviesCards.slice(0, showMoviesCount)}
           savedMovieIds={savedMovieIds}
 
@@ -325,7 +319,6 @@ function AppInternal() {
         <ProtectedRoute exact path='/saved-movies' component={Movies}
             savedMode={true}
 
-            handleCardClick={handleCardClick}
             moviesCards={savedMoviesCards}
             savedMovieIds={savedMovieIds}
 

@@ -22,9 +22,8 @@ export default function MoviesCardList(props) {
               title={movieData.nameRU}
               duration={movieData.duration}
               image={movieData.image}
-              trailerUrl={movieData.trailerLink}
+              trailerUrl={movieData.trailer}
               savedMode={props.savedMode}
-              handleCardClick={props.handleCardClick}
 
               handleSaveMovie={props.handleSaveMovie}
               handleRemoveMovie={props.handleRemoveMovie}

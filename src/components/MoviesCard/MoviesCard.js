@@ -19,17 +19,15 @@ export default function MoviesCard(props) {
     setIsSaved(!isSaved);
   };
 
-  function handleTrailerClick() { props.handleCardClick(props.trailerUrl); }
-
   return (
     <li className={classnames('movies-card', props.className)}>
       <div className='movies-card__image-container'
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         >
-        <button className='movies-card__image-button'>
-          <img src={props.image} className='movies-card__image' alt={props.title} onClick={handleTrailerClick} />
-        </button>
+        <a className='movies-card__image-button' href={props.trailerUrl} target='_blank' rel='noreferrer'>
+          <img src={props.image} className='movies-card__image' alt={props.title}/>
+        </a>
         <button className={classnames('movies-card__button', extraButtonClassName )} onClick={handleSaveClick} />
       </div>
       <div className='movies-card__text-blocks'>
