@@ -1,6 +1,6 @@
 import './Login.css';
 
-import { FormTitle, FormInput, FormButton, FormHelper } from '../Form/Form.js';
+import { FormTitle, FormInput, FormButton, FormHelper, FormError } from '../Form/Form.js';
 import { useForm, FormProvider } from "react-hook-form";
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from "joi";
@@ -57,13 +57,18 @@ export default function Login(props) {
             type='password'
             error={methods.formState.errors.password}
           />
-          <FormButton className='login__button' isDisabled={isDisabled} title='Войти'/>
-          <FormHelper
-            className='login__helper'
-            title='Ещё не зарегистрированы?'
-            buttonTitle='Регистрация'
-            linkTo='signup'
-          />
+          <div className='login__submit-block'>
+            { props &&
+              <FormError className='login__error' info={props.info} />
+            }
+            <FormButton className='login__button' isDisabled={isDisabled} title='Войти'/>
+            <FormHelper
+              className='login__helper'
+              title='Ещё не зарегистрированы?'
+              buttonTitle='Регистрация'
+              linkTo='signup'
+            />
+          </div>
         </form>
       </FormProvider>
     </div>

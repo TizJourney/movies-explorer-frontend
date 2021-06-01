@@ -200,7 +200,14 @@ function AppInternal() {
         tokenCheckAndRedirect('/movies');
       })
       .catch((err) => {
-        handleInfo('Ошибка загрузки', err.message);
+        if (err.status && err.status === 401 ) {
+          handleInfo('Ошибка залогина', 'Неверный логин или пароль');
+        } else if (err.status && err.status === 400) {
+          handleInfo('Ошибка залогина', 'Проверьте формат данных');
+        } else {
+          handleInfo('Ошибка залогина', 'Ошибка выполнения команды. Попробуйте снова.');
+        }
+
       })
   }
 

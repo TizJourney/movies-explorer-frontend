@@ -41,6 +41,14 @@ export function FormButton(props) {
   )
 }
 
+export function FormError(props) {
+  return (
+    <div className={classnames('form-error', props.className)}>
+      <h2 className='form-error__text'>{props.info.message}</h2>
+    </div>
+  )
+}
+
 export function FormHelper(props) {
   return (
     <div className={classnames('form-helper', props.className)}>
