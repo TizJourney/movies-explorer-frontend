@@ -188,7 +188,13 @@ function AppInternal() {
         tokenCheckAndRedirect('/movies');
       })
       .catch((err) => {
-        handleInfo('Ошибка загрузки', err.message);
+        if (err.status && err.status === 409 ) {
+          handleInfo('Ошибка регистрации', 'Пользователь с таким паролем уже существует');
+        } else if (err.status && err.status === 400) {
+          handleInfo('Ошибка регистрации', 'Проверьте формат данных');
+        } else {
+          handleInfo('Ошибка регистрации', 'Ошибка выполнения команды. Попробуйте снова.');
+        }
       })
   }
 
@@ -207,7 +213,6 @@ function AppInternal() {
         } else {
           handleInfo('Ошибка залогина', 'Ошибка выполнения команды. Попробуйте снова.');
         }
-
       })
   }
 

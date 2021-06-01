@@ -1,6 +1,6 @@
 import './Register.css';
 
-import { FormTitle, FormInput, FormButton, FormHelper } from '../Form/Form.js';
+import { FormTitle, FormInput, FormButton, FormHelper, FormError } from '../Form/Form.js';
 
 import classnames from 'classnames';
 import React from 'react';
@@ -72,13 +72,18 @@ export default function Register(props) {
             type='password'
             error={methods.formState.errors.password}
           />
-          <FormButton className={classnames('profile__button')} isDisabled={isDisabled} title='Зарегистрироваться' />
-          <FormHelper
-            className='register__helper'
-            title='Уже зарегистрированы?'
-            buttonTitle='Войти'
-            linkTo='signin'
-          />
+          <div className='register__submit-block'>
+            { props &&
+              <FormError className='register__error' info={props.info} />
+            }
+            <FormButton className={classnames('register__button')} isDisabled={isDisabled} title='Зарегистрироваться' />
+            <FormHelper
+              className='register__helper'
+              title='Уже зарегистрированы?'
+              buttonTitle='Войти'
+              linkTo='signin'
+            />
+          </div>
         </form>
       </FormProvider>
     </div>
