@@ -8,6 +8,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Main from '../Main/Main';
 import NotFound from '../NotFound/NotFound';
+import Preloader from '../Preloader/Preloader';
 
 // обёртка с защитой от неавторизованного пользователя
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -35,6 +36,8 @@ function AppInternal() {
   const history = useHistory();
 
   const [currentUser, setCurrentUser] = React.useState(USER_PLACEHOLDER_DATA);
+
+  const [currentUserLoaded, setCurrentUserLoaded] = React.useState(false);
 
   // состояние окна
   const windowWidthSettings = WindowWidthSettings();
@@ -137,6 +140,7 @@ function AppInternal() {
         })
         .finally(() => {
           SetIsPreloaderActive(false);
+          setCurrentUserLoaded(true);
         })
     }
   }
@@ -342,6 +346,11 @@ function AppInternal() {
     setSavedMoviesCards(filterMovies(savedMoviesData, savedMoviesSearchRequest, savedMoviesFilterState, true));
     SetIsPreloaderActive(false);
   }, [savedMoviesData, savedMoviesSearchRequest, savedMoviesFilterState])
+
+  // ждём загрузки пользвоателя прежде чем можно начать что-то рисовать
+  if (!currentUserLoaded) {
+    return <h2 className='loader'>Загружаемся...</h2>
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
