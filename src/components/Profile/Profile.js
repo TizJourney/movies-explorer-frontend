@@ -12,10 +12,12 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from "joi";
 
 const schema = Joi.object({
-  name: Joi.string().required().min(3)
+  name: Joi.string().required().min(3).max(30).regex(/^[a-zA-Zа-яА-Я \\-]+$/u, 'format')
     .messages({
       "string.min": "Пароль должен быть минимум длины 3",
+      "string.max": "Максимальная длина имени 30",
       "string.empty": "Поле обязательно для заполнения",
+      "string.pattern.name": "Поле должно содержать только кирилицу, латиницу, пробел или дефис",
     }),
   email: Joi.string().email({ tlds: { allow: false } }).required()
     .messages({
