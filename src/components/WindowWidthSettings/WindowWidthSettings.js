@@ -1,4 +1,9 @@
 import { useState, useEffect } from 'react';
+import {
+  MORE_BUTTON_RESOLUTION_SETTINGS,
+  MORE_BUTTON_TOP_WIDTH_THRESHOLD,
+  MORE_BUTTON_BOTTOM_WIDTH_THRESHOLD,
+} from '../../utils/utils';
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -7,7 +12,6 @@ function getWindowDimensions() {
     height
   };
 }
-
 
 export default function WindowWidthSettings() {
   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
@@ -27,11 +31,11 @@ export default function WindowWidthSettings() {
     return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-  if ( windowDimensions.width >= 1280) {
-    return {default: 12, columns: 3, grow: 3};
+  if ( windowDimensions.width >= MORE_BUTTON_TOP_WIDTH_THRESHOLD) {
+    return MORE_BUTTON_RESOLUTION_SETTINGS.big
   }
-  if ( windowDimensions.width <= 420) {
-    return {default: 5, columns: 1, grow: 2};
+  if ( windowDimensions.width <= MORE_BUTTON_BOTTOM_WIDTH_THRESHOLD) {
+    return MORE_BUTTON_RESOLUTION_SETTINGS.small
   }
-  return {default: 8, columns: 2, grow: 2};
+  return MORE_BUTTON_RESOLUTION_SETTINGS.medium
 }

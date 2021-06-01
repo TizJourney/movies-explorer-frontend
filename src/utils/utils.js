@@ -20,3 +20,12 @@ export const STORAGE_KEY_PREFIX = 'storage_';
 
 // длительность короткометражки
 export const SHORT_MOVIE_DURATION_THRESHOLD = 40;
+
+// параметеры загрузки данных по кнопке "Ещё"
+export const MORE_BUTTON_TOP_WIDTH_THRESHOLD =1280;
+export const MORE_BUTTON_BOTTOM_WIDTH_THRESHOLD = 480;
+export const MORE_BUTTON_RESOLUTION_SETTINGS = {
+  big: {default: 12, columns: 3, grow: 3},
+  medium: {default: 8, columns: 2, grow: 2},
+  small: {default: 5, columns: 1, grow: 2},
+}
