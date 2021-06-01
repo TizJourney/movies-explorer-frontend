@@ -17,3 +17,6 @@ export const ERROR_MESSAGE='Во время запроса произошла о
 
 // параметры работы для storage'а
 export const STORAGE_KEY_PREFIX = 'storage_';
+
+// длительность короткометражки
+export const SHORT_MOVIE_DURATION_THRESHOLD = 40;

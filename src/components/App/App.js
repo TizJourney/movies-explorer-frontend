@@ -21,7 +21,12 @@ import { CurrentUserContext, USER_PLACEHOLDER_DATA } from '../../contexts/Curren
 // работа с api и авторизацией
 import { MoviesApiInstance } from '../../utils/MoviesApi';
 import { MainApiInstance } from '../../utils/MainApi';
-import { API_MOVIES_BASE_URL, ERROR_MESSAGE, ERROR_TITLE } from '../../utils/utils';
+import {
+  API_MOVIES_BASE_URL,
+  ERROR_MESSAGE,
+  ERROR_TITLE,
+  SHORT_MOVIE_DURATION_THRESHOLD,
+} from '../../utils/utils';
 import { tokenHandlerInstance } from '../../utils/login-tools';
 import { storageInstance } from '../../utils/Storage';
 
@@ -297,7 +302,7 @@ function AppInternal() {
     let filteredMovies = movies;
     if (filterState) {
       filteredMovies = filteredMovies.filter((item) => {
-        return item.duration <= 40;
+        return item.duration <= SHORT_MOVIE_DURATION_THRESHOLD;
       });
     }
 
