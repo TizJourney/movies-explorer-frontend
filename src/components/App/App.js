@@ -93,7 +93,7 @@ function AppInternal() {
     })
   }
 
-  function loadDataFromStorage() {
+  const loadDataFromStorage = React.useCallback(() => {
     const values = storageInstance.get(currentUser.email);
     if (!values) {
       return;
@@ -103,7 +103,11 @@ function AppInternal() {
 
     setSavedMoviesSearchRequest(values.savedMoviesSearchRequest);
     setSavedMoviesFilterState(values.savedMoviesFilterState);
-  }
+  }, [currentUser])
+
+  React.useEffect(() => {
+    loadDataFromStorage();
+  }, [currentUser, loadDataFromStorage])
 
   function clearDataFromStorage() {
     storageInstance.remove(currentUser.email);
@@ -115,34 +119,39 @@ function AppInternal() {
     SetIsPreloaderActive(true);
 
     const jwt = tokenHandlerInstance.get();
-    if (jwt) {
-      MainApiInstance.setToken(jwt);
-      MainApiInstance.getUserInfo()
-        .then((res) => {
-          if (res) {
-            setCurrentUser({
-              logged: true,
-              name: res.name,
-              email: res.email
-            })
-          }
-          loadDataFromStorage();
-          return MainApiInstance.getMovies();
-        })
-        .then((moviesData) => {
-          setSavedMoviesData(moviesData);
-          if (redirect) {
-            history.push(redirect);
-          }
-        })
-        .catch((e) => {
-          handleInfo(ERROR_TITLE, ERROR_MESSAGE);
-        })
-        .finally(() => {
-          SetIsPreloaderActive(false);
-          setCurrentUserLoaded(true);
-        })
+
+    if (!jwt) {
+      setCurrentUserLoaded(true);
+      return;
     }
+    MainApiInstance.setToken(jwt);
+    MainApiInstance.getUserInfo()
+      .then((res) => {
+        if (res) {
+          setCurrentUser({
+            logged: true,
+            name: res.name,
+            email: res.email
+          })
+        }
+        return MainApiInstance.getMovies();
+      })
+      .then((moviesData) => {
+        setSavedMoviesData(moviesData);
+        if (redirect) {
+          history.push(redirect);
+        }
+      })
+      .then(() => {
+        loadDataFromStorage();
+      })
+      .catch((e) => {
+        handleInfo(ERROR_TITLE, ERROR_MESSAGE);
+      })
+      .finally(() => {
+        SetIsPreloaderActive(false);
+        setCurrentUserLoaded(true);
+      })
   }
 
   // обработчики функциональности фильтрации главной страницы фильмов
@@ -349,7 +358,7 @@ function AppInternal() {
 
   // ждём загрузки пользвоателя прежде чем можно начать что-то рисовать
   if (!currentUserLoaded) {
-    return <h2 className='loader'>Загружаемся...</h2>
+    return <Preloader />
   }
 
   return (

@@ -50,7 +50,6 @@ export default function Profile(props) {
   function onChange(values) {
     const formValues = getValues();
     setIsDisabled(
-      props.isInputBlocked ||
       Object.keys(errors).length > 0 ||
       (currentUser.name === formValues.name && currentUser.email === formValues.email)
     );
