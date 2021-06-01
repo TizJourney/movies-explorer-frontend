@@ -29,7 +29,12 @@ export default function Login(props) {
   });
 
   function onChange() {
-    setIsDisabled(Object.keys(methods.formState.errors).length > 0);
+    const formValues = methods.getValues();
+    setIsDisabled(
+      Object.keys(methods.formState.errors).length > 0 ||
+      !formValues.email ||
+      !formValues.password
+      );
   }
 
 

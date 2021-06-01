@@ -43,7 +43,13 @@ export default function Register(props) {
   };
 
   function onChange() {
-    setIsDisabled(Object.keys(methods.formState.errors).length > 0);
+    const formValues = methods.getValues();
+    setIsDisabled(
+      Object.keys(methods.formState.errors).length > 0 ||
+      !formValues.name ||
+      !formValues.email ||
+      !formValues.password
+      );
   }
 
   return (
