@@ -1,5 +1,6 @@
 // параметры запросов по сети
 export const API_MOVIES_BASE_URL = 'https://api.nomoreparties.co';
+
 const REACT_APP_API_URL='//api.tizjourney-films.nomo.nomoredomains.monster';
 
 export const API_MAIN_BASE_URL = `${window.location.protocol}${REACT_APP_API_URL || '//localhost:3001'}`
