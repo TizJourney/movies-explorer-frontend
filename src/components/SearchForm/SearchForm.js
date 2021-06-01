@@ -34,7 +34,7 @@ export default function SearchForm(props) {
     }
   );
 
-  const disableClassName = errors.searchField ? 'search-form__submit-button_disable' : null;
+  const disableClassName = !props.allowEmpty && errors.searchField ? 'search-form__submit-button_disable' : null;
 
   function onSubmit(values) {
     props.handleSearchRequest(values.searchField);
@@ -52,9 +52,9 @@ export default function SearchForm(props) {
           input="text"
           className='search-form__input'
           placeholder='Фильмы'
-          {...register('searchField', { required: true })}
+          {...register('searchField', { required: !props.allowEmpty })}
         />
-        <button className={classnames('search-form__submit-button', disableClassName)} disabled={errors.searchField}>Найти</button>
+        <button className={classnames('search-form__submit-button', disableClassName)} disabled={!props.allowEmpty && errors.searchField}>Найти</button>
       </form>
       <FilterCheckbox
         className='search-form__filter'

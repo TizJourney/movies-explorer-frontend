@@ -84,14 +84,24 @@ function AppInternal() {
   const [savedMoviesCards, setSavedMoviesCards] = React.useState([]);
 
   // работа с хранилищем данных
-  function saveDataToStorage() {
+  const [saveStorageData, setSaveStorageData] = React.useState(false);
+
+  const saveDataToStorage = React.useCallback(() => {
     storageInstance.set(currentUser.email, {
       savedMoviesSearchRequest,
       savedMoviesFilterState,
       moviesSearchRequest,
       moviesFilterState,
     })
-  }
+  }, [currentUser, savedMoviesSearchRequest, savedMoviesFilterState, moviesSearchRequest, moviesFilterState ])
+
+  React.useEffect(() => {
+    if (saveStorageData) {
+      saveDataToStorage();
+      setSaveStorageData(false);
+    }
+  }, [saveDataToStorage, currentUser, saveStorageData])
+
 
   const loadDataFromStorage = React.useCallback(() => {
     const values = storageInstance.get(currentUser.email);
@@ -157,13 +167,13 @@ function AppInternal() {
   // обработчики функциональности фильтрации главной страницы фильмов
   function handleMoviesSearchRequest(request) {
     setMoviesSearchRequest(request);
-    saveDataToStorage();
+    setSaveStorageData(true);
     setShowMoviesCount(windowWidthSettings.default);
   }
 
   function handleMoviesFilterStateChange(newState) {
     setMoviesFilterState(newState);
-    saveDataToStorage();
+    setSaveStorageData(true);
   }
 
   function handleMovieMoreButton() {
@@ -174,12 +184,12 @@ function AppInternal() {
   // обработчики функциональности фильтрации сохраннённых фильмов
   function handleSavedMoviesSearchRequest(request) {
     setSavedMoviesSearchRequest(request);
-    saveDataToStorage();
+    setSaveStorageData(true);
   }
 
   function handleSavedMoviesFilterStateChange(newState) {
     setSavedMoviesFilterState(newState);
-    saveDataToStorage();
+    setSaveStorageData(true);
   }
 
   // инициализация данных для главной страницы
@@ -281,7 +291,7 @@ function AppInternal() {
       .then((res) => {
         clearDataFromStorage();
         setCurrentUser({ ...currentUser, name: res.name, email: res.email })
-        saveDataToStorage();
+        setSaveStorageData(true);
         history.goBack();
         handleInfo('Успех!', 'профиль успешно изменён', false);
       })

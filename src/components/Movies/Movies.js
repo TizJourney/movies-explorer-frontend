@@ -26,6 +26,7 @@ export default function Movies(props) {
           handleSearchRequest={props.handleSearchRequest}
           filterState={props.filterState}
           handleFilterStateChange={props.handleFilterStateChange}
+          allowEmpty={props.savedMode}
         />
         {
           props.searchRequest && props.moviesCards.length === 0 &&
