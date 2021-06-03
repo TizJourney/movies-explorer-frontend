@@ -2,9 +2,8 @@ import React from 'react';
 
 export const CurrentUserContext = React.createContext();
 
-export const userPlaceholderData = {
-  name: 'Константин',
-  email: 'example@mail.ru',
-  password: '1234',
+export const USER_PLACEHOLDER_DATA = {
+  name: '...',
+  email: '...',
   logged: false,
 };

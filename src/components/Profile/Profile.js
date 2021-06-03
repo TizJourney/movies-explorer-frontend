@@ -2,25 +2,65 @@ import './Profile.css';
 
 import Header from '../Header/Header';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
+import classnames from 'classnames';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-export default function Profile(props) {
-  const userContext = React.useContext(CurrentUserContext);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+import { joiResolver } from '@hookform/resolvers/joi';
+import Joi from "joi";
 
-  const onSubmit = (values) => {
-    props.handleEditProfile();
+const schema = Joi.object({
+  name: Joi.string().required().min(3).max(30).regex(/^[a-zA-Zа-яА-Я \\-]+$/u, 'format')
+    .messages({
+      "string.min": "Пароль должен быть минимум длины 3",
+      "string.max": "Максимальная длина имени 30",
+      "string.empty": "Поле обязательно для заполнения",
+      "string.pattern.name": "Поле должно содержать только кирилицу, латиницу, пробел или дефис",
+    }),
+  email: Joi.string().email({ tlds: { allow: false } }).required()
+    .messages({
+      "string.email": "Должен быть валидный email",
+      "string.empty": "Поле обязательно для заполнения",
+    }),
+});
+
+
+export default function Profile(props) {
+  const currentUser = React.useContext(CurrentUserContext);
+  const [isDisabled, setIsDisabled] = React.useState(true);
+  const isDisabledExternal = props.isInputBlocked || isDisabled;
+  const isDisabledClass = isDisabledExternal ? 'profile__button_disabled' : null;
+
+  const { register, handleSubmit, setValue, getValues, formState: { errors } } = useForm({
+    resolver: joiResolver(schema),
+    mode: 'onChange',
+  });
+
+  useEffect(() => {
+    setValue('name', currentUser.name);
+    setValue('email', currentUser.email);
+  }, [currentUser, setValue]);
+
+  function onSubmit(values) {
+    props.handleEditProfile(values);
+  };
+
+  function onChange(values) {
+    const formValues = getValues();
+    setIsDisabled(
+      Object.keys(errors).length > 0 ||
+      (currentUser.name === formValues.name && currentUser.email === formValues.email)
+    );
   };
 
   return (
     <div className='profile'>
       <div className='profile__content'>
         <Header className='profile__header' />
-        <form name='profileForm' className='profile__body' onSubmit={handleSubmit(onSubmit)}>
-          <h2 className='profile__title'>Привет, {userContext.name}!  </h2>
+        <form name='profileForm' className='profile__body' onSubmit={handleSubmit(onSubmit)} onChange={onChange}>
+          <h2 className='profile__title'>Привет, {currentUser.name}!  </h2>
 
           <div className='profile__input-container' >
             <p className='profile__input-title'>Имя</p>
@@ -28,14 +68,8 @@ export default function Profile(props) {
               type='text'
               className='profile__input'
               name='name'
-              defaultValue={userContext.name}
-              {...register('name',
-                {
-                  required: { value: true, message: 'Поле обязательно для заполнения' },
-                  minLength: { value: 3, message: 'Минимальная длина поля 3' },
-                  maxLength: { value: 30, message: 'Максимальная длина поля 30' }
-                })
-              }
+              {...register('name')}
+              disabled={props.isInputBlocked}
             />
             {errors.name && <p className='profile__input-error'>{errors.name.message}</p>}
           </div>
@@ -47,17 +81,19 @@ export default function Profile(props) {
               type='email'
               className='profile__input'
               name='email'
-              defaultValue={userContext.email}
-              {...register('email',
-                {
-                  required: { value: true, message: 'Поле обязательно для заполнения' },
-                })
-              }
+              {...register('email')}
+              disabled={props.isInputBlocked}
             />
             {errors.email && <p className='profile__input-error'>{errors.email.message}</p>}
           </div>
-          <button type="submit" className='profile__button'>Редактировать</button>
-          <button className='profile__button profile__button_logout' onClick={props.handleLogout}>Выйти из аккаунта</button>
+
+          <div className='profile__sumbit-block'>
+            {props.info &&
+              <p className='profile__error-text'>{props.info.message}</p>
+            }
+            <button type="submit" className={classnames('profile__button', isDisabledClass)} disabled={isDisabledExternal}>Редактировать</button>
+            <button className='profile__button profile__button_logout' onClick={() => { props.handleLogout() }}>Выйти из аккаунта</button>
+          </div>
         </form>
       </div>
     </div >

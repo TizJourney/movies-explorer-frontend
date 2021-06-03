@@ -12,12 +12,16 @@
   width: min(396px, 100%);
 }
 
-.register__button {
+.register__submit-block {
   margin-top: 69px;
 }
 
 .register__helper {
   margin-top: 16px;
+}
+
+.register__error {
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 767px) {
@@ -28,7 +32,7 @@
     padding: 30px;
   }
 
-  .register__button {
+  .register__submit-block {
     margin-top: auto;
   }
 }

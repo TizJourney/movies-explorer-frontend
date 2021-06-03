@@ -17,19 +17,19 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 export default function Header(props) {
   const history = useHistory();
 
-  const userContext = React.useContext(CurrentUserContext);
+  const currentUser = React.useContext(CurrentUserContext);
 
   const [isNavigationOpen, setNavigationStatus] = useState(false);
 
-  const handleNavigationClose = () => {
+  function handleNavigationClose() {
     setNavigationStatus(false);
   };
 
-  const setNavigationOpen = () => {
+  function setNavigationOpen() {
     setNavigationStatus(true);
   }
 
-  const navigateToRoute = (route) => {
+  function navigateToRoute(route) {
     history.push(route);
     setNavigationStatus(false);
   };
@@ -40,23 +40,23 @@ export default function Header(props) {
     <div>
       <header className={classnames(props.className, 'header')}>
         <Link to='/' className={'header__link header__link_main'}><img src={main_logo} alt='лого главной страницы' className='header__main-logo' /></Link>
-        {userContext.logged &&
+        {currentUser.logged &&
           <nav className='header__links-block header__links-block_auth'>
             <Link to='saved-movies' className={classnames('header__link header__link_saved-movies')}>Сохранённые фильмы</Link>
             <Link to='movies' className={classnames('header__link header__link_movies')}>Фильмы</Link>
           </nav>
         }
 
-        {userContext.logged &&
+        {currentUser.logged &&
           <Link to='profile' className={classnames('header__link header__link_account header__links-block_auth')}>
             <AccountButton className='header__account-logo' />
           </Link>
         }
 
-        {userContext.logged && <button className='header__burger' onClick={setNavigationOpen} />
+        {currentUser.logged && <button className='header__burger' onClick={setNavigationOpen} />
         }
 
-        {!userContext.logged &&
+        {!currentUser.logged &&
           <nav className='header__links-block header__links-block_unauth'>
             <Link to='signin' className={classnames('header__link header__link_login')}>Войти</Link>
             <Link to='signup' className={classnames('header__link header__link_register')}>Регистрация</Link>
